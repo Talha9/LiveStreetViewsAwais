@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.livestreetviewmaps.livetrafficupdates.gpstools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.HIGH_SAMPLING_RATE_SENSORS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <queries>
+        <intent>
+            <action android:name="com.google.android.youtube.api.service.START" />
+        </intent>
+    </queries>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.LiveStreetViews"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".hikingTrackerModule.activities.HikingMapActivity"
+            android:exported="true" />
+        <activity
+            android:name=".hikingTrackerModule.activities.HikingMainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".stepCounterModule.activities.StepCounterMainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".horoscopeModule.activities.HoroscopeDetailsActivity"
+            android:exported="true" />
+        <activity
+            android:name=".horoscopeModule.activities.HoroscopeMainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".earthMapModule.EarthMapMainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".myLocationModule.activities.MyLocationMainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".navigationModule.activities.NavigationMainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".webCamsModule.activities.WebCamVideoPlayerActivity"
+            android:exported="true" />
+        <activity
+            android:name=".webCamsModule.activities.WebCamMapActivity"
+            android:exported="true" />
+        <activity
+            android:name=".webCamsModule.activities.WebCamsMainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Utils.MapNavigation.MapNavigationActivity"
+            android:exported="true" />
+        <activity
+            android:name=".nearByModule.activities.NearbyMainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".riversModule.activities.RiversDetailsActivity"
+            android:exported="true" />
+        <activity
+            android:name=".riversModule.activities.RiversMainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".desertsModule.activities.DesertsDetailsActivity"
+            android:exported="true" />
+        <activity
+            android:name=".desertsModule.activities.DesertsMainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".oceansModule.activities.OceansDetailsActivity"
+            android:exported="true" />
+        <activity
+            android:name=".tallestPeaks.activities.TallestPeaksDetailsActivity"
+            android:exported="true" />
+        <activity
+            android:name=".tallestPeaks.activities.TallestPeaksMainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".oceansModule.activities.OceansMainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".wondersModule.activities.WonderDetailsActivity"
+            android:exported="true" />
+        <activity
+            android:name=".wondersModule.activities.WondersMainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".nearByModule.activities.NearByActivity"
+            android:exported="true" />
+        <activity
+            android:name=".streetViewModule.activities.StreetViewActivity"
+            android:exported="true" />
+        <activity
+            android:name=".homeModule.activities.HomeActivity"
+            android:exported="true"
+            android:theme="@style/Theme.LiveStreetViews.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.livestreetviewmaps.livetrafficupdates.gpstools.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+    </application>
+
+</manifest>

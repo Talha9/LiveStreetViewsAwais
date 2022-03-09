@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">LiveStreetViews</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="live_street_view">Live Street View</string>
+
+    <string name="mapbox_access_token_1">pk.eyJ1IjoidW5pdGV4dGVjaCIsImEiOiJja3oybHppM2gwMXdtMm9tenloaDVmNzB6In0.5CRhAmLE8fURBOjcp4Zz7A</string>
+    <string name="mapbox_access_token_2">pk.eyJ1IjoidW5pdGV4dGVjaDEiLCJhIjoiY2t6Mm1pcGcwMDF1dDJxbHNvYjF6a2h3NyJ9.yGKRMGPR3GLR0T1V_t_3QQ</string>
+    <string name="mapbox_access_token_3">pk.eyJ1IjoidW5pdGV4dGVjaDIiLCJhIjoiY2t6Mm1zNXI5MDAxMDJxbzZwMWh6Z2IyNiJ9.tb29Leuh01JgvOqmcpb1Iw</string>
+    <string name="mapbox_access_token_4">pk.eyJ1IjoidW5pdGV4dGVjaDMiLCJhIjoiY2t6Mm14ejl4MDAybTJ3bzZmZ3kxN2hobyJ9.UafGmm8jOS3V89B7jxglpw</string>
+    <string name="mapbox_access_token_5">pk.eyJ1IjoidW5pdGV4dGVjaDQiLCJhIjoiY2t6M28zMXdhMDcwZzJwcnhtbDh6dXNycSJ9.5yseebchJCFvTwr1f5WUXQ</string>
+    <string name="mapbox_access_token_6">pk.eyJ1IjoidW5pdGV4dGVjaDUiLCJhIjoiY2t6M29hN2tpMDBmdTJ1bXQyZzVqYTZ0byJ9.PaEEjnKdnVdBWqLVUfjM4g</string>
+    <string name="mapbox_access_token_7">pk.eyJ1IjoidW5pdGV4dGVjaDYiLCJhIjoiY2t6M29zYWM0MDdheTJvcng0cmd0dXNvaiJ9.WwkYZfQXf-cWn3ikmC2T9A</string>
+    <string name="mapbox_access_token_8">pk.eyJ1IjoidW5pdGV4dGVjaDciLCJhIjoiY2t6M293d3NoMDBtazJubXQ3YWxuZjdsYyJ9.RDvCeTYHusOmZdr08ZthfA</string>
+    <string name="home">Home</string>
+    <string name="workouts">Workouts</string>
+
+</resources>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".tallestPeaks.activities.TallestPeaksMainActivity">
+    <include
+        android:id="@+id/header"
+        layout="@layout/header_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/tallestPeaksRecView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="2"
+        tools:itemCount="3"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        tools:listitem="@layout/single_tallest_peaks_item_design"
+        android:layout_marginBottom="@dimen/_10sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header" />
+
+    <ProgressBar
+        android:id="@+id/progressMainBg"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
+        android:background="@drawable/progress_bg"
+        android:indeterminateTint="@color/ThemeColor"
+        android:padding="@dimen/_5sdp"
+        app:layout_constraintBottom_toBottomOf="@+id/tallestPeaksRecView"
+        app:layout_constraintEnd_toEndOf="@+id/tallestPeaksRecView"
+        app:layout_constraintStart_toStartOf="@+id/tallestPeaksRecView"
+        app:layout_constraintTop_toTopOf="@+id/tallestPeaksRecView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

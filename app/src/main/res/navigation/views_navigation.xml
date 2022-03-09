@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/views_navigation"
+    app:startDestination="@id/nav_main">
+
+    <fragment
+        android:id="@+id/nav_main"
+        android:name="com.livestreetviewmaps.livetrafficupdates.gpstools.navigationModule.fragments.TextNavigation"
+        android:label="fragment_text_navigation"
+        tools:layout="@layout/fragment_text_navigation" />
+    <fragment
+        android:id="@+id/voiceNavigation2"
+        android:name="com.livestreetviewmaps.livetrafficupdates.gpstools.navigationModule.fragments.VoiceNavigation"
+        android:label="fragment_voice_navigation"
+        tools:layout="@layout/fragment_voice_navigation" />
+    <fragment
+        android:id="@+id/routeNavigation"
+        android:name="com.livestreetviewmaps.livetrafficupdates.gpstools.navigationModule.fragments.RouteNavigation"
+        android:label="fragment_route_navigation"
+        tools:layout="@layout/fragment_route_navigation" />
+    <fragment
+        android:id="@+id/transitNavigation"
+        android:name="com.livestreetviewmaps.livetrafficupdates.gpstools.navigationModule.fragments.TransitNavigation"
+        android:label="fragment_transit_navigation"
+        tools:layout="@layout/fragment_transit_navigation" />
+</navigation>
