@@ -25,10 +25,7 @@ class CloseHikingActivityConfirmDialog(var mContext:Context,var callback:CloseHi
             callback.onYesClick()
         }
         binding.btn2.setOnClickListener {
-            try {
-                dismiss()
-            } catch (e: Exception) {
-            }
+           callback.onNoClick()
         }
     }
 }

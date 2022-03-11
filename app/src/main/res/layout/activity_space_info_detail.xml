@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/spaceinfo_bg"
+    tools:context=".spaceInfoModule.activities.SpaceInfoDetailActivity">
+
+    <include
+        android:id="@+id/header"
+        layout="@layout/header_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cardView5"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_270sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:background="@drawable/space_info_planet_bg"
+                app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/appCompatImageView12"
+                    android:layout_width="@dimen/_170sdp"
+                    android:layout_height="@dimen/_55sdp"
+                    android:alpha="0.7"
+                    android:background="@drawable/shadow"
+                    app:layout_constraintBottom_toBottomOf="@+id/planetImg"
+                    app:layout_constraintEnd_toEndOf="@+id/planetImg"
+                    app:layout_constraintStart_toStartOf="@+id/planetImg"
+                    app:layout_constraintTop_toBottomOf="@id/planetImg" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/planetImg"
+                    android:layout_width="@dimen/_170sdp"
+                    android:layout_height="@dimen/_170sdp"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/_20sdp"
+
+                    android:src="@drawable/mercury_planet"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ProgressBar
+                    android:id="@+id/planetProgress"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="@dimen/_100sdp"
+                    android:layout_gravity="center"
+                    android:elevation="@dimen/_10sdp"
+                    android:indeterminateTint="@color/ThemeColor"
+                    app:layout_constraintBottom_toBottomOf="@+id/planetImg"
+                    app:layout_constraintEnd_toEndOf="@+id/planetImg"
+                    app:layout_constraintStart_toStartOf="@+id/planetImg"
+                    app:layout_constraintTop_toTopOf="@+id/planetImg" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/planetNameTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="#EEEEEE"
+                    android:textSize="@dimen/_35ssp"
+                    android:fontFamily="@font/chicle"
+
+
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/appCompatImageView12"
+                    app:layout_constraintStart_toStartOf="@+id/appCompatImageView12"
+                    app:layout_constraintTop_toBottomOf="@+id/appCompatImageView12" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+               android:layout_margin="@dimen/_10sdp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_18ssp"
+                android:textStyle="bold"
+                android:text="Details"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/constraintLayout3"
+                app:layout_constraintTop_toBottomOf="@id/cardView5" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:background="@drawable/space_info_bg"
+                android:translationZ="90dp"
+                app:layout_constraintBottom_toBottomOf="parent">
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/dataTxtview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_17ssp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                   />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

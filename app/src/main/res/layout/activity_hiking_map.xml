@@ -32,14 +32,33 @@
 
 
 
+            <include
+                android:id="@+id/header"
+                layout="@layout/header_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            app:layout_anchor="@id/bSheet"
+            android:paddingBottom="@dimen/_100sdp"
+            app:layout_anchorGravity="top|end"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/currentLocationBtn"
                 android:layout_width="@dimen/_35sdp"
                 android:layout_height="@dimen/_35sdp"
+                android:layout_margin="@dimen/_10sdp"
                 android:background="@drawable/current_loc_bg"
                 android:elevation="@dimen/_5sdp"
-                android:layout_marginBottom="@dimen/_100sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
                 android:src="@drawable/cureent_locate_icon"
                 android:scaleType="centerCrop"
                 android:translationZ="90dp"
@@ -54,27 +73,14 @@
                 android:background="@drawable/current_loc_bg"
                 android:elevation="@dimen/_5sdp"
                 android:padding="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_margin="@dimen/_10sdp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_baseline_filter_none_24"
                 android:rotation="-45"
                 android:translationZ="90dp"
                 app:layout_constraintBottom_toTopOf="@+id/currentLocationBtn"
                 app:layout_constraintEnd_toEndOf="parent" />
-
-            <include
-                android:id="@+id/header"
-                layout="@layout/header_bar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_10sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <include
             android:id="@+id/bSheet"

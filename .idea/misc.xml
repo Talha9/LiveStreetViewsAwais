@@ -51,6 +51,8 @@
         <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/drawable/rounded_shape_white.xml" value="0.28974358974358977" />
         <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/drawable/side_nav_bar.xml" value="0.2942708333333333" />
         <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/drawable/single_tallest_peaks_item_design.xml" value="0.28974358974358977" />
+        <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/drawable/space_info_bg.xml" value="0.24259259259259258" />
+        <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/drawable/space_info_planet_bg.xml" value="0.24259259259259258" />
         <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/drawable/speak_btn_design.xml" value="0.22" />
         <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/drawable/street_view_btn_bg.xml" value="0.28974358974358977" />
         <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/drawable/street_view_style.xml" value="0.28974358974358977" />
@@ -59,7 +61,7 @@
         <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/layout/activity_deserts_main.xml" value="0.278125" />
         <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/layout/activity_earth_map_main.xml" value="0.278125" />
         <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/layout/activity_hiking_main.xml" value="0.278125" />
-        <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/layout/activity_hiking_map.xml" value="0.278125" />
+        <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/layout/activity_hiking_map.xml" value="0.25" />
         <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/layout/activity_home.xml" value="0.278125" />
         <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/layout/activity_home_carousel.xml" value="0.2640625" />
         <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/layout/activity_horoscope_details.xml" value="0.2" />
@@ -74,6 +76,8 @@
         <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/layout/activity_oceans_main.xml" value="0.278125" />
         <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/layout/activity_rivers_details.xml" value="0.278125" />
         <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/layout/activity_rivers_main.xml" value="0.278125" />
+        <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/layout/activity_space_info_detail.xml" value="0.25" />
+        <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/layout/activity_space_info_main.xml" value="0.22" />
         <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/layout/activity_step_counter_main.xml" value="0.278125" />
         <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/layout/activity_street_view.xml" value="0.25" />
         <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/layout/activity_tallest_peaks_details.xml" value="0.278125" />
@@ -91,6 +95,7 @@
         <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/layout/custom_info_window_nearby_place.xml" value="0.278125" />
         <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/layout/fragment_home.xml" value="0.22" />
         <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/layout/fragment_route_navigation.xml" value="0.22" />
+        <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/layout/fragment_space_info_main.xml" value="0.27384615384615385" />
         <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/layout/fragment_text_navigation.xml" value="0.25" />
         <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/layout/fragment_transit_navigation.xml" value="0.22" />
         <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/layout/fragment_voice_navigation.xml" value="0.22" />
@@ -100,6 +105,7 @@
         <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/layout/header_bar.xml" value="0.22" />
         <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/layout/header_bar_2.xml" value="0.278125" />
         <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/layout/hiking_bottom_sheet.xml" value="0.25" />
+        <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/layout/hiking_show_saved_activity_dialog.xml" value="0.27384615384615385" />
         <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/layout/internet_dialog.xml" value="0.278125" />
         <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/layout/item_view.xml" value="0.278125" />
         <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/layout/location_enable_dialog.xml" value="0.278125" />
@@ -118,10 +124,12 @@
         <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/layout/single_river_item_design.xml" value="0.278125" />
         <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/layout/single_route_navigation_btn_styles.xml" value="0.25" />
         <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/layout/single_street_view_design.xml" value="0.22" />
+        <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/layout/single_tag_planet_design.xml" value="0.27384615384615385" />
         <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/layout/single_tallest_peaks_item_design.xml" value="0.278125" />
         <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/layout/single_transit_item_style.xml" value="0.2" />
         <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/layout/single_web_cam_item_design.xml" value="0.25" />
         <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/layout/single_wonder_item_design.xml" value="0.2" />
+        <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/layout/tag_view.xml" value="0.27384615384615385" />
         <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/menu/activity_main_drawer.xml" value="0.278125" />
         <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/menu/home.xml" value="0.278125" />
         <entry key="..\:/Users/Talha Shahid-Pc/AndroidStudioProjects/LiveStreetViews/app/src/main/res/xml/provider_paths.xml" value="0.23177083333333334" />

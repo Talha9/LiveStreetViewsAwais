@@ -25,6 +25,13 @@
         android:theme="@style/Theme.LiveStreetViews"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".spaceInfoModule.activities.SpaceInfoDetailActivity"
+            android:exported="true" />
+        <activity
+            android:name=".spaceInfoModule.activities.SpaceInfoMainActivity"
+            android:exported="true">
+        </activity>
+        <activity
             android:name=".hikingTrackerModule.activities.HikingMapActivity"
             android:exported="true" />
         <activity
@@ -119,6 +126,9 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

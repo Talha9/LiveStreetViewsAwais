@@ -15,5 +15,6 @@ object constants {
      var time_fourSquare: String = "20210422"
     var mapboxApiKey = "pk.eyJ1IjoiZ3BzZWFydGgxIiwiYSI6ImNreDVzeGtxZjJsZ2czMW14d2pld3oyNWkifQ.rhgxu9g9LEZkHayISGhjNw"
     var countryName = "Current Time"
+    var bottomIndex=3
 
 }

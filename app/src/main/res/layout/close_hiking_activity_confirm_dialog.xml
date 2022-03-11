@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_10sdp"
             android:gravity="center"
-            android:text="Want To Exit"
+            android:text="Want To Save"
             android:textColor="@color/ThemeColor"
             android:textSize="@dimen/_17ssp"
             android:textStyle="bold"

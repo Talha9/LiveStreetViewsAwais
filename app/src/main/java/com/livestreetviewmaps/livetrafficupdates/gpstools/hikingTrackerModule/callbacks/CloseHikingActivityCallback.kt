@@ -4,4 +4,5 @@ import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.db.models.Hiking
 
 interface CloseHikingActivityCallback {
     fun onYesClick()
+    fun onNoClick()
 }

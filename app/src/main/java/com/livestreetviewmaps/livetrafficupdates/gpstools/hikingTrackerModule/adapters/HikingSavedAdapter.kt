@@ -32,6 +32,7 @@ class HikingSavedAdapter(var mContext: Context,var list:ArrayList<HikingTable>,v
        var dateTxt:TextView?=null
        var closeBtn:ImageView?=null
        var btn:ConstraintLayout?=null
+       var activityNameTxt:TextView?=null
        init {
            img=itemView.findViewById(R.id.hikingSavedeImg)
            progress=itemView.findViewById(R.id.hikingSavedProgress)
@@ -40,6 +41,7 @@ class HikingSavedAdapter(var mContext: Context,var list:ArrayList<HikingTable>,v
            dateTxt=itemView.findViewById(R.id.hikikngSavedDateTxt)
            btn=itemView.findViewById(R.id.hikingSavedBtn)
            closeBtn=itemView.findViewById(R.id.hikingSavedCloseBtn)
+           activityNameTxt=itemView.findViewById(R.id.hikikngSavedActivityTxt)
 
        }
     }
@@ -74,6 +76,7 @@ class HikingSavedAdapter(var mContext: Context,var list:ArrayList<HikingTable>,v
         holder.durationTxt!!.text=model.totalDuration
         holder.distanceTxt!!.text= DecimalFormat("#.#").format(model.totalDistance) + " Km."
         holder.dateTxt!!.text= model.currentDate
+        holder.activityNameTxt!!.text=model.activityName
         holder.btn!!.setOnClickListener {
 
         }

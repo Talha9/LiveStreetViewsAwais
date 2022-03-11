@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation
 import com.livestreetviewmaps.livetrafficupdates.gpstools.desertsModule.activities.DesertsMainActivity
 import com.livestreetviewmaps.livetrafficupdates.gpstools.R
+import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.constants
 import com.livestreetviewmaps.livetrafficupdates.gpstools.databinding.FragmentHomeBinding
 import com.livestreetviewmaps.livetrafficupdates.gpstools.earthMapModule.EarthMapMainActivity
 import com.livestreetviewmaps.livetrafficupdates.gpstools.hikingTrackerModule.activities.HikingMainActivity
@@ -33,6 +34,7 @@ import com.livestreetviewmaps.livetrafficupdates.gpstools.navigationModule.activ
 import com.livestreetviewmaps.livetrafficupdates.gpstools.nearByModule.activities.NearbyMainActivity
 import com.livestreetviewmaps.livetrafficupdates.gpstools.oceansModule.activities.OceansMainActivity
 import com.livestreetviewmaps.livetrafficupdates.gpstools.riversModule.activities.RiversMainActivity
+import com.livestreetviewmaps.livetrafficupdates.gpstools.spaceInfoModule.activities.SpaceInfoMainActivity
 import com.livestreetviewmaps.livetrafficupdates.gpstools.stepCounterModule.activities.StepCounterMainActivity
 import com.livestreetviewmaps.livetrafficupdates.gpstools.streetViewModule.activities.StreetViewActivity
 import com.livestreetviewmaps.livetrafficupdates.gpstools.streetViewModule.helpers.StreetViewItemsHelper
@@ -113,35 +115,43 @@ class HomeFragment : Fragment() {
                                     "ModelLogCheckTAG",
                                     "onItemClick: " + m.viewName + "," + m.countryName + "," + m.cityName + "," + m.imageLink + "," + m.details
                                 )
+                                constants.bottomIndex=3
                                 intent.putExtra("streetModel", m)
                                 startActivity(intent)
                             }
                             1 -> {
                                 val intent = Intent(mContext, NearbyMainActivity::class.java)
+                                constants.bottomIndex=3
                                 startActivity(intent)
                             }
                             2 -> {
                                 val intent = Intent(mContext, WondersMainActivity::class.java)
+                                constants.bottomIndex=3
                                 startActivity(intent)
                             }
                             3 -> {
                                 val intent = Intent(mContext, OceansMainActivity::class.java)
+                                constants.bottomIndex=3
                                 startActivity(intent)
                             }
                             4 -> {
                                 val intent = Intent(mContext, TallestPeaksMainActivity::class.java)
+                                constants.bottomIndex=3
                                 startActivity(intent)
                             }
                             5 -> {
                                 val intent = Intent(mContext, DesertsMainActivity::class.java)
+                                constants.bottomIndex=3
                                 startActivity(intent)
                             }
                             6 -> {
                                 val intent = Intent(mContext, RiversMainActivity::class.java)
+                                constants.bottomIndex=3
                                 startActivity(intent)
                             }
                             7 -> {
                                 val intent = Intent(mContext, WebCamsMainActivity::class.java)
+                                constants.bottomIndex=3
                                 startActivity(intent)
                             }
                         }
@@ -150,34 +160,32 @@ class HomeFragment : Fragment() {
                         when (pos) {
                                 0 -> {
                                 val intent = Intent(mContext, NavigationMainActivity::class.java)
+                                    constants.bottomIndex=2
                                 startActivity(intent)
                             }
                             1 -> {
                                 val intent = Intent(mContext, MyLocationMainActivity::class.java)
+                                constants.bottomIndex=2
                                 startActivity(intent)
                             }
                             2 -> {
                                 val intent = Intent(mContext, EarthMapMainActivity::class.java)
+                                constants.bottomIndex=2
                                 startActivity(intent)
                             }
                             3 -> {
                                 val intent = Intent(mContext, HoroscopeMainActivity::class.java)
+                                constants.bottomIndex=2
                                 startActivity(intent)
                             }
                             4 -> {
                                 val intent = Intent(mContext, HikingMainActivity::class.java)
+                                constants.bottomIndex=2
                                 startActivity(intent)
                             }
                             5 -> {
-                                val intent = Intent(mContext, DesertsMainActivity::class.java)
-                                startActivity(intent)
-                            }
-                            6 -> {
-                                val intent = Intent(mContext, RiversMainActivity::class.java)
-                                startActivity(intent)
-                            }
-                            7 -> {
-                                val intent = Intent(mContext, WebCamsMainActivity::class.java)
+                                val intent = Intent(mContext, SpaceInfoMainActivity::class.java)
+                                constants.bottomIndex=2
                                 startActivity(intent)
                             }
                         }
@@ -189,11 +197,10 @@ class HomeFragment : Fragment() {
     }
 
     private fun Initializers() {
-        manager = GridLayoutManager(mContext, 2)
-        binding!!.homeRecView.layoutManager = manager
-        subList = mainList!!.get(2).list
-        setUpHomeAdapter(subList!!, "home")
-
+            manager = GridLayoutManager(mContext, 2)
+            binding!!.homeRecView.layoutManager = manager
+            subList = mainList!!.get(2).list
+            setUpHomeAdapter(subList!!, "home")
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -413,7 +420,7 @@ class HomeFragment : Fragment() {
                 R.drawable.setting_icon
             )
         )
-        binding!!.bottom.bottomNav.show(3)
+        binding!!.bottom.bottomNav.show(constants.bottomIndex)
         binding!!.bottom.bottomNav.circleColor = getColor(mContext!!, R.color.homeThemeColor)
     }
 

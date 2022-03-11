@@ -143,8 +143,6 @@ class NavigationMainActivity : AppCompatActivity(), OnMapReadyCallback, Location
         binding!!.header.headerBarBackBtn.setOnClickListener {
           onBackPressed()
         }
-
-
     }
 
     private fun initializers() {
@@ -525,8 +523,6 @@ class NavigationMainActivity : AppCompatActivity(), OnMapReadyCallback, Location
 
 
     override fun onBackPressed() {
-        val intent = Intent(this, HomeActivity::class.java)
-        startActivity(intent)
         finish()
     }
 

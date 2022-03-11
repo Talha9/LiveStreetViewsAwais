@@ -15,20 +15,28 @@ import android.provider.Settings
 import android.util.Log
 import android.view.KeyEvent
 import android.view.View
+import android.widget.Chronometer.OnChronometerTickListener
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.maps.android.SphericalUtil
 import com.livestreetviewmaps.livetrafficupdates.gpstools.R
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.LocationService
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.NetworkStateReceiver
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.callbacks.LocationDialogCallback
+import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.callbacks.MapStylesDialogCallback
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.constants
+import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.db.models.HikingTable
+import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.db.models.MyLatLng
+import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.db.viewModel.LiveStreetViewModel
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.dialogs.InternetDialog
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.dialogs.LocationDialog
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.dialogs.MapStylesDialog
 import com.livestreetviewmaps.livetrafficupdates.gpstools.databinding.ActivityHikingMapBinding
+import com.livestreetviewmaps.livetrafficupdates.gpstools.hikingTrackerModule.callbacks.CloseHikingActivityCallback
+import com.livestreetviewmaps.livetrafficupdates.gpstools.hikingTrackerModule.dialogs.CloseHikingActivityConfirmDialog
 import com.livestreetviewmaps.livetrafficupdates.gpstools.hikingTrackerModule.models.HikingHomeModel
 import com.mapbox.android.core.location.*
 import com.mapbox.mapboxsdk.Mapbox
@@ -46,21 +54,9 @@ import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
 import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.mapboxsdk.plugins.building.BuildingPlugin
-import com.mapbox.mapboxsdk.plugins.traffic.TrafficPlugin
 import java.lang.Double
 import java.lang.ref.WeakReference
 import java.text.DecimalFormat
-
-import android.widget.Chronometer.OnChronometerTickListener
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.db.LiveStreetViewDB
-import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.db.LiveStreetViewDao
-import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.db.models.HikingTable
-import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.db.models.MyLatLng
-import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.db.viewModel.LiveStreetViewModel
-import com.livestreetviewmaps.livetrafficupdates.gpstools.hikingTrackerModule.callbacks.CloseHikingActivityCallback
-import com.livestreetviewmaps.livetrafficupdates.gpstools.hikingTrackerModule.dialogs.CloseHikingActivityConfirmDialog
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -68,9 +64,12 @@ import kotlin.collections.ArrayList
 
 class HikingMapActivity : AppCompatActivity(), OnMapReadyCallback,
     NetworkStateReceiver.NetworkStateReceiverListener, LocationDialogCallback {
-    private var mySpeed: kotlin.Double=0.0
-    private var maxSpeed: kotlin.Double=0.0
+    private var mySpeed: kotlin.Double = 0.0
+    private var maxSpeed: kotlin.Double = 0.0
+    var currentLocation: Location? = null
     var timeWhenStopped: Long = 0
+    var isRunStopped = true
+    var mMapLayersDialog: MapStylesDialog? = null
     var binding: ActivityHikingMapBinding? = null
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<View>
     var dataModel: HikingHomeModel? = null
@@ -91,16 +90,16 @@ class HikingMapActivity : AppCompatActivity(), OnMapReadyCallback,
         LocationChangeListeningActivityLocationCallback(
             this
         )
-    var exitDialog:CloseHikingActivityConfirmDialog?=null
+    var exitDialog: CloseHikingActivityConfirmDialog? = null
     lateinit var mLocationService: LocationService
     var position: CameraPosition? = null
     private val DEFAULT_INTERVAL_IN_MILLISECONDS = 1000L
     private val DEFAULT_MAX_WAIT_TIME = DEFAULT_INTERVAL_IN_MILLISECONDS * 5
     private var networkStateReceiver: NetworkStateReceiver? = null
     var internetDialog: InternetDialog? = null
-    var mLiveStreetViewModel:LiveStreetViewModel?=null
-    var lstLngList=ArrayList<MyLatLng>()
-    var currentDate:String?=null
+    var mLiveStreetViewModel: LiveStreetViewModel? = null
+    var lstLngList = ArrayList<MyLatLng>()
+    var currentDate: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         try {
@@ -120,7 +119,7 @@ class HikingMapActivity : AppCompatActivity(), OnMapReadyCallback,
                 val model = intent.getParcelableExtra<HikingHomeModel>("hiking_home_model")
                 if (model != null) {
                     dataModel = model
-                    binding!!.header.headerBarTitleTxt.text=dataModel!!.workoutName
+                    binding!!.header.headerBarTitleTxt.text = dataModel!!.workoutName
                     Log.d(
                         "ModelLogCheckTAG",
                         "onItemClick: " + model.workoutName + "," + model.workoutImg
@@ -136,7 +135,7 @@ class HikingMapActivity : AppCompatActivity(), OnMapReadyCallback,
     }
 
     private fun initialization() {
-        mLiveStreetViewModel=ViewModelProvider(this)[LiveStreetViewModel::class.java]
+        mLiveStreetViewModel = ViewModelProvider(this)[LiveStreetViewModel::class.java]
         mLocationDialog = LocationDialog(this, this)
         mLocationService = LocationService(this, mLocationDialog!!)
         try {
@@ -156,7 +155,7 @@ class HikingMapActivity : AppCompatActivity(), OnMapReadyCallback,
         )
         internetDialog = InternetDialog(this)
 
-        currentDate=getLiveDate("dd-MMM-YYYY",0)
+        currentDate = getLiveDate("dd-MMM-YYYY", 0)
     }
 
     @SuppressLint("MissingPermission")
@@ -166,6 +165,7 @@ class HikingMapActivity : AppCompatActivity(), OnMapReadyCallback,
         }
         binding!!.bSheet.hikingStartBtn.setOnClickListener {
             isStart = true
+            isRunStopped=false
             binding!!.bSheet.hikingPauseBtn.visibility = View.VISIBLE
             binding!!.bSheet.hikingStopBtn.visibility = View.VISIBLE
             binding!!.bSheet.hikingStartBtn.visibility = View.GONE
@@ -184,35 +184,81 @@ class HikingMapActivity : AppCompatActivity(), OnMapReadyCallback,
             timeWhenStopped = binding!!.bSheet.durationtxt.getBase() - SystemClock.elapsedRealtime()
             binding!!.bSheet.durationtxt.stop()
             oMapboxMap.locationComponent.isLocationComponentEnabled = false
-            isStart=false
+            isStart = false
         }
         binding!!.bSheet.hikingStopBtn.setOnClickListener {
-            saveActivityData()
-            oMapboxMap.removeAnnotations()
-            timeWhenStopped = binding!!.bSheet.durationtxt.getBase() - SystemClock.elapsedRealtime()
-            binding!!.bSheet.durationtxt.stop()
-            isStart=false
-            bottomSheetBehavior.state=BottomSheetBehavior.STATE_COLLAPSED
-            defaultCondition()
-
+            isRunStopped=true
+            onBackPressed()
         }
+        binding!!.currentLocationBtn.setOnClickListener {
+            if (currentLocation != null) {
+                if (currentLocation!!.latitude != 0.0 && currentLocation!!.longitude != 0.0) {
+                    getcurrent(currentLocation!!)
+                }
+            }
+        }
+        binding!!.mapLayersBtn.setOnClickListener {
+            mMapLayersDialog = MapStylesDialog(this, object : MapStylesDialogCallback {
+                override fun onMapDefaultMapClick() {
+                    oMapboxMap.setStyle(Style.MAPBOX_STREETS)
+                    try {
+                        mMapLayersDialog!!.dismiss()
+                    } catch (e: java.lang.Exception) {
+                        e.printStackTrace()
+                    }
 
+                }
+
+                override fun onMapNightMapClick() {
+                    oMapboxMap.setStyle(Style.DARK)
+                    try {
+                        mMapLayersDialog!!.dismiss()
+                    } catch (e: java.lang.Exception) {
+                        e.printStackTrace()
+                    }
+                }
+
+                override fun onMapSatelliteMapClick() {
+                    oMapboxMap.setStyle(Style.SATELLITE_STREETS)
+                    try {
+                        mMapLayersDialog!!.dismiss()
+                    } catch (e: java.lang.Exception) {
+                        e.printStackTrace()
+                    }
+                }
+            })
+            try {
+                mMapLayersDialog!!.show()
+            } catch (e: Exception) {
+            }
+        }
 
     }
 
     override fun onBackPressed() {
-        exitActivityDialog()
+        if (!isRunStopped) {
+            exitActivityDialog()
+        } else {
+            val intent = Intent(this@HikingMapActivity, HikingMainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
     }
 
-
-    private fun saveActivityData(){
-        if (distance!=null && lstLngList.size>0) {
+    private fun saveActivityData() {
+        if (distance != null && lstLngList.size > 0) {
             mLiveStreetViewModel!!.insert(
-                HikingTable(dataModel!!.workoutName,binding!!.bSheet.durationtxt.text.toString(),distance,
+                HikingTable(
+                    dataModel!!.workoutName, binding!!.bSheet.durationtxt.text.toString(), distance,
                     currentDate!!,
-                    lstLngList.toMutableList()))
-            Toast.makeText(this@HikingMapActivity,"Data Saved Sucessfully!",Toast.LENGTH_SHORT).show()
+                    lstLngList.toMutableList()
+                )
+            )
+            Toast.makeText(this@HikingMapActivity, "Data Saved Sucessfully!", Toast.LENGTH_SHORT)
+                .show()
         }
+
     }
 
     fun defaultCondition() {
@@ -222,13 +268,13 @@ class HikingMapActivity : AppCompatActivity(), OnMapReadyCallback,
         binding!!.bSheet.distancetxt.text = "0.00 Km"
         binding!!.bSheet.durationtxt.setText("00:00:00")
         binding!!.bSheet.speedtxt.text = "0.0 Km/h"
-        distance=0.0
-        lStart=null
-        lEnd=null
-        maxSpeed=0.0
-        mySpeed=0.0
-        lStartLocation=null
-        lEndLocation=null
+        distance = 0.0
+        lStart = null
+        lEnd = null
+        maxSpeed = 0.0
+        mySpeed = 0.0
+        lStartLocation = null
+        lEndLocation = null
 
 
     }
@@ -282,7 +328,12 @@ class HikingMapActivity : AppCompatActivity(), OnMapReadyCallback,
                     .width(3f)
                     .color(getColor(R.color.ThemeColor))
             )
-            lstLngList.add(MyLatLng(lStartLocation!!.latitude.toString(), lStartLocation!!.longitude.toString()))
+            lstLngList.add(
+                MyLatLng(
+                    lStartLocation!!.latitude.toString(),
+                    lStartLocation!!.longitude.toString()
+                )
+            )
         }
     }
 
@@ -300,7 +351,6 @@ class HikingMapActivity : AppCompatActivity(), OnMapReadyCallback,
                 )
             ) // Sets the new camera position
             .build() // Creates a CameraPosition from the builder
-
 
         oMapboxMap.animateCamera(
             CameraUpdateFactory
@@ -395,6 +445,7 @@ class HikingMapActivity : AppCompatActivity(), OnMapReadyCallback,
                     activity.oMapboxMap.locationComponent
                         .forceLocationUpdate(p0.lastLocation)
                     if (location != null) {
+                        activity.currentLocation = location
                         activity.getOneTimeCurrentLocation(location!!)
                         Log.d("LocationCheckingLogs", "onSuccess: " + location)
                         if (activity.isStart) {
@@ -492,13 +543,13 @@ class HikingMapActivity : AppCompatActivity(), OnMapReadyCallback,
 
     fun getSpeed(speed: Float) {
         mySpeed = speed * 3.6
-        if (mySpeed>maxSpeed){
+        if (mySpeed > maxSpeed) {
             try {
-                maxSpeed="${DecimalFormat("#.##").format(mySpeed)}".toDouble()
+                maxSpeed = "${DecimalFormat("#.##").format(mySpeed)}".toDouble()
             } catch (e: Exception) {
             }
         }
-        binding!!.bSheet.speedtxt.text="${DecimalFormat("#.##").format(mySpeed)}Km/h"
+        binding!!.bSheet.speedtxt.text = "${DecimalFormat("#.##").format(mySpeed)}Km/h"
     }
 
     override fun networkAvailable() {
@@ -513,7 +564,9 @@ class HikingMapActivity : AppCompatActivity(), OnMapReadyCallback,
             internetDialog!!.show()
             internetDialog!!.setOnKeyListener(DialogInterface.OnKeyListener { dialogInterface, i, keyEvent ->
                 if (i == KeyEvent.KEYCODE_BACK) {
-                    onBackPressed()
+                    val intent = Intent(this@HikingMapActivity, HikingMainActivity::class.java)
+                    startActivity(intent)
+                    finish()
                 }
                 return@OnKeyListener false
             })
@@ -588,17 +641,27 @@ class HikingMapActivity : AppCompatActivity(), OnMapReadyCallback,
         return s.format(Date(cal.timeInMillis))
     }
 
-    fun exitActivityDialog(){
-        exitDialog= CloseHikingActivityConfirmDialog(this,object :CloseHikingActivityCallback{
+    private fun exitActivityDialog() {
+        exitDialog = CloseHikingActivityConfirmDialog(this, object : CloseHikingActivityCallback {
             override fun onYesClick() {
                 saveActivityData()
-                timeWhenStopped = binding!!.bSheet.durationtxt.getBase() - SystemClock.elapsedRealtime()
+                timeWhenStopped =
+                    binding!!.bSheet.durationtxt.getBase() - SystemClock.elapsedRealtime()
                 binding!!.bSheet.durationtxt.stop()
-                isStart=false
-                bottomSheetBehavior.state=BottomSheetBehavior.STATE_COLLAPSED
+                isStart = false
+                bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
                 defaultCondition()
                 oMapboxMap.removeAnnotations()
                 exitDialog!!.dismiss()
+                val intent = Intent(this@HikingMapActivity, HikingMainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+
+            override fun onNoClick() {
+                val intent = Intent(this@HikingMapActivity, HikingMainActivity::class.java)
+                startActivity(intent)
+                finish()
             }
 
         })

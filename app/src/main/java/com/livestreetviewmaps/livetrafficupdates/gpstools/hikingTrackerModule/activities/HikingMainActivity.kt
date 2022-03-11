@@ -1,18 +1,16 @@
 package com.livestreetviewmaps.livetrafficupdates.gpstools.hikingTrackerModule.activities
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.livestreetviewmaps.livetrafficupdates.gpstools.R
 import com.livestreetviewmaps.livetrafficupdates.gpstools.databinding.ActivityHikingMainBinding
-import com.livestreetviewmaps.livetrafficupdates.gpstools.hikingTrackerModule.adapters.HikingHomeAdapter
 import com.livestreetviewmaps.livetrafficupdates.gpstools.hikingTrackerModule.fragments.WorkoutHomeFragment
 import com.livestreetviewmaps.livetrafficupdates.gpstools.hikingTrackerModule.fragments.WorkoutSavedFragment
-import com.livestreetviewmaps.livetrafficupdates.gpstools.hikingTrackerModule.helpers.HikingHomeHelper
-import com.livestreetviewmaps.livetrafficupdates.gpstools.hikingTrackerModule.models.HikingHomeModel
+import com.livestreetviewmaps.livetrafficupdates.gpstools.homeModule.activities.HomeActivity
 
 class HikingMainActivity : AppCompatActivity() {
     var binding: ActivityHikingMainBinding? = null
@@ -82,8 +80,12 @@ class HikingMainActivity : AppCompatActivity() {
             binding!!.hikingSaveBtn.setTextColor(getColor(R.color.ThemeColor))
             binding!!.hikingHomeBtn.setTextColor(getColor(R.color.white))
             fragmentChecker("save")
-
         }
+        binding!!.header.headerBarBackBtn.setOnClickListener {
+            onBackPressed()
+        }
+
+
     }
 
 
@@ -116,5 +118,9 @@ class HikingMainActivity : AppCompatActivity() {
 
         } catch (e: Exception) {
         }
+    }
+
+    override fun onBackPressed() {
+        finish()
     }
 }
