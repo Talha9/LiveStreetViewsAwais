@@ -9,10 +9,14 @@ import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.android.gms.ads.AdSize
 import com.livestreetviewmaps.livetrafficupdates.gpstools.R
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.NetworkStateReceiver
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.dialogs.InternetDialog
 import com.livestreetviewmaps.livetrafficupdates.gpstools.databinding.ActivityOceansMainBinding
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewBillingHelper
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewMyAppAds
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewMyAppShowAds
 import com.livestreetviewmaps.livetrafficupdates.gpstools.oceansModule.adapters.OceansAdapter
 import com.livestreetviewmaps.livetrafficupdates.gpstools.oceansModule.callbacks.OceansCallback
 import com.livestreetviewmaps.livetrafficupdates.gpstools.oceansModule.helpers.OceansHelpers
@@ -39,7 +43,7 @@ class OceansMainActivity : AppCompatActivity(),NetworkStateReceiver.NetworkState
         setUpHeader()
         listFiller()
         setUpAdapter()
-        onClickListeners()
+        mBannerAdsSmall()
     }
 
     private fun initializers() {
@@ -59,9 +63,11 @@ class OceansMainActivity : AppCompatActivity(),NetworkStateReceiver.NetworkState
         }
     }
 
-
-    private fun onClickListeners() {
-
+    override fun onBackPressed() {
+        LiveStreetViewMyAppShowAds.mediationBackPressedSimpleLiveStreetView(
+            this,
+            LiveStreetViewMyAppAds.admobInterstitialAd
+        )
     }
 
     private fun listFiller() {
@@ -70,6 +76,21 @@ class OceansMainActivity : AppCompatActivity(),NetworkStateReceiver.NetworkState
 
     private fun setUpAdapter() {
         manager= GridLayoutManager(this,2)
+        manager!!.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+            override fun getSpanSize(position: Int): Int {
+                val itemViewType = adapter!!.getItemViewType(position)
+                if (itemViewType == 0) {
+                    //manager.getSpanCount();
+                } else if (itemViewType == 1) {
+                    return 1
+                } else if (itemViewType == 2) {
+                    manager!!.spanCount
+                } else {
+                    return 2
+                }
+                return 2
+            }
+        }
         binding!!.oceansRecView.layoutManager=manager
         if (list!=null && list!!.size>0) {
             adapter= OceansAdapter(this,list!!,object : OceansCallback {
@@ -108,5 +129,23 @@ class OceansMainActivity : AppCompatActivity(),NetworkStateReceiver.NetworkState
         networkStateReceiver!!.removeListener(this)
         unregisterReceiver(networkStateReceiver)
         super.onDestroy()
+    }
+
+    private fun mBannerAdsSmall() {
+        val billingHelper =
+            LiveStreetViewBillingHelper(
+                this
+            )
+        val adView = com.google.android.gms.ads.AdView(this)
+        adView.adUnitId = LiveStreetViewMyAppAds.banner_admob_inApp
+        adView.adSize = AdSize.BANNER
+
+        if (billingHelper.isNotAdPurchased()) {
+            LiveStreetViewMyAppAds.loadEarthMapBannerForMainMediation(
+                binding!!.smallAd.adContainer,adView,this
+            )
+        }else{
+            binding!!.smallAd.root.visibility= View.GONE
+        }
     }
 }

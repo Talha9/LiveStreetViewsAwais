@@ -4,37 +4,39 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.content.IntentFilter
 import android.net.ConnectivityManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
-import com.livestreetviewmaps.livetrafficupdates.gpstools.R
+import com.google.android.gms.ads.AdSize
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.NetworkStateReceiver
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.dialogs.InternetDialog
 import com.livestreetviewmaps.livetrafficupdates.gpstools.databinding.ActivityWondersMainBinding
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewBillingHelper
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewMyAppAds
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewMyAppShowAds
 import com.livestreetviewmaps.livetrafficupdates.gpstools.wondersModule.Model.WondersModel
 import com.livestreetviewmaps.livetrafficupdates.gpstools.wondersModule.adapters.WonderAdapter
 import com.livestreetviewmaps.livetrafficupdates.gpstools.wondersModule.callbacks.WondersCallback
 import com.livestreetviewmaps.livetrafficupdates.gpstools.wondersModule.helpers.WonderHelpers
 
-class WondersMainActivity : AppCompatActivity(),NetworkStateReceiver.NetworkStateReceiverListener {
-    var binding:ActivityWondersMainBinding?=null
-    var adapter:WonderAdapter?=null
-    var manager:GridLayoutManager?=null
-    var list:ArrayList<WondersModel>?=null
+class WondersMainActivity : AppCompatActivity(), NetworkStateReceiver.NetworkStateReceiverListener {
+    var binding: ActivityWondersMainBinding? = null
+    var adapter: WonderAdapter? = null
+    var manager: GridLayoutManager? = null
+    var list: ArrayList<WondersModel>? = null
     private var networkStateReceiver: NetworkStateReceiver? = null
-    var internetDialog: InternetDialog?=null
+    var internetDialog: InternetDialog? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding= ActivityWondersMainBinding.inflate(layoutInflater)
+        binding = ActivityWondersMainBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
         initializers()
         setUpHeader()
         listFiller()
         setUpAdapter()
-        onClickListeners()
-
+        mBannerAdsSmall()
     }
 
     private fun initializers() {
@@ -44,38 +46,57 @@ class WondersMainActivity : AppCompatActivity(),NetworkStateReceiver.NetworkStat
             networkStateReceiver,
             IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
         )
-        internetDialog= InternetDialog(this)
+        internetDialog = InternetDialog(this)
     }
 
     private fun setUpHeader() {
-        binding!!.header.headerBarTitleTxt.text="Wonders"
+        binding!!.header.headerBarTitleTxt.text = "Wonders"
         binding!!.header.headerBarBackBtn.setOnClickListener {
             onBackPressed()
         }
     }
 
-    private fun onClickListeners() {
-
+    override fun onBackPressed() {
+        LiveStreetViewMyAppShowAds.mediationBackPressedSimpleLiveStreetView(
+            this,
+            LiveStreetViewMyAppAds.admobInterstitialAd
+        )
     }
 
+
     private fun listFiller() {
-        list=WonderHelpers.fillWonderItemList()
+        list = WonderHelpers.fillWonderItemList()
     }
 
     private fun setUpAdapter() {
-        manager= GridLayoutManager(this,2)
-        binding!!.wondersRecView.layoutManager=manager
-        if (list!=null && list!!.size>0) {
-            adapter= WonderAdapter(this,list!!,object :WondersCallback{
+        manager = GridLayoutManager(this, 2)
+        manager!!.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+            override fun getSpanSize(position: Int): Int {
+                val itemViewType = adapter!!.getItemViewType(position)
+                if (itemViewType == 0) {
+                    //manager.getSpanCount();
+                } else if (itemViewType == 1) {
+                    return 1
+                } else if (itemViewType == 2) {
+                    manager!!.spanCount
+                } else {
+                    return 2
+                }
+                return 2
+            }
+        }
+        binding!!.wondersRecView.layoutManager = manager
+        if (list != null && list!!.size > 0) {
+            adapter = WonderAdapter(this, list!!, object : WondersCallback {
                 override fun onWonderClick(model: WondersModel) {
-                    val intent=Intent(this@WondersMainActivity,WonderDetailsActivity::class.java)
-                    intent.putExtra("wonder_model",model)
+                    val intent = Intent(this@WondersMainActivity, WonderDetailsActivity::class.java)
+                    intent.putExtra("wonder_model", model)
                     startActivity(intent)
                 }
 
             })
-            binding!!.wondersRecView.adapter=adapter
-            binding!!.progressMainBg.visibility=View.GONE
+            binding!!.wondersRecView.adapter = adapter
+            binding!!.progressMainBg.visibility = View.GONE
         }
     }
 
@@ -103,5 +124,23 @@ class WondersMainActivity : AppCompatActivity(),NetworkStateReceiver.NetworkStat
         networkStateReceiver!!.removeListener(this)
         unregisterReceiver(networkStateReceiver)
         super.onDestroy()
+    }
+
+    private fun mBannerAdsSmall() {
+        val billingHelper =
+            LiveStreetViewBillingHelper(
+                this
+            )
+        val adView = com.google.android.gms.ads.AdView(this)
+        adView.adUnitId = LiveStreetViewMyAppAds.banner_admob_inApp
+        adView.adSize = AdSize.BANNER
+
+        if (billingHelper.isNotAdPurchased()) {
+            LiveStreetViewMyAppAds.loadEarthMapBannerForMainMediation(
+                binding!!.smallAd.adContainer, adView, this
+            )
+        } else {
+            binding!!.smallAd.root.visibility = View.GONE
+        }
     }
 }

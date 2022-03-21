@@ -18,6 +18,8 @@ import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.MapNavigation.Ma
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.MapNavigation.model.NavigationModel
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.constants
 import com.livestreetviewmaps.livetrafficupdates.gpstools.databinding.FragmentTextNavigationBinding
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewMyAppAds
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewMyAppShowAds
 import com.livestreetviewmaps.livetrafficupdates.gpstools.navigationModule.callbacks.onPlaceTextChangeCallback
 import com.livestreetviewmaps.livetrafficupdates.gpstools.navigationModule.models.PlaceResultModel
 import com.mapbox.mapboxsdk.plugins.places.autocomplete.PlaceAutocomplete
@@ -99,7 +101,8 @@ class TextNavigation(var callback: onPlaceTextChangeCallback) : Fragment() {
                         "navigation_model",
                         NavigationModel(currentLat, currentLng, destinationLat, destinationLng,0)
                     )
-                    startActivity(intent)
+                    LiveStreetViewMyAppShowAds.meidationForClickSimpleLiveStreetView(mContext,
+                        LiveStreetViewMyAppAds.admobInterstitialAd,intent)
                 } else {
                     Toast.makeText(mContext, "Location not Found..!", Toast.LENGTH_SHORT).show()
                 }

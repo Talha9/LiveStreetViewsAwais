@@ -15,6 +15,8 @@ import com.livestreetviewmaps.livetrafficupdates.gpstools.hikingTrackerModule.ad
 import com.livestreetviewmaps.livetrafficupdates.gpstools.hikingTrackerModule.callbacks.HikingHomeCallback
 import com.livestreetviewmaps.livetrafficupdates.gpstools.hikingTrackerModule.helpers.HikingHomeHelper
 import com.livestreetviewmaps.livetrafficupdates.gpstools.hikingTrackerModule.models.HikingHomeModel
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewMyAppAds
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewMyAppShowAds
 
 class WorkoutHomeFragment : Fragment() {
 
@@ -56,7 +58,7 @@ class WorkoutHomeFragment : Fragment() {
                     override fun onWorkoutClick(model: HikingHomeModel, pos: Int) {
                         val mIntent = Intent(mContext, HikingMapActivity::class.java)
                         mIntent.putExtra("hiking_home_model", model)
-                        mContext!!.startActivity(mIntent)
+                        LiveStreetViewMyAppShowAds.meidationForClickSimpleLiveStreetView(mContext,LiveStreetViewMyAppAds.admobInterstitialAd,mIntent)
                     }
                 })
                 binding!!.hikingHomeRecView.adapter=homeAdapter

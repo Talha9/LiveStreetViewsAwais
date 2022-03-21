@@ -14,6 +14,7 @@ import android.view.KeyEvent
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.gms.ads.AdSize
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.*
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.MapNavigation.MapNavigationActivity
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.MapNavigation.model.NavigationModel
@@ -21,6 +22,9 @@ import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.callbacks.Locati
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.dialogs.InternetDialog
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.dialogs.LocationDialog
 import com.livestreetviewmaps.livetrafficupdates.gpstools.databinding.ActivityWebCamsMainBinding
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewBillingHelper
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewMyAppAds
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewMyAppShowAds
 import com.livestreetviewmaps.livetrafficupdates.gpstools.webCamsModule.adapter.WebCamAdapter
 import com.livestreetviewmaps.livetrafficupdates.gpstools.webCamsModule.callbacks.WebCamCallback
 import com.livestreetviewmaps.livetrafficupdates.gpstools.webCamsModule.helpers.WebCamHelper
@@ -48,6 +52,7 @@ class WebCamsMainActivity : AppCompatActivity(),NetworkStateReceiver.NetworkStat
         initializers()
         setUpHeader()
         setUpAdapter()
+        mBannerAdsSmall()
     }
 
     private fun listFiller() {
@@ -122,6 +127,12 @@ class WebCamsMainActivity : AppCompatActivity(),NetworkStateReceiver.NetworkStat
             onBackPressed()
         }
     }
+    override fun onBackPressed() {
+        LiveStreetViewMyAppShowAds.mediationBackPressedSimpleLiveStreetView(
+            this,
+            LiveStreetViewMyAppAds.admobInterstitialAd
+        )
+    }
 
     override fun networkAvailable() {
         try {
@@ -180,6 +191,24 @@ class WebCamsMainActivity : AppCompatActivity(),NetworkStateReceiver.NetworkStat
             )
             startActivity(callGPSSettingIntent)
         } catch (e: Exception) {
+        }
+    }
+
+    private fun mBannerAdsSmall() {
+        val billingHelper =
+            LiveStreetViewBillingHelper(
+                this
+            )
+        val adView = com.google.android.gms.ads.AdView(this)
+        adView.adUnitId = LiveStreetViewMyAppAds.banner_admob_inApp
+        adView.adSize = AdSize.BANNER
+
+        if (billingHelper.isNotAdPurchased()) {
+            LiveStreetViewMyAppAds.loadEarthMapBannerForMainMediation(
+                binding!!.smallAd.adContainer,adView,this
+            )
+        }else{
+            binding!!.smallAd.root.visibility= View.GONE
         }
     }
 }

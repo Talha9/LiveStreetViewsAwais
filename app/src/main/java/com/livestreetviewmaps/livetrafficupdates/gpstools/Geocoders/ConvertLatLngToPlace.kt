@@ -86,7 +86,7 @@ class ConvertLatLngToPlace(var mContext: Context, var latLng: LatLng, var callBa
 
 
     interface GeoTaskCallbackPlace {
-      public  fun onSuccessLocationFetched(fetchedAddress: String?)
+      fun onSuccessLocationFetched(fetchedAddress: String?)
       public  fun onFailedLocationFetched()
     }
 }

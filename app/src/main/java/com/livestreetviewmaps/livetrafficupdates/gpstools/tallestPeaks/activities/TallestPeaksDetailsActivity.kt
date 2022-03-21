@@ -13,6 +13,7 @@ import android.view.KeyEvent
 import android.view.View
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
+import com.google.android.gms.ads.AdSize
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
 import com.google.android.youtube.player.YouTubePlayerFragment
@@ -22,6 +23,8 @@ import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.UtilsFunctionCla
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.constants
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.dialogs.InternetDialog
 import com.livestreetviewmaps.livetrafficupdates.gpstools.databinding.ActivityTallestPeaksDetailsBinding
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewBillingHelper
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewMyAppAds
 import com.livestreetviewmaps.livetrafficupdates.gpstools.tallestPeaks.model.TallestPeakModel
 import com.livestreetviewmaps.livetrafficupdates.gpstools.wondersModule.Model.WondersModel
 
@@ -195,4 +198,6 @@ class TallestPeaksDetailsActivity : AppCompatActivity(),NetworkStateReceiver.Net
         unregisterReceiver(networkStateReceiver)
         super.onDestroy()
     }
+
+
 }

@@ -21,7 +21,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/smallAd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header">
@@ -85,10 +85,10 @@
                     android:id="@+id/planetNameTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/chicle"
                     android:gravity="center"
                     android:textColor="#EEEEEE"
                     android:textSize="@dimen/_35ssp"
-                    android:fontFamily="@font/chicle"
 
 
                     android:textStyle="bold"
@@ -100,14 +100,14 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-               android:layout_margin="@dimen/_10sdp"
+                android:layout_margin="@dimen/_10sdp"
+                android:text="Details"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_18ssp"
                 android:textStyle="bold"
-                android:text="Details"
+                app:layout_constraintBottom_toTopOf="@id/constraintLayout3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/constraintLayout3"
                 app:layout_constraintTop_toBottomOf="@id/cardView5" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -118,6 +118,7 @@
                 android:background="@drawable/space_info_bg"
                 android:translationZ="90dp"
                 app:layout_constraintBottom_toBottomOf="parent">
+
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/dataTxtview"
                     android:layout_width="match_parent"
@@ -128,11 +129,10 @@
                     android:layout_marginBottom="@dimen/_5sdp"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_17ssp"
-                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                   />
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -142,5 +142,13 @@
 
     </androidx.core.widget.NestedScrollView>
 
+    <include
+        android:id="@+id/smallAd"
+        layout="@layout/live_streat_view_my_bannar_small"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

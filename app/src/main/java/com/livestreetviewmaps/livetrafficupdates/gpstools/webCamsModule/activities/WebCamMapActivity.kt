@@ -45,6 +45,10 @@ import java.lang.Double
 import com.mapbox.android.core.permissions.PermissionsManager
 
 import androidx.annotation.NonNull
+import com.google.android.gms.ads.AdSize
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewBillingHelper
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewMyAppAds
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewMyAppShowAds
 import com.mapbox.mapboxsdk.location.modes.RenderMode
 
 
@@ -94,6 +98,7 @@ class WebCamMapActivity : AppCompatActivity(),LocationDialogCallback,NetworkStat
 
         initializers()
         onClickListeners()
+        mBannerAdsSmall()
     }
 
     private fun onClickListeners() {
@@ -169,6 +174,12 @@ class WebCamMapActivity : AppCompatActivity(),LocationDialogCallback,NetworkStat
             }
         }
 
+    }
+    override fun onBackPressed() {
+        LiveStreetViewMyAppShowAds.mediationBackPressedSimpleLiveStreetView(
+            this,
+            LiveStreetViewMyAppAds.admobInterstitialAd
+        )
     }
 
     private fun initializers() {
@@ -361,6 +372,24 @@ class WebCamMapActivity : AppCompatActivity(),LocationDialogCallback,NetworkStat
                 arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
                 44
             )
+        }
+    }
+
+    private fun mBannerAdsSmall() {
+        val billingHelper =
+            LiveStreetViewBillingHelper(
+                this
+            )
+        val adView = com.google.android.gms.ads.AdView(this)
+        adView.adUnitId = LiveStreetViewMyAppAds.banner_admob_inApp
+        adView.adSize = AdSize.BANNER
+
+        if (billingHelper.isNotAdPurchased()) {
+            LiveStreetViewMyAppAds.loadEarthMapBannerForMainMediation(
+                binding!!.smallAd.adContainer,adView,this
+            )
+        }else{
+            binding!!.smallAd.root.visibility= View.GONE
         }
     }
 

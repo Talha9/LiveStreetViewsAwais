@@ -6,8 +6,10 @@ import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.ads.AdSize
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.NetworkStateReceiver
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.UtilsFunctionClass
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.dialogs.InternetDialog
@@ -16,6 +18,9 @@ import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.horoscopeApi.Hor
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.horoscopeApi.HoroscopeItemModel
 import com.livestreetviewmaps.livetrafficupdates.gpstools.databinding.ActivityHoroscopeDetailsBinding
 import com.livestreetviewmaps.livetrafficupdates.gpstools.horoscopeModule.models.HoroscopeMainModel
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewBillingHelper
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewMyAppAds
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewMyAppShowAds
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -48,6 +53,7 @@ class HoroscopeDetailsActivity : AppCompatActivity(),
         }
         initialization()
         onClickListeners()
+        mBannerAdsSmall()
     }
 
     private fun initialization() {
@@ -114,6 +120,13 @@ class HoroscopeDetailsActivity : AppCompatActivity(),
         }
     }
 
+    override fun onBackPressed() {
+        LiveStreetViewMyAppShowAds.mediationBackPressedSimpleLiveStreetView(
+            this,
+            LiveStreetViewMyAppAds.admobInterstitialAd
+        )
+    }
+
     override fun networkAvailable() {
         try {
             internetDialog!!.dismiss()
@@ -138,5 +151,24 @@ class HoroscopeDetailsActivity : AppCompatActivity(),
         networkStateReceiver!!.removeListener(this)
         unregisterReceiver(networkStateReceiver)
         super.onDestroy()
+    }
+
+
+    private fun mBannerAdsSmall() {
+        val billingHelper =
+            LiveStreetViewBillingHelper(
+                this
+            )
+        val adView = com.google.android.gms.ads.AdView(this)
+        adView.adUnitId = LiveStreetViewMyAppAds.banner_admob_inApp
+        adView.adSize = AdSize.BANNER
+
+        if (billingHelper.isNotAdPurchased()) {
+            LiveStreetViewMyAppAds.loadEarthMapBannerForMainMediation(
+                binding!!.smallAd.adContainer,adView,this
+            )
+        }else{
+            binding!!.smallAd.root.visibility= View.GONE
+        }
     }
 }

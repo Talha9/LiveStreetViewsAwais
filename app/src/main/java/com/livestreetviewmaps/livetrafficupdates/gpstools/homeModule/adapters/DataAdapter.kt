@@ -14,8 +14,8 @@ import com.livestreetviewmaps.livetrafficupdates.gpstools.streetViewModule.model
 
 class DataAdapter (var mContext:Context,private var list : List<StreetViewModel>,var callback:onCarouselImageClickCallback): RecyclerView.Adapter<DataAdapter.ViewHolder>() {
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val image : ImageView = itemView.findViewById(R.id.image)
+    open class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val image : ImageView = itemView.findViewById(R.id.sImage)
         val progress : ProgressBar = itemView.findViewById(R.id.streetProgress)
     }
 

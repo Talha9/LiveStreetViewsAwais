@@ -9,9 +9,13 @@ import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.android.gms.ads.AdSize
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.NetworkStateReceiver
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.dialogs.InternetDialog
 import com.livestreetviewmaps.livetrafficupdates.gpstools.databinding.ActivityTallestPeaksMainBinding
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewBillingHelper
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewMyAppAds
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewMyAppShowAds
 import com.livestreetviewmaps.livetrafficupdates.gpstools.tallestPeaks.adapters.TallestPeaksAdapter
 import com.livestreetviewmaps.livetrafficupdates.gpstools.tallestPeaks.callbacks.TallestPeaksCallback
 import com.livestreetviewmaps.livetrafficupdates.gpstools.tallestPeaks.helpers.TallestPeaksHelper
@@ -34,7 +38,7 @@ class TallestPeaksMainActivity : AppCompatActivity(),NetworkStateReceiver.Networ
         setUpHeader()
         listFiller()
         setUpAdapter()
-        onClickListeners()
+        mBannerAdsSmall()
     }
     private fun initializers() {
         networkStateReceiver = NetworkStateReceiver()
@@ -51,14 +55,33 @@ class TallestPeaksMainActivity : AppCompatActivity(),NetworkStateReceiver.Networ
             onBackPressed()
         }
     }
-    private fun onClickListeners() {
 
+    override fun onBackPressed() {
+        LiveStreetViewMyAppShowAds.mediationBackPressedSimpleLiveStreetView(
+            this,
+            LiveStreetViewMyAppAds.admobInterstitialAd
+        )
     }
     private fun listFiller(){
         list=TallestPeaksHelper.fillTallestPeaksItemList()
     }
     private fun setUpAdapter() {
         manager= GridLayoutManager(this,2)
+        manager!!.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+            override fun getSpanSize(position: Int): Int {
+                val itemViewType = adapter!!.getItemViewType(position)
+                if (itemViewType == 0) {
+                    //manager.getSpanCount();
+                } else if (itemViewType == 1) {
+                    return 1
+                } else if (itemViewType == 2) {
+                    manager!!.spanCount
+                } else {
+                    return 2
+                }
+                return 2
+            }
+        }
         binding!!.tallestPeaksRecView.layoutManager=manager
         if (list!=null && list!!.size>0) {
             adapter= TallestPeaksAdapter(this,list!!,object : TallestPeaksCallback {
@@ -101,4 +124,21 @@ class TallestPeaksMainActivity : AppCompatActivity(),NetworkStateReceiver.Networ
         super.onDestroy()
     }
 
+    private fun mBannerAdsSmall() {
+        val billingHelper =
+            LiveStreetViewBillingHelper(
+                this
+            )
+        val adView = com.google.android.gms.ads.AdView(this)
+        adView.adUnitId = LiveStreetViewMyAppAds.banner_admob_inApp
+        adView.adSize = AdSize.BANNER
+
+        if (billingHelper.isNotAdPurchased()) {
+            LiveStreetViewMyAppAds.loadEarthMapBannerForMainMediation(
+                binding!!.smallAd.adContainer,adView,this
+            )
+        }else{
+            binding!!.smallAd.root.visibility= View.GONE
+        }
+    }
 }

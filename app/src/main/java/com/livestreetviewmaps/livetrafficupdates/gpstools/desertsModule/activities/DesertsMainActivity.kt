@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.android.gms.ads.AdSize
 import com.livestreetviewmaps.livetrafficupdates.gpstools.desertsModule.adapters.DesertsAdapter
 import com.livestreetviewmaps.livetrafficupdates.gpstools.desertsModule.callbacks.DesertsCallback
 import com.livestreetviewmaps.livetrafficupdates.gpstools.desertsModule.helpers.DesertsHelper
@@ -16,6 +17,9 @@ import com.livestreetviewmaps.livetrafficupdates.gpstools.desertsModule.models.D
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.NetworkStateReceiver
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.dialogs.InternetDialog
 import com.livestreetviewmaps.livetrafficupdates.gpstools.databinding.ActivityDesertsMainBinding
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewBillingHelper
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewMyAppAds
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewMyAppShowAds
 
 class DesertsMainActivity : AppCompatActivity(),NetworkStateReceiver.NetworkStateReceiverListener {
     var binding:ActivityDesertsMainBinding?=null
@@ -35,7 +39,7 @@ class DesertsMainActivity : AppCompatActivity(),NetworkStateReceiver.NetworkStat
         listFiller()
         setUpAdapter()
         onClickListeners()
-
+        mBannerAdsSmall()
     }
     private fun initializers() {
         networkStateReceiver = NetworkStateReceiver()
@@ -57,12 +61,31 @@ class DesertsMainActivity : AppCompatActivity(),NetworkStateReceiver.NetworkStat
 
     }
 
+    override fun onBackPressed() {
+        LiveStreetViewMyAppShowAds.mediationBackPressedSimpleLiveStreetView(this,LiveStreetViewMyAppAds.admobInterstitialAd)
+    }
+
     private fun listFiller() {
         list= DesertsHelper.fillDesertsItemList()
     }
 
     private fun setUpAdapter() {
         manager= GridLayoutManager(this,2)
+        manager!!.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+            override fun getSpanSize(position: Int): Int {
+                val itemViewType = adapter!!.getItemViewType(position)
+                if (itemViewType == 0) {
+                    //manager.getSpanCount();
+                } else if (itemViewType == 1) {
+                    return 1
+                } else if (itemViewType == 2) {
+                    manager!!.spanCount
+                } else {
+                    return 2
+                }
+                return 2
+            }
+        }
         binding!!.desertsRecView.layoutManager=manager
         if (list!=null && list!!.size>0) {
             adapter= DesertsAdapter(this,list!!,object : DesertsCallback {
@@ -104,6 +127,24 @@ class DesertsMainActivity : AppCompatActivity(),NetworkStateReceiver.NetworkStat
         networkStateReceiver!!.removeListener(this)
         unregisterReceiver(networkStateReceiver)
         super.onDestroy()
+    }
+
+    private fun mBannerAdsSmall() {
+        val billingHelper =
+            LiveStreetViewBillingHelper(
+                this
+            )
+        val adView = com.google.android.gms.ads.AdView(this)
+        adView.adUnitId = LiveStreetViewMyAppAds.banner_admob_inApp
+        adView.adSize = AdSize.BANNER
+
+        if (billingHelper.isNotAdPurchased()) {
+            LiveStreetViewMyAppAds.loadEarthMapBannerForMainMediation(
+                binding!!.smallAd.adContainer,adView,this
+            )
+        }else{
+            binding!!.smallAd.root.visibility= View.GONE
+        }
     }
 
 }

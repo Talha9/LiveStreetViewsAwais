@@ -4,12 +4,14 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.db.LiveStreetViewRepository
+import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.db.models.FavouritesTable
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.db.models.HikingTable
 
 class LiveStreetViewModel(application: Application) : AndroidViewModel(application) {
 
     private var repository:LiveStreetViewRepository
     lateinit var liveData: LiveData<List<HikingTable>>
+    lateinit var liveDataFav: LiveData<List<FavouritesTable>>
 
     init {
         repository=LiveStreetViewRepository(application)
@@ -20,8 +22,16 @@ class LiveStreetViewModel(application: Application) : AndroidViewModel(applicati
         repository.insert(table)
     }
 
+    fun insertFavourites(table:FavouritesTable) {
+        repository.insertFavourites(table)
+    }
+
     fun delete(id:Int) {
         repository.deleteActivity(id)
+    }
+
+    fun deleteFavourites(id:Int) {
+        repository.deleteFavourites(id)
     }
 
     fun deleteAllActivities() {
@@ -31,6 +41,10 @@ class LiveStreetViewModel(application: Application) : AndroidViewModel(applicati
     fun getAllActivities(): LiveData<List<HikingTable>> {
         liveData=repository.getAllActivities()
         return liveData
+    }
+    fun getAllFavourites(): LiveData<List<FavouritesTable>> {
+        liveDataFav=repository.getAllFavourites()
+        return liveDataFav
     }
 
 }

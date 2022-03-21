@@ -13,6 +13,7 @@ import android.view.KeyEvent
 import android.view.View
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
+import com.google.android.gms.ads.AdSize
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
 import com.google.android.youtube.player.YouTubePlayerFragment
@@ -23,6 +24,8 @@ import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.UtilsFunctionCla
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.constants
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.dialogs.InternetDialog
 import com.livestreetviewmaps.livetrafficupdates.gpstools.databinding.ActivityDesertsDetailsBinding
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewBillingHelper
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewMyAppAds
 
 class DesertsDetailsActivity : AppCompatActivity(),NetworkStateReceiver.NetworkStateReceiverListener {
     var binding:ActivityDesertsDetailsBinding?=null
@@ -189,4 +192,5 @@ class DesertsDetailsActivity : AppCompatActivity(),NetworkStateReceiver.NetworkS
         unregisterReceiver(networkStateReceiver)
         super.onDestroy()
     }
+
 }

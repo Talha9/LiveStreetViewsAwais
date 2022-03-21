@@ -71,6 +71,8 @@ class LocationClass(var mContext: Context) : GoogleApiClient.ConnectionCallbacks
                 constants.mLatitude = p0.latitude
                 constants.mLongitude = p0.longitude
                 constants.mAltitude = p0.altitude
+                constants.location=p0
+                constants.mSpeed= p0.speed
                 Log.i(
                     "onLocationChangedTag",
                     "Latitude: " + constants.mLatitude

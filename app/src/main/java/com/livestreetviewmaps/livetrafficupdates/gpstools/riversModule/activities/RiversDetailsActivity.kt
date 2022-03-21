@@ -13,6 +13,7 @@ import android.view.KeyEvent
 import android.view.View
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
+import com.google.android.gms.ads.AdSize
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
 import com.google.android.youtube.player.YouTubePlayerFragment
@@ -23,6 +24,8 @@ import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.constants
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.dialogs.InternetDialog
 import com.livestreetviewmaps.livetrafficupdates.gpstools.databinding.ActivityRiversDetailsBinding
 import com.livestreetviewmaps.livetrafficupdates.gpstools.desertsModule.models.DesertsModel
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewBillingHelper
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewMyAppAds
 import com.livestreetviewmaps.livetrafficupdates.gpstools.riversModule.models.RiversModel
 
 class RiversDetailsActivity : AppCompatActivity(),NetworkStateReceiver.NetworkStateReceiverListener {
@@ -72,6 +75,7 @@ class RiversDetailsActivity : AppCompatActivity(),NetworkStateReceiver.NetworkSt
             }
         }
         onClickListeners()
+
     }
 
     private fun onClickListeners() {
@@ -190,4 +194,5 @@ class RiversDetailsActivity : AppCompatActivity(),NetworkStateReceiver.NetworkSt
         unregisterReceiver(networkStateReceiver)
         super.onDestroy()
     }
+
 }

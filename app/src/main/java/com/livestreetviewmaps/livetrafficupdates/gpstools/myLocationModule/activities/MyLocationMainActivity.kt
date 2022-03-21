@@ -16,6 +16,7 @@ import android.view.KeyEvent
 import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import com.google.android.gms.ads.AdSize
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Geocoders.ConvertLatLngToPlace
 import com.livestreetviewmaps.livetrafficupdates.gpstools.R
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.*
@@ -25,6 +26,9 @@ import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.dialogs.Internet
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.dialogs.LocationDialog
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.dialogs.MapStylesDialog
 import com.livestreetviewmaps.livetrafficupdates.gpstools.databinding.ActivityMyLocationMainBinding
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewBillingHelper
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewMyAppAds
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewMyAppShowAds
 import com.mapbox.android.core.location.*
 import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.mapboxsdk.camera.CameraPosition
@@ -83,6 +87,7 @@ class MyLocationMainActivity : AppCompatActivity(),LocationDialogCallback, Netwo
 
         onClickListeners()
         initializers()
+        mBannerAdsSmall()
     }
 
     private fun onClickListeners() {
@@ -172,6 +177,13 @@ class MyLocationMainActivity : AppCompatActivity(),LocationDialogCallback, Netwo
             } catch (e: Exception) {
             }
         }
+    }
+
+    override fun onBackPressed() {
+        LiveStreetViewMyAppShowAds.mediationBackPressedSimpleLiveStreetView(
+            this,
+            LiveStreetViewMyAppAds.admobInterstitialAd
+        )
     }
 
     private fun initializers() {
@@ -399,6 +411,7 @@ class MyLocationMainActivity : AppCompatActivity(),LocationDialogCallback, Netwo
         networkStateReceiver!!.removeListener(this)
         unregisterReceiver(networkStateReceiver)
         unregisterReceiver(mLocationService)
+        mFetchLocation.stopLocationRequest()
         binding!!.mapView.onDestroy()
         super.onDestroy()
     }
@@ -487,6 +500,24 @@ class MyLocationMainActivity : AppCompatActivity(),LocationDialogCallback, Netwo
             startActivity(Intent.createChooser(shareAppIntent, "Share location using..."))
         } catch (e: Exception) {
             e.printStackTrace()
+        }
+    }
+
+    private fun mBannerAdsSmall() {
+        val billingHelper =
+            LiveStreetViewBillingHelper(
+                this
+            )
+        val adView = com.google.android.gms.ads.AdView(this)
+        adView.adUnitId = LiveStreetViewMyAppAds.banner_admob_inApp
+        adView.adSize = AdSize.BANNER
+
+        if (billingHelper.isNotAdPurchased()) {
+            LiveStreetViewMyAppAds.loadEarthMapBannerForMainMediation(
+                binding!!.smallAd.adContainer,adView,this
+            )
+        }else{
+            binding!!.smallAd.root.visibility= View.GONE
         }
     }
 

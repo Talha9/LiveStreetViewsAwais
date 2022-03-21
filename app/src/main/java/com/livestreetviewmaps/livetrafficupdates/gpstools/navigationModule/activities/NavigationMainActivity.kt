@@ -20,6 +20,7 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.gms.ads.AdSize
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Geocoders.ConvertLatLngToPlace
 import com.livestreetviewmaps.livetrafficupdates.gpstools.R
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.LocationService
@@ -29,7 +30,9 @@ import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.constants
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.dialogs.InternetDialog
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.dialogs.LocationDialog
 import com.livestreetviewmaps.livetrafficupdates.gpstools.databinding.ActivityNavigationMainBinding
-import com.livestreetviewmaps.livetrafficupdates.gpstools.homeModule.activities.HomeActivity
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewBillingHelper
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewMyAppAds
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewMyAppShowAds
 import com.livestreetviewmaps.livetrafficupdates.gpstools.navigationModule.adapters.NavigationAdapter
 import com.livestreetviewmaps.livetrafficupdates.gpstools.navigationModule.adapters.NavigationRouteButtonAdapter
 import com.livestreetviewmaps.livetrafficupdates.gpstools.navigationModule.callbacks.*
@@ -81,7 +84,7 @@ import java.lang.ref.WeakReference
 
 class NavigationMainActivity : AppCompatActivity(), OnMapReadyCallback, LocationDialogCallback,
     NetworkStateReceiver.NetworkStateReceiverListener, onPlaceTextChangeCallback,
-    onPlaceVoiceCallback,onPlaceRouteCallback,NavigationTransitCallback {
+    onPlaceVoiceCallback, onPlaceRouteCallback, NavigationTransitCallback {
     private var destinationPoint: Point? = null
     var originPoint: Point? = null
     private var mapBoxCurrentRoute: DirectionsRoute? = null
@@ -94,7 +97,7 @@ class NavigationMainActivity : AppCompatActivity(), OnMapReadyCallback, Location
     var list: ArrayList<NavigationModel>? = null
     var mConvertLatLngToPlaceName: ConvertLatLngToPlace? = null
     var onTimeLocationCheck = true
-     var oMapboxMap: MapboxMap?=null
+    var oMapboxMap: MapboxMap? = null
     private var mBuildingPlugin: BuildingPlugin? = null
     var mLocationDialog: LocationDialog? = null
     private var locationComponent: LocationComponent? = null
@@ -104,7 +107,7 @@ class NavigationMainActivity : AppCompatActivity(), OnMapReadyCallback, Location
             this
         )
     lateinit var mLocationService: LocationService
-    var routesBtnAdapter:NavigationRouteButtonAdapter?=null
+    var routesBtnAdapter: NavigationRouteButtonAdapter? = null
     var position: CameraPosition? = null
     private val DEFAULT_INTERVAL_IN_MILLISECONDS = 1000L
     private val DEFAULT_MAX_WAIT_TIME = DEFAULT_INTERVAL_IN_MILLISECONDS * 5
@@ -116,8 +119,8 @@ class NavigationMainActivity : AppCompatActivity(), OnMapReadyCallback, Location
     val ICON_LAYER_ID = "ICON_LAYER_ID"
     val ICON_SOURCE_ID = "ICON_SOURCE_ID"
     val RED_PIN_ICON_ID = "RED_PIN_ICON_ID"
-    var transitMarker=ArrayList<Marker>()
-    var routesList=ArrayList<NavigationRouteButtonsModel>()
+    var transitMarker = ArrayList<Marker>()
+    var routesList = ArrayList<NavigationRouteButtonsModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         try {
@@ -137,11 +140,12 @@ class NavigationMainActivity : AppCompatActivity(), OnMapReadyCallback, Location
         setUpAdapter()
         fragmentChecker(whichFragment)
         onClickListeners()
+        mBannerAdsSmall()
     }
 
     private fun onClickListeners() {
         binding!!.header.headerBarBackBtn.setOnClickListener {
-          onBackPressed()
+            onBackPressed()
         }
     }
 
@@ -181,9 +185,10 @@ class NavigationMainActivity : AppCompatActivity(), OnMapReadyCallback, Location
                         ) { style ->
                         }
                         routesList.clear()
-                        if (routesBtnAdapter!=null) {
+                        if (routesBtnAdapter != null) {
                             routesBtnAdapter!!.notifyDataSetChanged()
                         }
+
 
                     }
 
@@ -226,6 +231,12 @@ class NavigationMainActivity : AppCompatActivity(), OnMapReadyCallback, Location
     }
 
     private fun loadFragment(fragment: Fragment) {
+
+        LiveStreetViewMyAppShowAds.meidationForClickFragmentLiveStreetView(
+            this,
+            LiveStreetViewMyAppAds.admobInterstitialAd
+        )
+
         try {
             val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
             transaction.setCustomAnimations(
@@ -523,7 +534,10 @@ class NavigationMainActivity : AppCompatActivity(), OnMapReadyCallback, Location
 
 
     override fun onBackPressed() {
-        finish()
+        LiveStreetViewMyAppShowAds.mediationBackPressedSimpleLiveStreetView(
+            this,
+            LiveStreetViewMyAppAds.admobInterstitialAd
+        )
     }
 
     private fun getDestinationLatLng(style: Style, model: PlaceResultModel) {
@@ -609,7 +623,7 @@ class NavigationMainActivity : AppCompatActivity(), OnMapReadyCallback, Location
                                 )
                             )
                         )
-                        binding!!.routeProgress.visibility=View.GONE
+                        binding!!.routeProgress.visibility = View.GONE
                     } else {
                         Toast.makeText(
                             this@NavigationMainActivity,
@@ -710,7 +724,7 @@ class NavigationMainActivity : AppCompatActivity(), OnMapReadyCallback, Location
     }
 
     override fun onTextChange(model: PlaceResultModel) {
-        binding!!.routeProgress.visibility=View.VISIBLE
+        binding!!.routeProgress.visibility = View.VISIBLE
         if (model != null) {
             oMapboxMap!!.setStyle(
                 Style.SATELLITE_STREETS
@@ -722,7 +736,7 @@ class NavigationMainActivity : AppCompatActivity(), OnMapReadyCallback, Location
     }
 
     override fun onVoiceTextGet(model: PlaceResultModel) {
-        binding!!.routeProgress.visibility=View.VISIBLE
+        binding!!.routeProgress.visibility = View.VISIBLE
         if (model != null) {
             if (model.currentLat != null && model.currentLng != null && model.destinationLat != null && model.destinationLng != null) {
                 oMapboxMap!!.setStyle(
@@ -736,7 +750,7 @@ class NavigationMainActivity : AppCompatActivity(), OnMapReadyCallback, Location
     }
 
     override fun onRoutesGenerate(model: PlaceResultModel) {
-        binding!!.routeProgress.visibility=View.VISIBLE
+        binding!!.routeProgress.visibility = View.VISIBLE
         if (model != null) {
             if (model.currentLat != null && model.currentLng != null && model.destinationLat != null && model.destinationLng != null) {
                 oMapboxMap!!.setStyle(
@@ -749,15 +763,16 @@ class NavigationMainActivity : AppCompatActivity(), OnMapReadyCallback, Location
 
         }
     }
+
     override fun gettingWaypointsData(model: TransitWayPointModel) {
-        binding!!.routeProgress.visibility=View.VISIBLE
+        binding!!.routeProgress.visibility = View.VISIBLE
         if (model != null) {
             if (model.currentLat != null && model.currentLng != null && model.destinationLat != null && model.destinationLng != null) {
                 oMapboxMap!!.setStyle(
                     Style.SATELLITE_STREETS
                 ) { style ->
                     routesList.clear()
-                  oMapboxMap!!.removeAnnotations()
+                    oMapboxMap!!.removeAnnotations()
                     getWaypointDestinationLatLng(style, model)
                 }
             }
@@ -797,7 +812,11 @@ class NavigationMainActivity : AppCompatActivity(), OnMapReadyCallback, Location
         }
     }
 
-    private fun getDirectionalMultipleRoute(oMapboxMap: MapboxMap, originPoint: Point, destinationPoint: Point) {
+    private fun getDirectionalMultipleRoute(
+        oMapboxMap: MapboxMap,
+        originPoint: Point,
+        destinationPoint: Point
+    ) {
         Log.d("mapBoxCurrentRouteTAG", "onResponse: ")
 
         mapBoxDirectionClient = MapboxDirections.builder()
@@ -828,15 +847,26 @@ class NavigationMainActivity : AppCompatActivity(), OnMapReadyCallback, Location
                 } else if (response.body()!!.routes().size < 0) {
                     return
                 }
-                binding!!.routeProgress.visibility=View.GONE
-                for(i in 0 until response.body()!!.routes().size){
-                    Log.d("routeSizeTAG", "onResponse: "+response.body()!!.routes()[i])
-                    routesList.add(NavigationRouteButtonsModel(response.body()!!.routes()[i].distance().toString(),(i+1).toString(),response.body()!!.routes()[i],i+1))
+                binding!!.routeProgress.visibility = View.GONE
+                for (i in 0 until response.body()!!.routes().size) {
+                    Log.d("routeSizeTAG", "onResponse: " + response.body()!!.routes()[i])
+                    routesList.add(
+                        NavigationRouteButtonsModel(
+                            response.body()!!.routes()[i].distance().toString(),
+                            (i + 1).toString(),
+                            response.body()!!.routes()[i],
+                            i + 1
+                        )
+                    )
                 }
-                if (routesList.size>0) {
+                if (routesList.size > 0) {
                     setUpRoutesBtnAdapter(routesList)
-                }else{
-                    Toast.makeText(this@NavigationMainActivity,"No Alternative Route Found!",Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(
+                        this@NavigationMainActivity,
+                        "No Alternative Route Found!",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
 
             }
@@ -846,39 +876,40 @@ class NavigationMainActivity : AppCompatActivity(), OnMapReadyCallback, Location
     }
 
     private fun setUpRoutesBtnAdapter(routesList: ArrayList<NavigationRouteButtonsModel>?) {
-        manager=LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
-        binding!!.routeNavigationRecycler.layoutManager=manager
-        routesBtnAdapter= NavigationRouteButtonAdapter(this,routesList!!,object :NavigationRouteCallback{
-            override fun onRouteButtonClick(model: NavigationRouteButtonsModel, position: Int) {
-                constants.routeIndex=position
-                oMapboxMap!!.getStyle { style ->
-                    val source =
-                        style.getSourceAs<GeoJsonSource>(ROUTE_SOURCE_ID)
-                    if (source != null) {
-                        source.setGeoJson(
-                            FeatureCollection.fromFeature(
-                                Feature.fromGeometry(
-                                    LineString.fromPolyline(
-                                        model.route!!.geometry()!!,
-                                        PRECISION_6
+        manager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        binding!!.routeNavigationRecycler.layoutManager = manager
+        routesBtnAdapter =
+            NavigationRouteButtonAdapter(this, routesList!!, object : NavigationRouteCallback {
+                override fun onRouteButtonClick(model: NavigationRouteButtonsModel, position: Int) {
+                    constants.routeIndex = position
+                    oMapboxMap!!.getStyle { style ->
+                        val source =
+                            style.getSourceAs<GeoJsonSource>(ROUTE_SOURCE_ID)
+                        if (source != null) {
+                            source.setGeoJson(
+                                FeatureCollection.fromFeature(
+                                    Feature.fromGeometry(
+                                        LineString.fromPolyline(
+                                            model.route!!.geometry()!!,
+                                            PRECISION_6
+                                        )
                                     )
                                 )
                             )
-                        )
 
 
-                    } else {
-                        Toast.makeText(
-                            this@NavigationMainActivity,
-                            "Cannot find Route!",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        } else {
+                            Toast.makeText(
+                                this@NavigationMainActivity,
+                                "Cannot find Route!",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     }
                 }
-            }
 
-        })
-        binding!!.routeNavigationRecycler.adapter=routesBtnAdapter
+            })
+        binding!!.routeNavigationRecycler.adapter = routesBtnAdapter
     }
 
     private fun getWaypointDestinationLatLng(style: Style, model: TransitWayPointModel) {
@@ -921,7 +952,7 @@ class NavigationMainActivity : AppCompatActivity(), OnMapReadyCallback, Location
     ) {
         Log.d("mapBoxCurrentRouteTAG", "onResponse: ")
 
-        val builder:MapboxDirections.Builder = MapboxDirections.builder()
+        val builder: MapboxDirections.Builder = MapboxDirections.builder()
             .accessToken(constants.mapboxApiKey)
             .origin(originPoint)
             .destination(destinationPoint)
@@ -930,7 +961,12 @@ class NavigationMainActivity : AppCompatActivity(), OnMapReadyCallback, Location
             .profile(DirectionsCriteria.PROFILE_DRIVING)
 
         for (i in 0 until wayPointsList.size) { // Adding all the waypoints as pitstops to the route
-            builder.addWaypoint(Point.fromLngLat(wayPointsList[i].longitude.toDouble(), wayPointsList[i].latitude.toDouble()))
+            builder.addWaypoint(
+                Point.fromLngLat(
+                    wayPointsList[i].longitude.toDouble(),
+                    wayPointsList[i].latitude.toDouble()
+                )
+            )
         }
         builder.build().enqueueCall(object : Callback<DirectionsResponse?> {
             override fun onFailure(call: Call<DirectionsResponse?>, t: Throwable) {
@@ -966,19 +1002,22 @@ class NavigationMainActivity : AppCompatActivity(), OnMapReadyCallback, Location
                                 )
                             )
                         )
-                        for(i in 0 until wayPointsList.size){
-                          val factory = IconFactory.getInstance(this@NavigationMainActivity)
+                        for (i in 0 until wayPointsList.size) {
+                            val factory = IconFactory.getInstance(this@NavigationMainActivity)
                             val icon = factory.fromResource(R.drawable.map_default_map_marker)
-                               transitMarker.add(oMapboxMap!!.addMarker(
+                            transitMarker.add(
+                                oMapboxMap!!.addMarker(
                                     MarkerOptions().position(
                                         LatLng(
-                                            wayPointsList[i].latitude.toDouble(), wayPointsList[i].longitude.toDouble()
+                                            wayPointsList[i].latitude.toDouble(),
+                                            wayPointsList[i].longitude.toDouble()
                                         )
                                     ).icon(icon)
-                                ))
+                                )
+                            )
 
                         }
-                        binding!!.routeProgress.visibility=View.GONE
+                        binding!!.routeProgress.visibility = View.GONE
                     } else {
                         Toast.makeText(
                             this@NavigationMainActivity,
@@ -994,6 +1033,22 @@ class NavigationMainActivity : AppCompatActivity(), OnMapReadyCallback, Location
 
     }
 
+    private fun mBannerAdsSmall() {
+        val billingHelper =
+            LiveStreetViewBillingHelper(
+                this
+            )
+        val adView = com.google.android.gms.ads.AdView(this)
+        adView.adUnitId = LiveStreetViewMyAppAds.banner_admob_inApp
+        adView.adSize = AdSize.BANNER
 
+        if (billingHelper.isNotAdPurchased()) {
+            LiveStreetViewMyAppAds.loadEarthMapBannerForMainMediation(
+                binding!!.smallAd.adContainer, adView, this
+            )
+        } else {
+            binding!!.smallAd.root.visibility = View.GONE
+        }
+    }
 
 }

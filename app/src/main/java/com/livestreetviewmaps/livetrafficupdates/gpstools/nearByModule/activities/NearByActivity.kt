@@ -23,6 +23,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.bumptech.glide.Glide
+import com.google.android.gms.ads.AdSize
 import com.google.gson.Gson
 import com.livestreetviewmaps.livetrafficupdates.gpstools.R
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.LocationService
@@ -41,6 +42,9 @@ import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.fourSquareApi.Ap
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.fourSquareApi.Api_Interface
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.fourSquareApi.Result
 import com.livestreetviewmaps.livetrafficupdates.gpstools.databinding.ActivityNearByBinding
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewBillingHelper
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewMyAppAds
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewMyAppShowAds
 import com.livestreetviewmaps.livetrafficupdates.gpstools.nearByModule.models.NearByModel
 import com.mapbox.android.core.location.*
 import com.mapbox.mapboxsdk.Mapbox
@@ -106,7 +110,7 @@ class NearByActivity : AppCompatActivity(),NetworkStateReceiver.NetworkStateRece
         initialization()
         onClickListeners()
         setUpHeader()
-
+        mBannerAdsSmall()
         if (intent.getParcelableExtra<NearByModel>("near_By") != null) {
             try {
                 val model = intent.getParcelableExtra<NearByModel>("near_By")
@@ -198,9 +202,14 @@ class NearByActivity : AppCompatActivity(),NetworkStateReceiver.NetworkStateRece
         }
 
 
-
     }
 
+    override fun onBackPressed() {
+        LiveStreetViewMyAppShowAds.mediationBackPressedSimpleLiveStreetView(
+            this,
+            LiveStreetViewMyAppAds.admobInterstitialAd
+        )
+    }
     private fun initialization() {
         mLocationDialog= LocationDialog(this,this)
         mLocationService=LocationService(this, mLocationDialog!!)
@@ -590,7 +599,24 @@ class NearByActivity : AppCompatActivity(),NetworkStateReceiver.NetworkStateRece
             startActivity(callGPSSettingIntent)
         } catch (e: Exception) {
         }
+    }
 
+    private fun mBannerAdsSmall() {
+        val billingHelper =
+            LiveStreetViewBillingHelper(
+                this
+            )
+        val adView = com.google.android.gms.ads.AdView(this)
+        adView.adUnitId = LiveStreetViewMyAppAds.banner_admob_inApp
+        adView.adSize = AdSize.BANNER
+
+        if (billingHelper.isNotAdPurchased()) {
+            LiveStreetViewMyAppAds.loadEarthMapBannerForMainMediation(
+                binding!!.smallAd.adContainer,adView,this
+            )
+        }else{
+            binding!!.smallAd.root.visibility= View.GONE
+        }
     }
 
 }

@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.livestreetviewmaps.livetrafficupdates.gpstools.R
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.db.models.HikingTable
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.db.viewModel.LiveStreetViewModel
 import com.livestreetviewmaps.livetrafficupdates.gpstools.databinding.FragmentWorkoutSavedBinding
@@ -54,7 +55,15 @@ class WorkoutSavedFragment : Fragment() {
                 for (i in it){
                     Log.d("mLiveStreetViewModelTAG", "onViewCreated: "+i.activityName)
                 }
-                setupAdapter(dataList)
+                if (dataList.size>0) {
+                    binding!!.animationViewEmpty.visibility=View.GONE
+                    binding!!.emptyTxt.visibility=View.GONE
+                    setupAdapter(dataList)
+                }else{
+                    binding!!.animationViewEmpty.visibility=View.VISIBLE
+                    binding!!.emptyTxt.visibility=View.VISIBLE
+                    binding!!.animationViewEmpty.setAnimation(R.raw.empty_anim)
+                }
 
             })
 

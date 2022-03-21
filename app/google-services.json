@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "437359191748",
+    "project_id": "street-view-awais",
+    "storage_bucket": "street-view-awais.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:437359191748:android:0ca975922243057d9fcb91",
+        "android_client_info": {
+          "package_name": "com.livestreetviewmaps.livetrafficupdates.gpstools"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "437359191748-0gubs3ue0qn3l84a9oive8ml5l12atu8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBE0vRXZMfxyKRp4yE-26e3HSWEiGCgmzg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "437359191748-0gubs3ue0qn3l84a9oive8ml5l12atu8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

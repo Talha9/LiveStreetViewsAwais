@@ -6,8 +6,10 @@ import android.content.IntentFilter
 import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.KeyEvent
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.android.gms.ads.AdSize
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.NetworkStateReceiver
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.dialogs.InternetDialog
 import com.livestreetviewmaps.livetrafficupdates.gpstools.databinding.ActivityHoroscopeMainBinding
@@ -15,6 +17,9 @@ import com.livestreetviewmaps.livetrafficupdates.gpstools.horoscopeModule.adapte
 import com.livestreetviewmaps.livetrafficupdates.gpstools.horoscopeModule.callbacks.HoroscopeCallbacks
 import com.livestreetviewmaps.livetrafficupdates.gpstools.horoscopeModule.helpers.HoroscopeHelper
 import com.livestreetviewmaps.livetrafficupdates.gpstools.horoscopeModule.models.HoroscopeMainModel
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewBillingHelper
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewMyAppAds
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewMyAppShowAds
 
 class HoroscopeMainActivity : AppCompatActivity(),
     NetworkStateReceiver.NetworkStateReceiverListener {
@@ -33,11 +38,26 @@ class HoroscopeMainActivity : AppCompatActivity(),
         initialization()
         setUpHeader()
         setUpAdapter()
-
+        mBannerAdsSmall()
     }
 
     private fun setUpAdapter() {
         manager = GridLayoutManager(this, 3)
+        manager!!.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+            override fun getSpanSize(position: Int): Int {
+                val itemViewType = adapter!!.getItemViewType(position)
+                if (itemViewType == 0) {
+                    //manager.getSpanCount();
+                } else if (itemViewType == 1) {
+                    return 1
+                } else if (itemViewType == 3) {
+                    manager!!.spanCount
+                } else {
+                    return 3
+                }
+                return 3
+            }
+        }
         binding!!.horoscopeRecView.layoutManager = manager
         adapter = HoroscopeAdapter(this, list, object : HoroscopeCallbacks {
             override fun onHoroscopeClick(model: HoroscopeMainModel) {
@@ -71,6 +91,12 @@ class HoroscopeMainActivity : AppCompatActivity(),
             onBackPressed()
         }
     }
+    override fun onBackPressed() {
+        LiveStreetViewMyAppShowAds.mediationBackPressedSimpleLiveStreetView(
+            this,
+            LiveStreetViewMyAppAds.admobInterstitialAd
+        )
+    }
 
     override fun networkAvailable() {
         try {
@@ -96,5 +122,22 @@ class HoroscopeMainActivity : AppCompatActivity(),
         networkStateReceiver!!.removeListener(this)
         unregisterReceiver(networkStateReceiver)
         super.onDestroy()
+    }
+    private fun mBannerAdsSmall() {
+        val billingHelper =
+            LiveStreetViewBillingHelper(
+                this
+            )
+        val adView = com.google.android.gms.ads.AdView(this)
+        adView.adUnitId = LiveStreetViewMyAppAds.banner_admob_inApp
+        adView.adSize = AdSize.BANNER
+
+        if (billingHelper.isNotAdPurchased()) {
+            LiveStreetViewMyAppAds.loadEarthMapBannerForMainMediation(
+                binding!!.smallAd.adContainer,adView,this
+            )
+        }else{
+            binding!!.smallAd.root.visibility= View.GONE
+        }
     }
 }

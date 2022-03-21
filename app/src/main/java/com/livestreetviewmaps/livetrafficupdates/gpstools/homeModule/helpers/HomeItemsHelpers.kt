@@ -12,14 +12,25 @@ class HomeItemsHelpers {
             list.add(HomeMainCategoryModel("Navigation",NavigationList()))
             list.add(HomeMainCategoryModel("Home",HomeList()))
             list.add(HomeMainCategoryModel("Saved",toolsList()))
+            list.add(HomeMainCategoryModel("Settings",settingList()))
             return list
        }
+
+        private fun settingList(): java.util.ArrayList<HomeMainSubCategoryModel>{
+            val sublist=ArrayList<HomeMainSubCategoryModel>()
+            sublist.add(HomeMainSubCategoryModel(R.drawable.remove_ads_ic,"Remove Ads",R.color.settingsThemeColor,R.drawable.home_tools_item_bg))
+            sublist.add(HomeMainSubCategoryModel(R.drawable.rating_ic,"Rate Us",R.color.settingsThemeColor,R.drawable.home_tools_item_bg))
+            sublist.add(HomeMainSubCategoryModel(R.drawable.more_apps_ic,"More App",R.color.settingsThemeColor,R.drawable.home_tools_item_bg))
+            sublist.add(HomeMainSubCategoryModel(R.drawable.privicy_policy_ic,"Privacy \nPolicy",R.color.settingsThemeColor,R.drawable.home_tools_item_bg))
+            sublist.add(HomeMainSubCategoryModel(R.drawable.feedback_ic,"Feedback",R.color.settingsThemeColor,R.drawable.home_tools_item_bg))
+         return sublist
+        }
 
         private fun toolsList(): ArrayList<HomeMainSubCategoryModel> {
             val sublist=ArrayList<HomeMainSubCategoryModel>()
             sublist.add(HomeMainSubCategoryModel(R.drawable.sensor_icon,"Sensors",R.color.toolsThemeColor,R.drawable.home_tools_item_bg))
             sublist.add(HomeMainSubCategoryModel(R.drawable.compass_icon,"Compass",R.color.toolsThemeColor,R.drawable.home_tools_item_bg))
-            sublist.add(HomeMainSubCategoryModel(R.drawable.fuel_calculator,"Fuel \nCalculator",R.color.toolsThemeColor,R.drawable.home_tools_item_bg))
+            sublist.add(HomeMainSubCategoryModel(R.drawable.fuel_calculator_ic,"Fuel \nCalculator",R.color.toolsThemeColor,R.drawable.home_tools_item_bg))
             sublist.add(HomeMainSubCategoryModel(R.drawable.speedometer_icon,"Speedometer",R.color.toolsThemeColor,R.drawable.home_tools_item_bg))
             sublist.add(HomeMainSubCategoryModel(R.drawable.country_info,"Country \nInfo",R.color.toolsThemeColor,R.drawable.home_tools_item_bg))
             sublist.add(HomeMainSubCategoryModel(R.drawable.iso_code,"ISO \nCode",R.color.toolsThemeColor,R.drawable.home_tools_item_bg))

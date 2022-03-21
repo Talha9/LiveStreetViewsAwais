@@ -18,6 +18,8 @@ import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.MapNavigation.Ma
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.MapNavigation.model.NavigationModel
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.constants
 import com.livestreetviewmaps.livetrafficupdates.gpstools.databinding.FragmentRouteNavigationBinding
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewMyAppAds
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewMyAppShowAds
 import com.livestreetviewmaps.livetrafficupdates.gpstools.navigationModule.callbacks.onPlaceRouteCallback
 import com.livestreetviewmaps.livetrafficupdates.gpstools.navigationModule.models.PlaceResultModel
 import com.mapbox.mapboxsdk.plugins.places.autocomplete.PlaceAutocomplete
@@ -113,7 +115,7 @@ class RouteNavigation(var callback: onPlaceRouteCallback) : Fragment() {
                             constants.routeIndex
                         )
                     )
-                    startActivity(intent)
+                   LiveStreetViewMyAppShowAds.meidationForClickSimpleLiveStreetView(mContext,LiveStreetViewMyAppAds.admobInterstitialAd,intent)
                 } else {
                     Toast.makeText(mContext, "Location not Found..!", Toast.LENGTH_SHORT).show()
                 }

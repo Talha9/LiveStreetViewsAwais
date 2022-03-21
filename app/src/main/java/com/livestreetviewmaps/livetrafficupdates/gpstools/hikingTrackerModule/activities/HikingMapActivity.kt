@@ -20,6 +20,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.gms.ads.AdSize
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.maps.android.SphericalUtil
 import com.livestreetviewmaps.livetrafficupdates.gpstools.R
@@ -38,6 +39,9 @@ import com.livestreetviewmaps.livetrafficupdates.gpstools.databinding.ActivityHi
 import com.livestreetviewmaps.livetrafficupdates.gpstools.hikingTrackerModule.callbacks.CloseHikingActivityCallback
 import com.livestreetviewmaps.livetrafficupdates.gpstools.hikingTrackerModule.dialogs.CloseHikingActivityConfirmDialog
 import com.livestreetviewmaps.livetrafficupdates.gpstools.hikingTrackerModule.models.HikingHomeModel
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewBillingHelper
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewMyAppAds
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewMyAppShowAds
 import com.mapbox.android.core.location.*
 import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.mapboxsdk.annotations.IconFactory
@@ -131,6 +135,7 @@ class HikingMapActivity : AppCompatActivity(), OnMapReadyCallback,
         defaultCondition()
         onClickListeners()
         setUpBottomSheet()
+        mBannerAdsSmall()
 
     }
 
@@ -240,8 +245,10 @@ class HikingMapActivity : AppCompatActivity(), OnMapReadyCallback,
             exitActivityDialog()
         } else {
             val intent = Intent(this@HikingMapActivity, HikingMainActivity::class.java)
-            startActivity(intent)
-            finish()
+            LiveStreetViewMyAppShowAds.meidationForClickFinishLiveStreetView(
+                this,
+                LiveStreetViewMyAppAds.admobInterstitialAd,intent
+            )
         }
 
     }
@@ -668,6 +675,24 @@ class HikingMapActivity : AppCompatActivity(), OnMapReadyCallback,
         try {
             exitDialog!!.show()
         } catch (e: Exception) {
+        }
+    }
+
+    private fun mBannerAdsSmall() {
+        val billingHelper =
+            LiveStreetViewBillingHelper(
+                this
+            )
+        val adView = com.google.android.gms.ads.AdView(this)
+        adView.adUnitId = LiveStreetViewMyAppAds.banner_admob_inApp
+        adView.adSize = AdSize.BANNER
+
+        if (billingHelper.isNotAdPurchased()) {
+            LiveStreetViewMyAppAds.loadEarthMapBannerForMainMediation(
+                binding!!.smallAd.adContainer,adView,this
+            )
+        }else{
+            binding!!.smallAd.root.visibility= View.GONE
         }
     }
 }

@@ -1,0 +1,1676 @@
+[
+  {
+      "latitude": "40.6976701",
+      "longitude": "-74.2598737",
+      "countriesTimezone": "America/New_York",
+      "countryCode": "us",
+      "countryName": "United States"
+    },
+    {
+      "latitude": "51.5287352",
+      "longitude": "-0.3817841",
+      "countriesTimezone": "Europe/London",
+      "countryCode": "gb",
+      "countryName": "United Kingdom"
+    },
+    {
+      "latitude": "51.0967619",
+      "longitude": "5.9664093",
+      "countriesTimezone": "Europe/Germany",
+      "countryCode": "de",
+      "countryName": "Germany"
+    },
+    {
+      "latitude": "48.8589466",
+      "longitude": "2.2769949",
+      "countriesTimezone": "Europe/Paris",
+      "countryCode": "fr",
+      "countryName": "France"
+    },
+    {
+      "latitude": "46.8095939",
+      "longitude": "7.1030379",
+      "countriesTimezone": "Europe/Switzerland",
+      "countryCode": "ch",
+      "countryName": "Switzerland"
+    },
+    {
+      "latitude": "35.5062897",
+      "longitude": "138.6484981",
+      "countriesTimezone": "Asia/Tokyo",
+      "countryCode": "jp",
+      "countryName": "Japan"
+    },
+    {
+      "latitude": "-26.1713505",
+      "longitude": "27.9699839",
+      "countriesTimezone": "Africa/Johannesburg",
+      "countryCode": "za",
+      "countryName": "South Africa"
+    },
+    {
+      "latitude": "4.9197755",
+      "longitude": "-52.3464318",
+      "countriesTimezone": "America/Cayenne",
+      "countryCode": "gf",
+      "countryName": "French Guiana"
+    },
+    {
+      "latitude": "31.2243084",
+      "longitude": "120.9162634",
+      "countriesTimezone": "Asia/Shanghai",
+      "countryCode": "cn",
+      "countryName": "China"
+    },
+    {
+      "latitude": "25.1933895",
+      "longitude": "66.5949611",
+      "countriesTimezone": "Asia/Karachi",
+      "countryCode": "pk",
+      "countryName": "Pakistan"
+    },
+    {
+      "latitude": "22.6763858",
+      "longitude": "88.0495275",
+      "countriesTimezone": "Asia/Kolkata",
+      "countryCode": "in",
+      "countryName": "India"
+    },
+    {
+      "latitude": "5.3487761",
+      "longitude": "-4.1197538",
+      "countriesTimezone": "Africa/Abidjan",
+      "countryCode": "ci",
+      "countryName": "Ivory Coast"
+    },
+    {
+      "latitude": "5.5913754",
+      "longitude": "-0.2497706",
+      "countriesTimezone": "Africa/Accra",
+      "countryCode": "gh",
+      "countryName": "Ghana"
+    },
+    {
+      "latitude": "36.7392115",
+      "longitude": "2.9992443",
+      "countriesTimezone": "Africa/Algiers",
+      "countryCode": "dz",
+      "countryName": "Algeria"
+    },
+    {
+      "latitude": "11.8696287",
+      "longitude": "-15.6473431",
+      "countriesTimezone": "Africa/Bissau",
+      "countryCode": "gn",
+      "countryName": "Guinea"
+    },
+    {
+      "latitude": "30.0596185",
+      "longitude": "31.1884236",
+      "countriesTimezone": "Africa/Cairo",
+      "countryCode": "eg",
+      "countryName": "Egypt"
+    },
+    {
+      "latitude": "33.5724108",
+      "longitude": "-7.6570332",
+      "countriesTimezone": "Africa/Casablanca",
+      "countryCode": "ma",
+      "countryName": "Morocco"
+    },
+    {
+      "latitude": "35.8891209",
+      "longitude": "-5.3535454",
+      "countriesTimezone": "Africa/Ceuta",
+      "countryCode": "es",
+      "countryName": "Spain"
+    },
+    {
+      "latitude": "15.5018319",
+      "longitude": "32.432508",
+      "countriesTimezone": "Africa/Khartoum",
+      "countryCode": "sd",
+      "countryName": "Sudan"
+    },
+    {
+      "latitude": "6.5483768",
+      "longitude": "3.1438707",
+      "countriesTimezone": "Africa/Lagos",
+      "countryCode": "ng",
+      "countryName": "Nigeria"
+    },
+    {
+      "latitude": "-25.8960873",
+      "longitude": "32.5406429",
+      "countriesTimezone": "Africa/Maputo",
+      "countryCode": "mz",
+      "countryName": "Mozambique"
+    },
+    {
+      "latitude": "6.295536",
+      "longitude": "-10.8046977",
+      "countriesTimezone": "Africa/Monrovia",
+      "countryCode": "lr",
+      "countryName": "Liberia"
+    },
+    {
+      "latitude": "-1.3028618",
+      "longitude": "36.707308",
+      "countriesTimezone": "Africa/Nairobi",
+      "countryCode": "ke",
+      "countryName": "Kenya"
+    },
+    {
+      "latitude": "12.1203773",
+      "longitude": "14.9874179",
+      "countriesTimezone": "Africa/Ndjamena",
+      "countryCode": "td",
+      "countryName": "Chad"
+    },
+    {
+      "latitude": "0.9012221",
+      "longitude": "5.8719733",
+      "countriesTimezone": "Africa/Sao_Tome",
+      "countryCode": "st",
+      "countryName": "Sao Tome and Principe"
+    },
+    {
+      "latitude": "36.7949999",
+      "longitude": "10.073237",
+      "countriesTimezone": "Africa/Tunis",
+      "countryCode": "tn",
+      "countryName": "Tunisia"
+    },
+    {
+      "latitude": "51.8793428",
+      "longitude": "-176.7300013",
+      "countriesTimezone": "America/Adak",
+      "countryCode": "us",
+      "countryName": "United States"
+    },
+    {
+      "latitude": "61.1083687",
+      "longitude": "-150.0007143",
+      "countriesTimezone": "America/Anchorage",
+      "countryCode": "us",
+      "countryName": "United States"
+    },
+    {
+      "latitude": "-7.2107711",
+      "longitude": "-48.2874072",
+      "countriesTimezone": "America/Araguaina",
+      "countryCode": "br",
+      "countryName": "Brazil"
+    },
+    {
+      "latitude": "-34.6154611",
+      "longitude": "-58.5733844",
+      "countriesTimezone": "America/Argentina/Buenos_Aires",
+      "countryCode": "ar",
+      "countryName": "Argentina"
+    },
+    {
+      "latitude": "-28.4644541",
+      "longitude": "-65.8101795",
+      "countriesTimezone": "America/Argentina/Catamarca",
+      "countryCode": "ar",
+      "countryName": "Argentina"
+    },
+    {
+      "latitude": "37.8916069",
+      "longitude": "-4.8195049",
+      "countriesTimezone": "America/Argentina/Cordoba",
+      "countryCode": "ar",
+      "countryName": "Argentina"
+    },
+    {
+      "latitude": "-23.1907026",
+      "longitude": "-66.8032969",
+      "countriesTimezone": "America/Argentina/Jujuy",
+      "countryCode": "ar",
+      "countryName": "Argentina"
+    },
+    {
+      "latitude": "42.2813012",
+      "longitude": "-2.9669489",
+      "countriesTimezone": "America/Argentina/La_Rioja",
+      "countryCode": "ar",
+      "countryName": "Argentina"
+    },
+    {
+      "latitude": "-32.8832582",
+      "longitude": "-68.8935387",
+      "countriesTimezone": "America/Argentina/Mendoza",
+      "countryCode": "ar",
+      "countryName": "Argentina"
+    },
+    {
+      "latitude": "-51.6263212",
+      "longitude": "-69.3417889",
+      "countriesTimezone": "America/Argentina/Rio_Gallegos",
+      "countryCode": "ar",
+      "countryName": "Argentina"
+    },
+    {
+      "latitude": "-24.7959127",
+      "longitude": "-65.5006694",
+      "countriesTimezone": "America/Argentina/Salta",
+      "countryCode": "ar",
+      "countryName": "Argentina"
+    },
+    {
+      "latitude": "18.3893875",
+      "longitude": "-66.1305135",
+      "countriesTimezone": "America/Argentina/San_Juan",
+      "countryCode": "ar",
+      "countryName": "Argentina"
+    },
+    {
+      "latitude": "-33.8920316",
+      "longitude": "-68.3771717",
+      "countriesTimezone": "America/Argentina/San_Luis",
+      "countryCode": "ar",
+      "countryName": "Argentina"
+    },
+    {
+      "latitude": "-27.0292115",
+      "longitude": "-66.4513552",
+      "countriesTimezone": "America/Argentina/Tucuman",
+      "countryCode": "ar",
+      "countryName": "Argentina"
+    },
+    {
+      "latitude": "-54.8067441",
+      "longitude": "-68.3728429",
+      "countriesTimezone": "America/Argentina/Ushuaia",
+      "countryCode": "ar",
+      "countryName": "Argentina"
+    },
+    {
+      "latitude": "-25.2966809",
+      "longitude": "-57.6681298",
+      "countriesTimezone": "America/Asuncion",
+      "countryCode": "py",
+      "countryName": "Paraguay"
+    },
+    {
+      "latitude": "48.7617171",
+      "longitude": "-91.6271137",
+      "countriesTimezone": "America/Atikokan",
+      "countryCode": "ca",
+      "countryName": "Canada"
+    },
+    {
+      "latitude": "-13.390051",
+      "longitude": "-46.4583548",
+      "countriesTimezone": "America/Bahia",
+      "countryCode": "br",
+      "countryName": "Brazil"
+    },
+    {
+      "latitude": "20.8294321",
+      "longitude": "-105.3884721",
+      "countriesTimezone": "America/Bahia_Banderas",
+      "countryCode": "mx",
+      "countryName": "Mexico"
+    },
+    {
+      "latitude": "13.1884729",
+      "longitude": "-59.6753441",
+      "countriesTimezone": "America/Barbados",
+      "countryCode": "bb",
+      "countryName": "Barbados"
+    },
+    {
+      "latitude": "-1.2723039",
+      "longitude": "-48.7404707",
+      "countriesTimezone": "America/Belem",
+      "countryCode": "br",
+      "countryName": "Brazil"
+    },
+    {
+      "latitude": "17.1903073",
+      "longitude": "-89.4416142",
+      "countriesTimezone": "America/Belize",
+      "countryCode": "bz",
+      "countryName": "Belize"
+    },
+    {
+      "latitude": "51.4155578",
+      "longitude": "-57.5180805",
+      "countriesTimezone": "America/Blanc-Sablon",
+      "countryCode": "ca",
+      "countryName": "Canada"
+    },
+    {
+      "latitude": "2.8073684",
+      "longitude": "-60.7666026",
+      "countriesTimezone": "America/Boa_Vista",
+      "countryCode": "br",
+      "countryName": "Brazil"
+    },
+    {
+      "latitude": "4.6486259",
+      "longitude": "-74.2478958",
+      "countriesTimezone": "America/Bogota",
+      "countryCode": "co",
+      "countryName": "Colombia"
+    },
+    {
+      "latitude": "43.6009692",
+      "longitude": "-116.3739836",
+      "countriesTimezone": "America/Boise",
+      "countryCode": "us",
+      "countryName": "United States"
+    },
+    {
+      "latitude": "69.1389313",
+      "longitude": "-105.4575704",
+      "countriesTimezone": "America/Cambridge_Bay",
+      "countryCode": "ca",
+      "countryName": "Canada"
+    },
+    {
+      "latitude": "-20.480722",
+      "longitude": "-54.7756217",
+      "countriesTimezone": "America/Campo_Grande",
+      "countryCode": "br",
+      "countryName": "Brazil"
+    },
+    {
+      "latitude": "21.1214886",
+      "longitude": "-86.9192743",
+      "countriesTimezone": "America/Cancun",
+      "countryCode": "mx",
+      "countryName": "Mexico"
+    },
+    {
+      "latitude": "10.4686988",
+      "longitude": "-67.0304546",
+      "countriesTimezone": "America/Caracas",
+      "countryCode": "ve",
+      "countryName": "Venezuela"
+    },
+    {
+      "latitude": "41.8339042",
+      "longitude": "-88.0121559",
+      "countriesTimezone": "America/Chicago",
+      "countryCode": "us",
+      "countryName": "United States"
+    },
+    {
+      "latitude": "28.6070634",
+      "longitude": "-110.6868512",
+      "countriesTimezone": "America/Chihuahua",
+      "countryCode": "mx",
+      "countryName": "Mexico"
+    },
+    {
+      "latitude": "8.3570082",
+      "longitude": "-87.0537342",
+      "countriesTimezone": "America/Costa_Rica",
+      "countryCode": "cr",
+      "countryName": "Costa Rica"
+    },
+    {
+      "latitude": "49.1089364",
+      "longitude": "-116.5505149",
+      "countriesTimezone": "America/Creston",
+      "countryCode": "ca",
+      "countryName": "Canada"
+    },
+    {
+      "latitude": "-15.6142309",
+      "longitude": "-56.1118479",
+      "countriesTimezone": "America/Cuiaba",
+      "countryCode": "br",
+      "countryName": "Brazil"
+    },
+    {
+      "latitude": "71.706936",
+      "longitude": "-51.5691468",
+      "countriesTimezone": "America/Danmarkshavn",
+      "countryCode": "gl",
+      "countryName": "Greenland"
+    },
+    {
+      "latitude": "44.9287623",
+      "longitude": "-96.0601599",
+      "countriesTimezone": "America/Dawson",
+      "countryCode": "ca",
+      "countryName": "Canada"
+    },
+    {
+      "latitude": "55.7596399",
+      "longitude": "-120.253227",
+      "countriesTimezone": "America/Dawson_Creek",
+      "countryCode": "ca",
+      "countryName": "Canada"
+    },
+    {
+      "latitude": "39.7645187",
+      "longitude": "-104.9951976",
+      "countriesTimezone": "America/Denver",
+      "countryCode": "us",
+      "countryName": "United States"
+    },
+    {
+      "latitude": "53.5558749",
+      "longitude": "-113.7729064",
+      "countriesTimezone": "America/Edmonton",
+      "countryCode": "ca",
+      "countryName": "Canada"
+    },
+    {
+      "latitude": "-7.0394113",
+      "longitude": "-70.9120001",
+      "countriesTimezone": "America/Eirunepe",
+      "countryCode": "br",
+      "countryName": "Brazil"
+    },
+    {
+      "latitude": "58.8057797",
+      "longitude": "-122.7459675",
+      "countriesTimezone": "America/Fort_Nelson",
+      "countryCode": "ca",
+      "countryName": "Canada"
+    },
+    {
+      "latitude": "-3.7899632",
+      "longitude": "-38.5889783",
+      "countriesTimezone": "America/Fortaleza",
+      "countryCode": "br",
+      "countryName": "Brazil"
+    },
+    {
+      "latitude": "46.1913666",
+      "longitude": "-60.0050975",
+      "countriesTimezone": "America/Glace_Bay",
+      "countryCode": "ca",
+      "countryName": "Canada"
+    },
+    {
+      "latitude": "53.343426",
+      "longitude": "-60.5315375",
+      "countriesTimezone": "America/Goose_Bay",
+      "countryCode": "ca",
+      "countryName": "Canada"
+    },
+    {
+      "latitude": "-2.1521517",
+      "longitude": "-80.1201896",
+      "countriesTimezone": "America/Guayaquil",
+      "countryCode": "ec",
+      "countryName": "Ecuador"
+    },
+    {
+      "latitude": "44.6462898",
+      "longitude": "-63.7029377",
+      "countriesTimezone": "America/Halifax",
+      "countryCode": "ca",
+      "countryName": "Canada"
+    },
+    {
+      "latitude": "23.0509409",
+      "longitude": "-82.4730901",
+      "countriesTimezone": "America/Havana",
+      "countryCode": "cu",
+      "countryName": "Cuba"
+    },
+    {
+      "latitude": "29.0823825",
+      "longitude": "-111.1290742",
+      "countriesTimezone": "America/Hermosillo",
+      "countryCode": "mx",
+      "countryName": "Mexico"
+    },
+    {
+      "latitude": "39.7799642",
+      "longitude": "-86.2728362",
+      "countriesTimezone": "America/Indiana/Indianapolis",
+      "countryCode": "us",
+      "countryName": "United States"
+    },
+    {
+      "latitude": "41.2912929",
+      "longitude": "-86.636372",
+      "countriesTimezone": "America/Indiana/Knox",
+      "countryCode": "us",
+      "countryName": "United States"
+    },
+    {
+      "latitude": "59.9399138",
+      "longitude": "29.5342642",
+      "countriesTimezone": "America/Indiana/Petersburg",
+      "countryCode": "us",
+      "countryName": "United States"
+    },
+    {
+      "latitude": "37.9496864",
+      "longitude": "-86.7913291",
+      "countriesTimezone": "America/Indiana/Tell_City",
+      "countryCode": "us",
+      "countryName": "United States"
+    },
+    {
+      "latitude": "38.7423577",
+      "longitude": "-85.0938451",
+      "countriesTimezone": "America/Indiana/Vevay",
+      "countryCode": "us",
+      "countryName": "United States"
+    },
+    {
+      "latitude": "38.6856163",
+      "longitude": "-87.5439715",
+      "countriesTimezone": "America/Indiana/Vincennes",
+      "countryCode": "us",
+      "countryName": "United States"
+    },
+    {
+      "latitude": "41.055284",
+      "longitude": "-86.6196846",
+      "countriesTimezone": "America/Indiana/Winamac",
+      "countryCode": "us",
+      "countryName": "United States"
+    },
+    {
+      "latitude": "68.3462794",
+      "longitude": "-133.721763",
+      "countriesTimezone": "America/Inuvik",
+      "countryCode": "ca",
+      "countryName": "Canada"
+    },
+    {
+      "latitude": "63.7388625",
+      "longitude": "-68.6573099",
+      "countriesTimezone": "America/Iqaluit",
+      "countryCode": "ca",
+      "countryName": "Canada"
+    },
+    {
+      "latitude": "58.381568",
+      "longitude": "-135.3187897",
+      "countriesTimezone": "America/Juneau",
+      "countryCode": "us",
+      "countryName": "United States"
+    },
+    {
+      "latitude": "38.1890118",
+      "longitude": "-85.9569647",
+      "countriesTimezone": "America/Kentucky/Louisville",
+      "countryCode": "us",
+      "countryName": "United States"
+    },
+    {
+      "latitude": "38.0086085",
+      "longitude": "-78.4553881",
+      "countriesTimezone": "America/Kentucky/Monticello",
+      "countryCode": "us",
+      "countryName": "United States"
+    },
+    {
+      "latitude": "-16.5205361",
+      "longitude": "-68.1941184",
+      "countriesTimezone": "America/La_Paz",
+      "countryCode": "bo",
+      "countryName": "Bolivia"
+    },
+    {
+      "latitude": "-12.025827",
+      "longitude": "-77.2679817",
+      "countriesTimezone": "America/Lima",
+      "countryCode": "pe",
+      "countryName": "Peru"
+    },
+    {
+      "latitude": "34.0207305",
+      "longitude": "-118.6919289",
+      "countriesTimezone": "America/Los_Angeles",
+      "countryCode": "us",
+      "countryName": "United States"
+    },
+    {
+      "latitude": "-9.5942081",
+      "longitude": "-35.826767",
+      "countriesTimezone": "America/Maceio",
+      "countryCode": "br",
+      "countryName": "Brazil"
+    },
+    {
+      "latitude": "12.0978181",
+      "longitude": "-86.3285017",
+      "countriesTimezone": "America/Managua",
+      "countryCode": "ni",
+      "countryName": "Nicaragua"
+    },
+    {
+      "latitude": "-3.0443101",
+      "longitude": "-60.1071927",
+      "countriesTimezone": "America/Manaus",
+      "countryCode": "br",
+      "countryName": "Brazil"
+    },
+    {
+      "latitude": "25.8435332",
+      "longitude": "-97.5849852",
+      "countriesTimezone": "America/Matamoros",
+      "countryCode": "us",
+      "countryName": "United States"
+    },
+    {
+      "latitude": "45.1246977",
+      "longitude": "-87.660002",
+      "countriesTimezone": "America/Menominee",
+      "countryCode": "us",
+      "countryName": "United States"
+    },
+    {
+      "latitude": "20.9803289",
+      "longitude": "-89.7730065",
+      "countriesTimezone": "America/Merida",
+      "countryCode": "ve",
+      "countryName": "Venezuela"
+    },
+    {
+      "latitude": "55.1195077",
+      "longitude": "-131.5830561",
+      "countriesTimezone": "America/Metlakatla",
+      "countryCode": "us",
+      "countryName": "United States"
+    },
+    {
+      "latitude": "19.3911668",
+      "longitude": "-99.423815",
+      "countriesTimezone": "America/Mexico_City",
+      "countryCode": "mx",
+      "countryName": "Mexico"
+    },
+    {
+      "latitude": "46.1133526",
+      "longitude": "-64.8706408",
+      "countriesTimezone": "America/Moncton",
+      "countryCode": "ca",
+      "countryName": "Canada"
+    },
+    {
+      "latitude": "25.6490376",
+      "longitude": "-100.443184",
+      "countriesTimezone": "America/Monterrey",
+      "countryCode": "mx",
+      "countryName": "Mexico"
+    },
+    {
+      "latitude": "-34.8207362",
+      "longitude": "-56.3765246",
+      "countriesTimezone": "America/Montevideo",
+      "countryCode": "uy",
+      "countryName": "Uruguay"
+    },
+    {
+      "latitude": "25.032806",
+      "longitude": "-77.5471809",
+      "countriesTimezone": "America/Nassau",
+      "countryCode": "us",
+      "countryName": "United States"
+    },
+    {
+      "latitude": "40.6976701",
+      "longitude": "-74.2598737",
+      "countriesTimezone": "America/New_York",
+      "countryCode": "us",
+      "countryName": "United States"
+    },
+    {
+      "latitude": "49.0132392",
+      "longitude": "-88.2760953",
+      "countriesTimezone": "America/Nipigon",
+      "countryCode": "ca",
+      "countryName": "Canada"
+    },
+    {
+      "latitude": "64.5120147",
+      "longitude": "-165.5594813",
+      "countriesTimezone": "America/Nome",
+      "countryCode": "us",
+      "countryName": "United States"
+    },
+    {
+      "latitude": "-3.8429054",
+      "longitude": "-32.4619894",
+      "countriesTimezone": "America/Noronha",
+      "countryCode": "br",
+      "countryName": "Brazil"
+    },
+    {
+      "latitude": "52.0868744",
+      "longitude": "-4.5079538",
+      "countriesTimezone": "America/North_Dakota/Beulah",
+      "countryCode": "us",
+      "countryName": "United States"
+    },
+    {
+      "latitude": "47.1152462",
+      "longitude": "-101.3094482",
+      "countriesTimezone": "America/North_Dakota/Center",
+      "countryCode": "us",
+      "countryName": "United States"
+    },
+    {
+      "latitude": "46.846652",
+      "longitude": "-101.4329091",
+      "countriesTimezone": "America/North_Dakota/New_Salem",
+      "countryCode": "us",
+      "countryName": "United States"
+    },
+    {
+      "latitude": "64.1791647",
+      "longitude": "-51.7768494",
+      "countriesTimezone": "America/Nuuk",
+      "countryCode": "gl",
+      "countryName": "Greenland"
+    },
+    {
+      "latitude": "29.5454004",
+      "longitude": "-104.4480347",
+      "countriesTimezone": "America/Ojinaga",
+      "countryCode": "mx",
+      "countryName": "Mexico"
+    },
+    {
+      "latitude": "8.3768031",
+      "longitude": "-82.3504484",
+      "countriesTimezone": "America/Panama",
+      "countryCode": "pa",
+      "countryName": "Panama"
+    },
+    {
+      "latitude": "66.148036",
+      "longitude": "-65.7566422",
+      "countriesTimezone": "America/Pangnirtung",
+      "countryCode": "ca",
+      "countryName": "Canada"
+    },
+    {
+      "latitude": "5.8484912",
+      "longitude": "-55.2478879",
+      "countriesTimezone": "America/Paramaribo",
+      "countryCode": "sr",
+      "countryName": "Suriname"
+    },
+    {
+      "latitude": "33.6056711",
+      "longitude": "-112.4052476",
+      "countriesTimezone": "America/Phoenix",
+      "countryCode": "us",
+      "countryName": "United States"
+    },
+    {
+      "latitude": "18.5791869",
+      "longitude": "-72.3545011",
+      "countriesTimezone": "America/Port-au-Prince",
+      "countryCode": "ht",
+      "countryName": "Haiti"
+    },
+    {
+      "latitude": "10.668592",
+      "longitude": "-61.548924",
+      "countriesTimezone": "America/Port_of_Spain",
+      "countryCode": "tt",
+      "countryName": "Trinidad and Tobago"
+    },
+    {
+      "latitude": "-8.9837509",
+      "longitude": "-65.6451408",
+      "countriesTimezone": "America/Porto_Velho",
+      "countryCode": "br",
+      "countryName": "Brazil"
+    },
+    {
+      "latitude": "18.2078367",
+      "longitude": "-67.7073424",
+      "countriesTimezone": "America/Puerto_Rico",
+      "countryCode": "pr",
+      "countryName": "Puerto Rico"
+    },
+    {
+      "latitude": "-53.1416438",
+      "longitude": "-70.9763068",
+      "countriesTimezone": "America/Punta_Arenas",
+      "countryCode": "cl",
+      "countryName": "Chile"
+    },
+    {
+      "latitude": "48.7236289",
+      "longitude": "-94.5851932",
+      "countriesTimezone": "America/Rainy_River",
+      "countryCode": "ca",
+      "countryName": "Canada"
+    },
+    {
+      "latitude": "62.8314039",
+      "longitude": "-92.1887871",
+      "countriesTimezone": "America/Rankin_Inlet",
+      "countryCode": "ca",
+      "countryName": "Canada"
+    },
+    {
+      "latitude": "-8.0418098",
+      "longitude": "-35.0779375",
+      "countriesTimezone": "America/Recife",
+      "countryCode": "br",
+      "countryName": "Brazil"
+    },
+    {
+      "latitude": "50.4586825",
+      "longitude": "-104.7054492",
+      "countriesTimezone": "America/Regina",
+      "countryCode": "ca",
+      "countryName": "Canada"
+    },
+    {
+      "latitude": "40.0524763",
+      "longitude": "-82.9283941",
+      "countriesTimezone": "America/Resolute",
+      "countryCode": "ca",
+      "countryName": "Canada"
+    },
+    {
+      "latitude": "-9.9934583",
+      "longitude": "-68.9835091",
+      "countriesTimezone": "America/Rio_Branco",
+      "countryCode": "br",
+      "countryName": "Brazil"
+    },
+    {
+      "latitude": "39.2279407",
+      "longitude": "-8.7570248",
+      "countriesTimezone": "America/Santarem",
+      "countryCode": "br",
+      "countryName": "Brazil"
+    },
+    {
+      "latitude": "-33.4718999",
+      "longitude": "-70.9100243",
+      "countriesTimezone": "America/Santiago",
+      "countryCode": "cl",
+      "countryName": "Chile"
+    },
+    {
+      "latitude": "18.4801923",
+      "longitude": "-70.016921",
+      "countriesTimezone": "America/Santo_Domingo",
+      "countryCode": "do",
+      "countryName": "Dominican Republic"
+    },
+    {
+      "latitude": "-23.6815314",
+      "longitude": "-46.8754974",
+      "countriesTimezone": "America/Sao_Paulo",
+      "countryCode": "br",
+      "countryName": "Brazil"
+    },
+    {
+      "latitude": "70.4863567",
+      "longitude": "-21.9767761",
+      "countriesTimezone": "America/Scoresbysund",
+      "countryCode": "gl",
+      "countryName": "Greenland"
+    },
+    {
+      "latitude": "57.0561621",
+      "longitude": "-137.6880761",
+      "countriesTimezone": "America/Sitka",
+      "countryCode": "us",
+      "countryName": "United States"
+    },
+    {
+      "latitude": "47.4820343",
+      "longitude": "-53.1078897",
+      "countriesTimezone": "America/St_Johns",
+      "countryCode": "ca",
+      "countryName": "Canada"
+    },
+    {
+      "latitude": "50.2877496",
+      "longitude": "-107.8273985",
+      "countriesTimezone": "America/Swift_Current",
+      "countryCode": "ca",
+      "countryName": "Canada"
+    },
+    {
+      "latitude": "14.0840719",
+      "longitude": "-87.2750138",
+      "countriesTimezone": "America/Tegucigalpa",
+      "countryCode": "hn",
+      "countryName": "Honduras"
+    },
+    {
+      "latitude": "77.4674104",
+      "longitude": "-69.2452812",
+      "countriesTimezone": "America/Thule",
+      "countryCode": "gl",
+      "countryName": "Greenland"
+    },
+    {
+      "latitude": "48.4027014",
+      "longitude": "-89.3806099",
+      "countriesTimezone": "America/Thunder_Bay",
+      "countryCode": "ca",
+      "countryName": "Canada"
+    },
+    {
+      "latitude": "32.4969713",
+      "longitude": "-117.0878941",
+      "countriesTimezone": "America/Tijuana",
+      "countryCode": "mx",
+      "countryName": "Mexico"
+    },
+    {
+      "latitude": "43.7184038",
+      "longitude": "-79.5181437",
+      "countriesTimezone": "America/Toronto",
+      "countryCode": "ca",
+      "countryName": "Canada"
+    },
+    {
+      "latitude": "49.2578263",
+      "longitude": "-123.1939441",
+      "countriesTimezone": "America/Vancouver",
+      "countryCode": "ca",
+      "countryName": "Canada"
+    },
+    {
+      "latitude": "60.6997982",
+      "longitude": "-135.3647564",
+      "countriesTimezone": "America/Whitehorse",
+      "countryCode": "ca",
+      "countryName": "Canada"
+    },
+    {
+      "latitude": "49.8539272",
+      "longitude": "-97.4324117",
+      "countriesTimezone": "America/Winnipeg",
+      "countryCode": "ca",
+      "countryName": "Canada"
+    },
+    {
+      "latitude": "59.6349831",
+      "longitude": "-142.9373643",
+      "countriesTimezone": "America/Yakutat",
+      "countryCode": "us",
+      "countryName": "United States"
+    },
+    {
+      "latitude": "62.4749504",
+      "longitude": "-114.5490772",
+      "countriesTimezone": "America/Yellowknife",
+      "countryCode": "ca",
+      "countryName": "Canada"
+    },
+    {
+      "latitude": "-38.092171",
+      "longitude": "145.1826572",
+      "countriesTimezone": "Antarctica/Casey",
+      "countryCode": "au",
+      "countryName": "Australia"
+    },
+    {
+      "latitude": "53.4335296",
+      "longitude": "-1.402272",
+      "countriesTimezone": "Antarctica/Rothera",
+      "countryCode": "gb",
+      "countryName": "United Kingdom"
+    },
+    {
+      "latitude": "-68.5767698",
+      "longitude": "77.9639196",
+      "countriesTimezone": "Antarctica/Davis",
+      "countryCode": "au",
+      "countryName": "Australia"
+    },
+    {
+      "latitude": "-66.6630429",
+      "longitude": "139.9997585",
+      "countriesTimezone": "Antarctica/DumontDUrville",
+      "countryCode": "aq",
+      "countryName": "Antarctica"
+    },
+    {
+      "latitude": "-54.6208115",
+      "longitude": "122.99624",
+      "countriesTimezone": "Antarctica/Macquarie",
+      "countryCode": "au",
+      "countryName": "Australia"
+    },
+    {
+      "latitude": "-67.6032721",
+      "longitude": "62.8719762",
+      "countriesTimezone": "Antarctica/Mawson",
+      "countryCode": "au",
+      "countryName": "Australia"
+    },
+    {
+      "latitude": "-64.774249",
+      "longitude": "-64.0560186",
+      "countriesTimezone": "Antarctica/Palmer",
+      "countryCode": "us",
+      "countryName": "United States"
+    },
+    {
+      "latitude": "-69.0047384",
+      "longitude": "39.578467",
+      "countriesTimezone": "Antarctica/Syowa",
+      "countryCode": "aq",
+      "countryName": "Antarctica"
+    },
+    {
+      "latitude": "-72.0124859",
+      "longitude": "2.5300313",
+      "countriesTimezone": "Antarctica/Troll",
+      "countryCode": "no",
+      "countryName": "Norway"
+    },
+    {
+      "latitude": "-78.4644818",
+      "longitude": "106.8317313",
+      "countriesTimezone": "Antarctica/Vostok",
+      "countryCode": "ru",
+      "countryName": "Russia"
+    },
+    {
+      "latitude": "43.2178605",
+      "longitude": "76.6639741",
+      "countriesTimezone": "Asia/Almaty",
+      "countryCode": "kz",
+      "countryName": "Kazakhstan"
+    },
+    {
+      "latitude": "31.8360368",
+      "longitude": "35.6674333",
+      "countriesTimezone": "Asia/Amman",
+      "countryCode": "jo",
+      "countryName": "Jordan"
+    },
+    {
+      "latitude": "64.7279718",
+      "longitude": "177.4654577",
+      "countriesTimezone": "Asia/Anadyr",
+      "countryCode": "ru",
+      "countryName": "Russia"
+    },
+    {
+      "latitude": "43.659648",
+      "longitude": "51.1057784",
+      "countriesTimezone": "Asia/Aqtau",
+      "countryCode": "kz",
+      "countryName": "Kazakhstan"
+    },
+    {
+      "latitude": "50.273819",
+      "longitude": "57.0537042",
+      "countriesTimezone": "Asia/Aqtobe",
+      "countryCode": "kz",
+      "countryName": "Kazakhstan"
+    },
+    {
+      "latitude": "37.9633952",
+      "longitude": "58.1101977",
+      "countriesTimezone": "Asia/Ashgabat",
+      "countryCode": "tm",
+      "countryName": "Turkmenistan"
+    },
+    {
+      "latitude": "47.09729",
+      "longitude": "51.7962171",
+      "countriesTimezone": "Asia/Atyrau",
+      "countryCode": "kz",
+      "countryName": "Kazakhstan"
+    },
+    {
+      "latitude": "33.3118944",
+      "longitude": "44.215818",
+      "countriesTimezone": "Asia/Baghdad",
+      "countryCode": "iq",
+      "countryName": "Iraq"
+    },
+    {
+      "latitude": "40.3947695",
+      "longitude": "49.7148735",
+      "countriesTimezone": "Asia/Baku",
+      "countryCode": "az",
+      "countryName": "Azerbaijan"
+    },
+    {
+      "latitude": "13.7251088",
+      "longitude": "100.3529072",
+      "countriesTimezone": "Asia/Bangkok",
+      "countryCode": "th",
+      "countryName": "Thailand"
+    },
+    {
+      "latitude": "53.3344884",
+      "longitude": "83.4357559",
+      "countriesTimezone": "Asia/Barnaul",
+      "countryCode": "ru",
+      "countryName": "Russia"
+    },
+    {
+      "latitude": "33.8892846",
+      "longitude": "35.4692627",
+      "countriesTimezone": "Asia/Beirut",
+      "countryCode": "lb",
+      "countryName": "Lebanon"
+    },
+    {
+      "latitude": "42.8769795",
+      "longitude": "74.5218206",
+      "countriesTimezone": "Asia/Bishkek",
+      "countryCode": "kg",
+      "countryName": "Kyrgyzstan"
+    },
+    {
+      "latitude": "4.5512832",
+      "longitude": "114.1590575",
+      "countriesTimezone": "Asia/Brunei",
+      "countryCode": "bn",
+      "countryName": "Brunei"
+    },
+    {
+      "latitude": "52.047505",
+      "longitude": "113.3353099",
+      "countriesTimezone": "Asia/Chita",
+      "countryCode": "ru",
+      "countryName": "Russia"
+    },
+    {
+      "latitude": "48.0842367",
+      "longitude": "114.4629456",
+      "countriesTimezone": "Asia/Choibalsan",
+      "countryCode": "mn",
+      "countryName": "Mongolia"
+    },
+    {
+      "latitude": "6.9220039",
+      "longitude": "79.7861644",
+      "countriesTimezone": "Asia/Colombo",
+      "countryCode": "lk",
+      "countryName": "Sri Lanka"
+    },
+    {
+      "latitude": "33.5075989",
+      "longitude": "36.2128548",
+      "countriesTimezone": "Asia/Damascus",
+      "countryCode": "sy",
+      "countryName": "Syria"
+    },
+    {
+      "latitude": "23.7808875",
+      "longitude": "90.2792378",
+      "countriesTimezone": "Asia/Dhaka",
+      "countryCode": "bd",
+      "countryName": "Bangladesh"
+    },
+    {
+      "latitude": "25.0763815",
+      "longitude": "54.9475464",
+      "countriesTimezone": "Asia/Dubai",
+      "countryCode": "ae",
+      "countryName": "United Arab Emirates"
+    },
+    {
+      "latitude": "38.5615089",
+      "longitude": "68.6414946",
+      "countriesTimezone": "Asia/Dushanbe",
+      "countryCode": "tj",
+      "countryName": "Tajikistan"
+    },
+    {
+      "latitude": "35.3280744",
+      "longitude": "33.5097271",
+      "countriesTimezone": "Asia/Famagusta",
+      "countryCode": "cy",
+      "countryName": "Cyprus"
+    },
+    {
+      "latitude": "31.4105272",
+      "longitude": "34.1084951",
+      "countriesTimezone": "Asia/Gaza",
+      "countryCode": "ps",
+      "countryName": "Palestinian Territory"
+    },
+    {
+      "latitude": "31.5325865",
+      "longitude": "35.0910712",
+      "countriesTimezone": "Asia/Hebron",
+      "countryCode": "ps",
+      "countryName": "Palestinian Territory"
+    },
+    {
+      "latitude": "10.7553411",
+      "longitude": "106.4150235",
+      "countriesTimezone": "Asia/Ho_Chi_Minh",
+      "countryCode": "vn",
+      "countryName": "Vietnam"
+    },
+    {
+      "latitude": "22.3531176",
+      "longitude": "113.8474986",
+      "countriesTimezone": "Asia/Hong_Kong",
+      "countryCode": "hk",
+      "countryName": "Hong Kong"
+    },
+    {
+      "latitude": "47.9788254",
+      "longitude": "91.5705276",
+      "countriesTimezone": "Asia/Hovd",
+      "countryCode": "mn",
+      "countryName": "Mongolia"
+    },
+    {
+      "latitude": "52.2984626",
+      "longitude": "104.1270739",
+      "countriesTimezone": "Asia/Irkutsk",
+      "countryCode": "ru",
+      "countryName": "Russia"
+    },
+    {
+      "latitude": "-6.2293867",
+      "longitude": "106.6894293",
+      "countriesTimezone": "Asia/Jakarta",
+      "countryCode": "id",
+      "countryName": "Indonesia"
+    },
+    {
+      "latitude": "-2.5649646",
+      "longitude": "140.6109866",
+      "countriesTimezone": "Asia/Jayapura",
+      "countryCode": "id",
+      "countryName": "Indonesia"
+    },
+    {
+      "latitude": "31.7964453",
+      "longitude": "35.1053183",
+      "countriesTimezone": "Asia/Jerusalem",
+      "countryCode": "il",
+      "countryName": "Israel"
+    },
+    {
+      "latitude": "34.5539525",
+      "longitude": "68.9175348",
+      "countriesTimezone": "Asia/Kabul",
+      "countryCode": "af",
+      "countryName": "Afghanistan"
+    },
+    {
+      "latitude": "56.3559895",
+      "longitude": "160.6897768",
+      "countriesTimezone": "Asia/Kamchatka",
+      "countryCode": "ru",
+      "countryName": "Russia"
+    },
+    {
+      "latitude": "27.7090319",
+      "longitude": "85.2911131",
+      "countriesTimezone": "Asia/Kathmandu",
+      "countryCode": "np",
+      "countryName": "Nepal"
+    },
+    {
+      "latitude": "62.6568991",
+      "longitude": "135.5140406",
+      "countriesTimezone": "Asia/Khandyga",
+      "countryCode": "ru",
+      "countryName": "Russia"
+    },
+    {
+      "latitude": "56.026842",
+      "longitude": "92.7256505",
+      "countriesTimezone": "Asia/Krasnoyarsk",
+      "countryCode": "ru",
+      "countryName": "Russia"
+    },
+    {
+      "latitude": "3.138675",
+      "longitude": "101.6169484",
+      "countriesTimezone": "Asia/Kuala_Lumpur",
+      "countryCode": "my",
+      "countryName": "Malaysia"
+    },
+    {
+      "latitude": "1.6185192",
+      "longitude": "110.1859795",
+      "countriesTimezone": "Asia/Kuching",
+      "countryCode": "my",
+      "countryName": "Malaysia"
+    },
+    {
+      "latitude": "22.161976",
+      "longitude": "113.5001118",
+      "countriesTimezone": "Asia/Macau",
+      "countryCode": "cn",
+      "countryName": "China"
+    },
+    {
+      "latitude": "59.5644933",
+      "longitude": "150.7710995",
+      "countriesTimezone": "Asia/Magadan",
+      "countryCode": "ru",
+      "countryName": "Russia"
+    },
+    {
+      "latitude": "-5.1111323",
+      "longitude": "119.2625389",
+      "countriesTimezone": "Asia/Makassar",
+      "countryCode": "id",
+      "countryName": "Indonesia"
+    },
+    {
+      "latitude": "14.568294",
+      "longitude": "120.74044",
+      "countriesTimezone": "Asia/Manila",
+      "countryCode": "ph",
+      "countryName": "Philippines"
+    },
+    {
+      "latitude": "35.1923727",
+      "longitude": "33.3273616",
+      "countriesTimezone": "Asia/Nicosia",
+      "countryCode": "cy",
+      "countryName": "Cyprus"
+    },
+    {
+      "latitude": "53.7968217",
+      "longitude": "86.8917252",
+      "countriesTimezone": "Asia/Novokuznetsk",
+      "countryCode": "ru",
+      "countryName": "Russia"
+    },
+    {
+      "latitude": "54.9700492",
+      "longitude": "82.6692221",
+      "countriesTimezone": "Asia/Novosibirsk",
+      "countryCode": "ru",
+      "countryName": "Russia"
+    },
+    {
+      "latitude": "54.985948",
+      "longitude": "73.0759561",
+      "countriesTimezone": "Asia/Omsk",
+      "countryCode": "ru",
+      "countryName": "Russia"
+    },
+    {
+      "latitude": "51.2182496",
+      "longitude": "51.2460456",
+      "countriesTimezone": "Asia/Oral",
+      "countryCode": "kz",
+      "countryName": "Kazakhstan"
+    },
+    {
+      "latitude": "-0.0352232",
+      "longitude": "109.2615094",
+      "countriesTimezone": "Asia/Pontianak",
+      "countryCode": "id",
+      "countryName": "Indonesia"
+    },
+    {
+      "latitude": "39.0293211",
+      "longitude": "125.6020255",
+      "countriesTimezone": "Asia/Pyongyang",
+      "countryCode": "kp",
+      "countryName": "Korea North"
+    },
+    {
+      "latitude": "25.3423475",
+      "longitude": "50.0963363",
+      "countriesTimezone": "Asia/Qatar",
+      "countryCode": "qa",
+      "countryName": "Qatar"
+    },
+    {
+      "latitude": "53.2055743",
+      "longitude": "63.4817422",
+      "countriesTimezone": "Asia/Qostanay",
+      "countryCode": "kz",
+      "countryName": "Kazakhstan"
+    },
+    {
+      "latitude": "44.8281817",
+      "longitude": "65.4350104",
+      "countriesTimezone": "Asia/Qyzylorda",
+      "countryCode": "kz",
+      "countryName": "Kazakhstan"
+    },
+    {
+      "latitude": "24.7253981",
+      "longitude": "46.2620271",
+      "countriesTimezone": "Asia/Riyadh",
+      "countryCode": "sa",
+      "countryName": "Saudi Arabia"
+    },
+    {
+      "latitude": "48.5573759",
+      "longitude": "139.8827231",
+      "countriesTimezone": "Asia/Sakhalin",
+      "countryCode": "ru",
+      "countryName": "Russia"
+    },
+    {
+      "latitude": "39.6408686",
+      "longitude": "66.8278008",
+      "countriesTimezone": "Asia/Samarkand",
+      "countryCode": "uz",
+      "countryName": "Uzbekistan"
+    },
+    {
+      "latitude": "37.5652894",
+      "longitude": "126.8494635",
+      "countriesTimezone": "Asia/Seoul",
+      "countryCode": "kr",
+      "countryName": "Korea South"
+    },
+    {
+      "latitude": "1.3143394",
+      "longitude": "103.7041612",
+      "countriesTimezone": "Asia/Singapore",
+      "countryCode": "sg",
+      "countryName": "Singapore"
+    },
+    {
+      "latitude": "67.4373146",
+      "longitude": "153.7199192",
+      "countriesTimezone": "Asia/Srednekolymsk",
+      "countryCode": "ru",
+      "countryName": "Russia"
+    },
+    {
+      "latitude": "25.0856513",
+      "longitude": "121.4214133",
+      "countriesTimezone": "Asia/Taipei",
+      "countryCode": "tw",
+      "countryName": "Taiwan"
+    },
+    {
+      "latitude": "41.2827706",
+      "longitude": "69.1392807",
+      "countriesTimezone": "Asia/Tashkent",
+      "countryCode": "uz",
+      "countryName": "Uzbekistan"
+    },
+    {
+      "latitude": "41.7326304",
+      "longitude": "44.698767",
+      "countriesTimezone": "Asia/Tbilisi",
+      "countryCode": "ge",
+      "countryName": "Georgia"
+    },
+    {
+      "latitude": "35.4907682",
+      "longitude": "50.6461484",
+      "countriesTimezone": "Asia/Tehran",
+      "countryCode": "ir",
+      "countryName": "Iran"
+    },
+    {
+      "latitude": "27.4796285",
+      "longitude": "89.5684403",
+      "countriesTimezone": "Asia/Thimphu",
+      "countryCode": "bt",
+      "countryName": "Bhutan"
+    },
+    {
+      "latitude": "56.4896437",
+      "longitude": "84.8685476",
+      "countriesTimezone": "Asia/Tomsk",
+      "countryCode": "ru",
+      "countryName": "Russia"
+    },
+    {
+      "latitude": "47.8917951",
+      "longitude": "106.7617864",
+      "countriesTimezone": "Asia/Ulaanbaatar",
+      "countryCode": "mn",
+      "countryName": "Mongolia"
+    },
+    {
+      "latitude": "43.8218749",
+      "longitude": "87.4226662",
+      "countriesTimezone": "Asia/Urumqi",
+      "countryCode": "cn",
+      "countryName": "China"
+    },
+    {
+      "latitude": "64.5615959",
+      "longitude": "143.2114278",
+      "countriesTimezone": "Asia/Ust-Nera",
+      "countryCode": "ru",
+      "countryName": "Russia"
+    },
+    {
+      "latitude": "43.166752",
+      "longitude": "131.8133723",
+      "countriesTimezone": "Asia/Vladivostok",
+      "countryCode": "ru",
+      "countryName": "Russia"
+    },
+    {
+      "latitude": "62.0314236",
+      "longitude": "129.5617036",
+      "countriesTimezone": "Asia/Yakutsk",
+      "countryCode": "ru",
+      "countryName": "Russia"
+    },
+    {
+      "latitude": "56.8119441",
+      "longitude": "60.3371992",
+      "countriesTimezone": "Asia/Yekaterinburg",
+      "countryCode": "ru",
+      "countryName": "Russia"
+    },
+    {
+      "latitude": "40.1535684",
+      "longitude": "44.348481",
+      "countriesTimezone": "Asia/Yerevan",
+      "countryCode": "am",
+      "countryName": "Armenia"
+    },
+    {
+      "latitude": "38.3098432",
+      "longitude": "-30.3848697",
+      "countriesTimezone": "Atlantic/Azores",
+      "countryCode": "pt",
+      "countryName": "Portugal"
+    },
+    {
+      "latitude": "32.3194245",
+      "longitude": "-64.8364407",
+      "countriesTimezone": "Atlantic/Bermuda",
+      "countryCode": "bm",
+      "countryName": "Bermuda"
+    },
+    {
+      "latitude": "28.4308895",
+      "longitude": "-18.0977034",
+      "countriesTimezone": "Atlantic/Canary",
+      "countryCode": "es",
+      "countryName": "Spain"
+    },
+    {
+      "latitude": "16.0228549",
+      "longitude": "-25.1101239",
+      "countriesTimezone": "Atlantic/Cape_Verde",
+      "countryCode": "cv",
+      "countryName": "Cape Verde"
+    },
+    {
+      "latitude": "61.8961637",
+      "longitude": "-8.0752955",
+      "countriesTimezone": "Atlantic/Faroe",
+      "countryCode": "dk",
+      "countryName": "Denmark"
+    },
+    {
+      "latitude": "39.9446549",
+      "longitude": "-8.0520483",
+      "countriesTimezone": "Atlantic/Madeira",
+      "countryCode": "pt",
+      "countryName": "Portugal"
+    },
+    {
+      "latitude": "64.1335484",
+      "longitude": "-21.9224818",
+      "countriesTimezone": "Atlantic/Reykjavik",
+      "countryCode": "is",
+      "countryName": "Iceland"
+    },
+    {
+      "latitude": "-54.4389146",
+      "longitude": "-37.4627937",
+      "countriesTimezone": "Atlantic/South_Georgia",
+      "countryCode": "ge",
+      "countryName": "Georgia"
+    },
+    {
+      "latitude": "-51.6965755",
+      "longitude": "-57.8800969",
+      "countriesTimezone": "Atlantic/Stanley",
+      "countryCode": "fk",
+      "countryName": "Falkland Islands"
+    },
+    {
+      "latitude": "-67.1869083",
+      "longitude": "-69.5477392",
+      "countriesTimezone": "Australia/Adelaide",
+      "countryCode": "au",
+      "countryName": "Australia"
+    },
+    {
+      "latitude": "-27.3798035",
+      "longitude": "152.4327118",
+      "countriesTimezone": "Australia/Brisbane",
+      "countryCode": "au",
+      "countryName": "Australia"
+    },
+    {
+      "latitude": "-32.3454342",
+      "longitude": "140.5058495",
+      "countriesTimezone": "Australia/Broken_Hill",
+      "countryCode": "au",
+      "countryName": "Australia"
+    },
+    {
+      "latitude": "-12.4633629",
+      "longitude": "130.8346828",
+      "countriesTimezone": "Australia/Darwin",
+      "countryCode": "au",
+      "countryName": "Australia"
+    },
+    {
+      "latitude": "-31.6409393",
+      "longitude": "127.9072769",
+      "countriesTimezone": "Australia/Eucla",
+      "countryCode": "au",
+      "countryName": "Australia"
+    }
+  ]
+

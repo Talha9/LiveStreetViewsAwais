@@ -17,6 +17,8 @@ import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.MapNavigation.Ma
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.MapNavigation.model.NavigationModel
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.constants
 import com.livestreetviewmaps.livetrafficupdates.gpstools.databinding.FragmentVoiceNavigationBinding
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewMyAppAds
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewMyAppShowAds
 import com.livestreetviewmaps.livetrafficupdates.gpstools.navigationModule.callbacks.onPlaceVoiceCallback
 import com.livestreetviewmaps.livetrafficupdates.gpstools.navigationModule.models.PlaceResultModel
 import com.mapbox.mapboxsdk.geometry.LatLng
@@ -74,7 +76,8 @@ class VoiceNavigation(var callback: onPlaceVoiceCallback) : Fragment() {
                     intent.putExtra("navigation_model",
                         NavigationModel(currentLat,currentLng,destinationLat,destinationLng,0)
                     )
-                    startActivity(intent)
+                    LiveStreetViewMyAppShowAds.meidationForClickSimpleLiveStreetView(mContext,
+                        LiveStreetViewMyAppAds.admobInterstitialAd,intent)
                 }else{
                     Toast.makeText(mContext, "Location not Found..!", Toast.LENGTH_SHORT).show()
                 }

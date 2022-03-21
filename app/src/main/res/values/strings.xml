@@ -12,15 +12,38 @@
     <string name="menu_home">Home</string>
     <string name="live_street_view">Live Street View</string>
 
-    <string name="mapbox_access_token_1">pk.eyJ1IjoidW5pdGV4dGVjaCIsImEiOiJja3oybHppM2gwMXdtMm9tenloaDVmNzB6In0.5CRhAmLE8fURBOjcp4Zz7A</string>
-    <string name="mapbox_access_token_2">pk.eyJ1IjoidW5pdGV4dGVjaDEiLCJhIjoiY2t6Mm1pcGcwMDF1dDJxbHNvYjF6a2h3NyJ9.yGKRMGPR3GLR0T1V_t_3QQ</string>
-    <string name="mapbox_access_token_3">pk.eyJ1IjoidW5pdGV4dGVjaDIiLCJhIjoiY2t6Mm1zNXI5MDAxMDJxbzZwMWh6Z2IyNiJ9.tb29Leuh01JgvOqmcpb1Iw</string>
-    <string name="mapbox_access_token_4">pk.eyJ1IjoidW5pdGV4dGVjaDMiLCJhIjoiY2t6Mm14ejl4MDAybTJ3bzZmZ3kxN2hobyJ9.UafGmm8jOS3V89B7jxglpw</string>
-    <string name="mapbox_access_token_5">pk.eyJ1IjoidW5pdGV4dGVjaDQiLCJhIjoiY2t6M28zMXdhMDcwZzJwcnhtbDh6dXNycSJ9.5yseebchJCFvTwr1f5WUXQ</string>
-    <string name="mapbox_access_token_6">pk.eyJ1IjoidW5pdGV4dGVjaDUiLCJhIjoiY2t6M29hN2tpMDBmdTJ1bXQyZzVqYTZ0byJ9.PaEEjnKdnVdBWqLVUfjM4g</string>
-    <string name="mapbox_access_token_7">pk.eyJ1IjoidW5pdGV4dGVjaDYiLCJhIjoiY2t6M29zYWM0MDdheTJvcng0cmd0dXNvaiJ9.WwkYZfQXf-cWn3ikmC2T9A</string>
-    <string name="mapbox_access_token_8">pk.eyJ1IjoidW5pdGV4dGVjaDciLCJhIjoiY2t6M293d3NoMDBtazJubXQ3YWxuZjdsYyJ9.RDvCeTYHusOmZdr08ZthfA</string>
+    <string name="mapbox_access_token_1">pk.eyJ1IjoibmV3c3RyZWV0MSIsImEiOiJjbDB2eWwyYWMwem43M2RvYTduNzAxemh3In0.gJ-5UwPH8cK3UNbQjEBpNA</string>
+    <string name="mapbox_access_token_2">pk.eyJ1IjoibmV3c3RyZWV0MyIsImEiOiJjbDB2eXNicHAwM2RjM2NvM3NlMmg2dzdlIn0.tIJMiwt3xkRE-wpiTaM_YQ</string>
+    <string name="mapbox_access_token_3">pk.eyJ1IjoibmV3c3RyZWV0NCIsImEiOiJjbDB2emN2bnIwOHJmM2RwZXBhbm10eGRjIn0.KSIR1JhnHuFUbUzLzvrdHw</string>
+    <string name="mapbox_access_token_4">pk.eyJ1IjoidGhlb2YxIiwiYSI6ImNsMTBjaTBxMzAzbHAzanJ6cHc0azU5dnEifQ.YfkaKLhGE8_n43RyhKzyKQ</string>
+    <string name="mapbox_access_token_5">pk.eyJ1IjoidGhlb2YzIiwiYSI6ImNsMTBjcTlkODJqZnYza3FvdXY3ZHgycGkifQ.zzWi4D6cGYbtKXuiY7z_Pg</string>
+    <string name="mapbox_access_token_6">pk.eyJ1IjoidGhlb2Y0IiwiYSI6ImNsMTBjeGJtdzJrYnkzZG9weXd4dTFzM3YifQ.tsMtgZIm5RrlA0YFgEaOLA</string>
+    <string name="mapbox_access_token_7">pk.eyJ1IjoidGhlb2Y1IiwiYSI6ImNsMTBkeW44MjJqeWIzY3FvMGZ1bG42enAifQ.fxeKRLCD3Nhy0oVq_eHt6g</string>
+    <string name="mapbox_access_token_8">pk.eyJ1Ijoib2ZzaG9yZTIiLCJhIjoiY2wxMGYweHpkMGYybTNwcDkydXYyc3g0ayJ9.IepigNUBE2QFozklgDSLLw</string>
     <string name="home">Home</string>
     <string name="workouts">Workouts</string>
+
+    <string name="sotw_north">N</string>
+    <string name="sotw_east">E</string>
+    <string name="sotw_south">S</string>
+    <string name="sotw_west">W</string>
+    <string name="sotw_northeast">NE</string>
+    <string name="sotw_northwest">NW</string>
+    <string name="sotw_southeast">SE</string>
+    <string name="sotw_southwest">SW</string>
+
+    <!--Test ad ids-->
+    <string name="admob_app_id">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="admob_banner_ad_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="admob_interstitial_ad_id">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="admob_native_ad_id">ca-app-pub-3940256099942544/2247696110</string>
+
+
+    <!--  Live ad ids-->
+         <!--      <string name="admob_app_id">ca-app-pub-7989194628001630~9998425397</string>
+        <string name="admob_banner_ad_id">ca-app-pub-7989194628001630/9589883121</string>
+        <string name="admob_interstitial_ad_id">ca-app-pub-7989194628001630/8157397860</string>
+        <string name="admob_native_ad_id">ca-app-pub-7989194628001630/6963719784</string>-->
+
 
 </resources>

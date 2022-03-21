@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'com.google.gms.google-services'
 }
 android {
     compileSdk 31
@@ -11,7 +12,7 @@ android {
         minSdk 23
         targetSdk 31
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -45,6 +46,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.4.1'
     implementation 'androidx.navigation:navigation-ui-ktx:2.4.1'
+    implementation 'com.google.firebase:firebase-common-ktx:20.1.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
@@ -125,5 +127,35 @@ dependencies {
     //tag sphere View
     implementation 'com.github.magic-goop:tag-sphere:1.0.0'
     implementation 'com.moxun:tagcloudlib:1.2.0'
+
+/*    //cameraView
+    implementation 'com.otaliastudios:cameraview:2.7.1'*/
+
+    //SpeedView
+    implementation 'com.github.anastr:speedviewlib:1.5.5'
+
+    //clock
+    implementation 'turki.alkhateeb:vectoranalogclock:1.0.0'
+
+    //Spinner library
+    implementation "com.github.skydoves:powerspinner:1.1.9"
+
+    //menu
+    implementation "com.nightonke:boommenu:2.1.1"
+
+
+    //googlebilling
+    implementation 'com.android.billingclient:billing:4.0.0'
+    //ads
+    implementation 'com.google.android.gms:play-services-ads:20.5.0'
+    implementation 'com.google.ads.mediation:facebook:6.8.0.0'
+    //implementation 'com.facebook.android:audience-network-sdk:6.6.0'
+
+    //firebase
+    implementation 'com.google.firebase:firebase-core:20.0.2'
+    implementation 'com.google.firebase:firebase-messaging:23.0.0'
+    implementation 'com.google.firebase:firebase-database:20.0.3'
+    implementation "androidx.legacy:legacy-support-v4:1.0.0"
+
 
 }

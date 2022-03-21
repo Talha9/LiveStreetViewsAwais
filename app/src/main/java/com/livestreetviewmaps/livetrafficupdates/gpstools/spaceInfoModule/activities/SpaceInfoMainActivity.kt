@@ -2,11 +2,16 @@ package com.livestreetviewmaps.livetrafficupdates.gpstools.spaceInfoModule.activ
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.ads.AdSize
 import com.livestreetviewmaps.livetrafficupdates.gpstools.R
 import com.livestreetviewmaps.livetrafficupdates.gpstools.databinding.ActivitySpaceInfoMainBinding
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewBillingHelper
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewMyAppAds
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewMyAppShowAds
 import com.livestreetviewmaps.livetrafficupdates.gpstools.spaceInfoModule.adapters.SpaceInfoTagSphareAdapter
 import com.livestreetviewmaps.livetrafficupdates.gpstools.spaceInfoModule.callbacks.TagSphereCallbacks
 import com.livestreetviewmaps.livetrafficupdates.gpstools.spaceInfoModule.helper.SpaceInfoMainHelper
@@ -27,6 +32,7 @@ class SpaceInfoMainActivity : AppCompatActivity() {
         listFiller()
         setupAdapter()
         onClickListeners()
+        mBannerAdsSmall()
     }
 
     private fun onClickListeners() {
@@ -34,6 +40,12 @@ class SpaceInfoMainActivity : AppCompatActivity() {
             onBackPressed()
         }
         binding.header.headerBarTitleTxt.text="Satellite Info."
+    }
+    override fun onBackPressed() {
+        LiveStreetViewMyAppShowAds.mediationBackPressedSimpleLiveStreetView(
+            this,
+            LiveStreetViewMyAppAds.admobInterstitialAd
+        )
     }
 
     private fun initializers() {
@@ -59,6 +71,24 @@ class SpaceInfoMainActivity : AppCompatActivity() {
 
     private fun listFiller() {
         list = SpaceInfoMainHelper.fillMainSphareTagList()
+    }
+
+    private fun mBannerAdsSmall() {
+        val billingHelper =
+            LiveStreetViewBillingHelper(
+                this
+            )
+        val adView = com.google.android.gms.ads.AdView(this)
+        adView.adUnitId = LiveStreetViewMyAppAds.banner_admob_inApp
+        adView.adSize = AdSize.BANNER
+
+        if (billingHelper.isNotAdPurchased()) {
+            LiveStreetViewMyAppAds.loadEarthMapBannerForMainMediation(
+                binding!!.smallAd.adContainer,adView,this
+            )
+        }else{
+            binding!!.smallAd.root.visibility= View.GONE
+        }
     }
 
 }

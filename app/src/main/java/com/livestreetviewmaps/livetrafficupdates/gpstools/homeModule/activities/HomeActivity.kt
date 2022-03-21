@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.location.LocationManager
 import android.os.Build
@@ -35,6 +36,7 @@ class HomeActivity : AppCompatActivity(),LocationDialogCallback{
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityHomeBinding
     lateinit var mFetchLocation: LocationClass
+    private var sharedPreferences: SharedPreferences? = null
     lateinit var mLocationService:LocationService
     var gpsEnableDialog: LocationDialog? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,6 +49,8 @@ class HomeActivity : AppCompatActivity(),LocationDialogCallback{
     }
 
     private fun initialization(){
+        sharedPreferences = getSharedPreferences(packageName, Context.MODE_PRIVATE)
+        constants.mapboxApiKey = sharedPreferences!!.getString("MAPBOX_LiveStreetView_APP_KEY", constants.mapboxApiKey)!!
         mFetchLocation = LocationClass(this)
         mFetchLocation.initLocationRequest()
         gpsEnableDialog= LocationDialog(this,this)
@@ -68,9 +72,7 @@ class HomeActivity : AppCompatActivity(),LocationDialogCallback{
         )
     }
     private fun onClickListeners() {
-        binding.appBarHome.MenuBtn.setOnClickListener {
-            binding.drawerLayout.open()
-        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

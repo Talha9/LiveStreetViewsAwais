@@ -3,12 +3,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".hikingTrackerModule.fragments.WorkoutSavedFragment">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/single_hiking_saved_design"
         android:id="@+id/hikingSavedRecView"/>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animationViewEmpty"
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="@dimen/_150sdp"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/_10sdp"
+        android:translationZ="90dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/emptyTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Empty"
+        android:textColor="#e5e3e8"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:fontFamily="monospace"
+        android:textSize="@dimen/_17ssp"
+        app:layout_constraintEnd_toEndOf="@+id/animationViewEmpty"
+        app:layout_constraintStart_toStartOf="@+id/animationViewEmpty"
+        app:layout_constraintTop_toBottomOf="@+id/animationViewEmpty" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </FrameLayout>

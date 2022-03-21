@@ -9,8 +9,8 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinatorLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/smallAd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -31,7 +31,6 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
 
-
             <include
                 android:id="@+id/header"
                 layout="@layout/header_bar"
@@ -47,11 +46,12 @@
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="wrap_content"
-            app:layout_anchor="@id/bSheet"
-            android:paddingBottom="@dimen/_100sdp"
-            app:layout_anchorGravity="top|end"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_height="wrap_content">
+            android:paddingBottom="@dimen/_100sdp"
+            app:layout_anchor="@id/bSheet"
+            app:layout_anchorGravity="top|end">
+
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/currentLocationBtn"
                 android:layout_width="@dimen/_35sdp"
@@ -59,10 +59,10 @@
                 android:layout_margin="@dimen/_10sdp"
                 android:background="@drawable/current_loc_bg"
                 android:elevation="@dimen/_5sdp"
-                android:src="@drawable/cureent_locate_icon"
-                android:scaleType="centerCrop"
-                android:translationZ="90dp"
                 android:padding="@dimen/_10sdp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/cureent_locate_icon"
+                android:translationZ="90dp"
                 app:layout_constraintBottom_toBottomOf="@+id/mapView"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -70,13 +70,13 @@
                 android:id="@+id/mapLayersBtn"
                 android:layout_width="@dimen/_35sdp"
                 android:layout_height="@dimen/_35sdp"
+                android:layout_margin="@dimen/_10sdp"
                 android:background="@drawable/current_loc_bg"
                 android:elevation="@dimen/_5sdp"
                 android:padding="@dimen/_10sdp"
-                android:layout_margin="@dimen/_10sdp"
+                android:rotation="-45"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_baseline_filter_none_24"
-                android:rotation="-45"
                 android:translationZ="90dp"
                 app:layout_constraintBottom_toTopOf="@+id/currentLocationBtn"
                 app:layout_constraintEnd_toEndOf="parent" />
@@ -87,5 +87,12 @@
             layout="@layout/hiking_bottom_sheet" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-
+    <include
+        android:id="@+id/smallAd"
+        layout="@layout/live_streat_view_my_bannar_small"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

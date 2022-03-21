@@ -1,20 +1,21 @@
 package com.livestreetviewmaps.livetrafficupdates.gpstools.wondersModule.adapters
 
+import android.app.Activity
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.livestreetviewmaps.livetrafficupdates.gpstools.R
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.UtilsFunctionClass
 import com.livestreetviewmaps.livetrafficupdates.gpstools.wondersModule.Model.WondersModel
 import com.livestreetviewmaps.livetrafficupdates.gpstools.wondersModule.callbacks.WondersCallback
+import gps.navigation.weather.nearby.streetview.liveearthmap.gpsnavigation.Ads.LiveStreetViewMyAppNativeAds
 
 class WonderAdapter(
     var mContext: Context,
@@ -22,6 +23,9 @@ class WonderAdapter(
     var callback: WondersCallback
 ) :
     RecyclerView.Adapter<WonderAdapter.WonderViewHolder>() {
+    var typeAds = 0
+    var typePost = 1
+    var empty = 2
 
     inner class WonderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var btn: ConstraintLayout? = null
@@ -41,13 +45,33 @@ class WonderAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WonderViewHolder {
-        val v =
-            LayoutInflater.from(mContext).inflate(R.layout.single_wonder_item_design, parent, false)
-        return WonderViewHolder(v)
+
+
+        var v: View? = null
+        if (viewType == typePost) {
+            v =
+                LayoutInflater.from(mContext)
+                    .inflate(R.layout.single_wonder_item_design, parent, false)
+        } else if (viewType == typeAds) {
+            v = LayoutInflater.from(mContext)
+                .inflate(R.layout.live_streat_view_nav_native_layout_native_ads, parent, false)
+            LiveStreetViewMyAppNativeAds.loadLiveStreetViewAdmobNativeAdPriority(
+                mContext as Activity,
+                v as FrameLayout
+            )
+        } else if (viewType == empty) {
+            v = LayoutInflater.from(mContext).inflate(R.layout.empty_layout, parent, false)
+        }
+        return WonderViewHolder(v!!)
     }
 
     override fun onBindViewHolder(holder: WonderViewHolder, position: Int) {
-        val model = list.get(position)
+        if (position == 0) {
+            return
+        }
+        if (position % 5 == 0) return
+        val newPosition = position - (position / 5 + 1)
+        val model = list.get(newPosition)
 
         UtilsFunctionClass.setImageInGlideFromString(
             mContext,
@@ -62,8 +86,20 @@ class WonderAdapter(
 
     }
 
-
     override fun getItemCount(): Int {
-        return list.size
+        val itemCount = list.size
+        return itemCount + (itemCount / 4 + 1)
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return if (position == 0) {
+            empty
+        } else {
+            if (position % 5 == 0) {
+                typeAds
+            } else {
+                typePost
+            }
+        }
     }
 }

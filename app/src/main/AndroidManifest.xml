@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.HIGH_SAMPLING_RATE_SENSORS" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <queries>
         <intent>
@@ -16,7 +17,11 @@
         </intent>
     </queries>
 
+
+
+
     <application
+        android:name=".Utils.MyAppClass"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -24,13 +29,60 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LiveStreetViews"
         android:usesCleartextTraffic="true">
+        <meta-data
+    android:name="com.google.android.gms.ads.APPLICATION_ID"
+    android:value="@string/admob_app_id" />
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <activity
+            android:name=".splashModule.PrivicyActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:exported="true" />
+        <activity
+            android:name=".splashModule.SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".sensorsModule.activities.SensorMainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".fuelCalculatorModule.activities.FuelCalculatorMainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ageCalculatorModule.activities.AgeCalculatorMainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".isoCodesModule.activities.IsoCodesMainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".countryinfoModule.activities.CountryInfoMainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".worldClockModule.activities.TimeSearchActivity"
+            android:exported="true" />
+        <activity
+            android:name=".worldClockModule.activities.WorldClockMainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".speedometerModule.activities.SpeedometerMainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".compassModule.activities.CompassMainActivity"
+            android:exported="true" />
         <activity
             android:name=".spaceInfoModule.activities.SpaceInfoDetailActivity"
             android:exported="true" />
         <activity
             android:name=".spaceInfoModule.activities.SpaceInfoMainActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".hikingTrackerModule.activities.HikingMapActivity"
             android:exported="true" />
@@ -110,11 +162,6 @@
             android:name=".homeModule.activities.HomeActivity"
             android:exported="true"
             android:theme="@style/Theme.LiveStreetViews.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <provider
@@ -126,6 +173,7 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

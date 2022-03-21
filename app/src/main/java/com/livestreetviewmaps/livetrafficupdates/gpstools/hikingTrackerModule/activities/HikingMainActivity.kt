@@ -1,16 +1,19 @@
 package com.livestreetviewmaps.livetrafficupdates.gpstools.hikingTrackerModule.activities
 
-import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import com.google.android.gms.ads.AdSize
 import com.livestreetviewmaps.livetrafficupdates.gpstools.R
 import com.livestreetviewmaps.livetrafficupdates.gpstools.databinding.ActivityHikingMainBinding
 import com.livestreetviewmaps.livetrafficupdates.gpstools.hikingTrackerModule.fragments.WorkoutHomeFragment
 import com.livestreetviewmaps.livetrafficupdates.gpstools.hikingTrackerModule.fragments.WorkoutSavedFragment
-import com.livestreetviewmaps.livetrafficupdates.gpstools.homeModule.activities.HomeActivity
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewBillingHelper
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewMyAppAds
+import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewMyAppShowAds
 
 class HikingMainActivity : AppCompatActivity() {
     var binding: ActivityHikingMainBinding? = null
@@ -23,7 +26,7 @@ class HikingMainActivity : AppCompatActivity() {
 
         initializers()
         onClickListeners()
-
+        mBannerAdsSmall()
 
     }
 
@@ -121,6 +124,27 @@ class HikingMainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        finish()
+        LiveStreetViewMyAppShowAds.mediationBackPressedSimpleLiveStreetView(
+            this,
+            LiveStreetViewMyAppAds.admobInterstitialAd
+        )
+    }
+
+    private fun mBannerAdsSmall() {
+        val billingHelper =
+            LiveStreetViewBillingHelper(
+                this
+            )
+        val adView = com.google.android.gms.ads.AdView(this)
+        adView.adUnitId = LiveStreetViewMyAppAds.banner_admob_inApp
+        adView.adSize = AdSize.BANNER
+
+        if (billingHelper.isNotAdPurchased()) {
+            LiveStreetViewMyAppAds.loadEarthMapBannerForMainMediation(
+                binding!!.smallAd.adContainer, adView, this
+            )
+        } else {
+            binding!!.smallAd.root.visibility = View.GONE
+        }
     }
 }

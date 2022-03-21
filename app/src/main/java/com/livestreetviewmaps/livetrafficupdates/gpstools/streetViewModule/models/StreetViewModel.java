@@ -9,24 +9,8 @@ public class StreetViewModel implements Parcelable {
     String countryName;
     String details;
     String viewName;
-
-    public StreetViewModel(String imageLink, String cityName, String countryName, String details, String viewName) {
-        this.imageLink = imageLink;
-        this.cityName = cityName;
-        this.countryName = countryName;
-        this.details = details;
-        this.viewName = viewName;
-    }
-
-    public StreetViewModel(String imageLink, String countryName, String details, String viewName) {
-        this.imageLink = imageLink;
-        this.countryName = countryName;
-        this.details = details;
-        this.viewName = viewName;
-    }
-
-    public StreetViewModel() {
-    }
+    Boolean viewFav;
+    int pos;
 
     protected StreetViewModel(Parcel in) {
         imageLink = in.readString();
@@ -34,6 +18,9 @@ public class StreetViewModel implements Parcelable {
         countryName = in.readString();
         details = in.readString();
         viewName = in.readString();
+        byte tmpViewFav = in.readByte();
+        viewFav = tmpViewFav == 0 ? null : tmpViewFav == 1;
+        pos = in.readInt();
     }
 
     @Override
@@ -43,6 +30,8 @@ public class StreetViewModel implements Parcelable {
         dest.writeString(countryName);
         dest.writeString(details);
         dest.writeString(viewName);
+        dest.writeByte((byte) (viewFav == null ? 0 : viewFav ? 1 : 2));
+        dest.writeInt(pos);
     }
 
     @Override
@@ -100,5 +89,40 @@ public class StreetViewModel implements Parcelable {
 
     public void setViewName(String viewName) {
         this.viewName = viewName;
+    }
+
+    public Boolean getViewFav() {
+        return viewFav;
+    }
+
+    public void setViewFav(Boolean viewFav) {
+        this.viewFav = viewFav;
+    }
+
+    public int getPos() {
+        return pos;
+    }
+
+    public void setPos(int pos) {
+        this.pos = pos;
+    }
+
+    public StreetViewModel(String imageLink, String cityName, String countryName, String details, String viewName, Boolean viewFav, int pos) {
+        this.imageLink = imageLink;
+        this.cityName = cityName;
+        this.countryName = countryName;
+        this.details = details;
+        this.viewName = viewName;
+        this.viewFav = viewFav;
+        this.pos = pos;
+    }
+
+    public StreetViewModel(String imageLink, String countryName, String details, String viewName, Boolean viewFav, int pos) {
+        this.imageLink = imageLink;
+        this.countryName = countryName;
+        this.details = details;
+        this.viewName = viewName;
+        this.viewFav = viewFav;
+        this.pos = pos;
     }
 }

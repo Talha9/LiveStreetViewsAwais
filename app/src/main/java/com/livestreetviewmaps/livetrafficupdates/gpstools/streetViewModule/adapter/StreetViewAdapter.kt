@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.livestreetviewmaps.livetrafficupdates.gpstools.R
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.UtilsFunctionClass
+import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.restCountriesApi.CountriesModel
 import com.livestreetviewmaps.livetrafficupdates.gpstools.streetViewModule.callbacks.onStreetViewClickCallback
 import com.livestreetviewmaps.livetrafficupdates.gpstools.streetViewModule.models.StreetViewModel
 
@@ -37,10 +38,11 @@ class StreetViewAdapter(
         val model=list.get(position)
         if(btnCheck){
             holder.street!!.text=model.cityName+","+model.countryName
+            UtilsFunctionClass.setImageInGlideFromString(mContext,model.imageLink,holder.progress!!,holder.img!!)
         }else{
             holder.street!!.text=model.countryName
+            UtilsFunctionClass.setImageInGlideFromString(mContext,model.imageLink,holder.progress!!,holder.img!!)
         }
-        UtilsFunctionClass.setImageInGlideFromString(mContext,model.imageLink,holder.progress!!,holder.img!!)
         holder.img!!.setOnClickListener {
             callback.onClick(model)
         }
@@ -49,5 +51,12 @@ class StreetViewAdapter(
     override fun getItemCount(): Int {
         return list.size
     }
+
+    fun changeAdapteroList(arrayList: ArrayList<StreetViewModel>) {
+        list=arrayList
+        notifyDataSetChanged()
+
+    }
+
 
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="DisSpinnerItems">
+        <item>km</item>
+        <item>miles</item>
+        <item>m</item>
+    </string-array>
+
+    <string-array name="FuelSpinnerItems">
+        <item>Litre</item>
+        <item>barrel</item>
+        <item>gallon</item>
+    </string-array>
+
+</resources>
