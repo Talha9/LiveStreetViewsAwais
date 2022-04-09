@@ -1,6 +1,8 @@
 package com.livestreetviewmaps.livetrafficupdates.gpstools.spaceInfoModule.activities
 
 import android.content.DialogInterface
+import android.content.IntentFilter
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
@@ -65,6 +67,10 @@ class SpaceInfoDetailActivity : AppCompatActivity(),
     private fun initialization() {
         networkStateReceiver = NetworkStateReceiver()
         networkStateReceiver!!.addListener(this)
+        this.registerReceiver(
+            networkStateReceiver,
+            IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
+        )
         internetDialog = InternetDialog(this)
 
     }

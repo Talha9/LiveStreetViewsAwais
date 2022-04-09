@@ -15,11 +15,11 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.livestreetviewmaps.livetrafficupdates.gpstools.R
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.UtilsFunctionClass
+import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.webCamApi.Webcam
 import com.livestreetviewmaps.livetrafficupdates.gpstools.webCamsModule.callbacks.WebCamCallback
-import com.livestreetviewmaps.livetrafficupdates.gpstools.webCamsModule.models.WebCamsModel
 import gps.navigation.weather.nearby.streetview.liveearthmap.gpsnavigation.Ads.LiveStreetViewMyAppNativeAds
 
-class WebCamAdapter(var mContext: Context, var list:ArrayList<WebCamsModel>, var callback:WebCamCallback):
+class WebCamAdapter(var mContext: Context, var list: ArrayList<Webcam>?, var callback:WebCamCallback):
     RecyclerView.Adapter<WebCamAdapter.WebCamViewHolder>() {
     var typeAds = 0
     var typePost = 1
@@ -27,21 +27,13 @@ class WebCamAdapter(var mContext: Context, var list:ArrayList<WebCamsModel>, var
 
     inner class WebCamViewHolder(itemView:View):RecyclerView.ViewHolder(itemView) {
         var img:ImageView?=null
-        var navigateBtn:CardView?=null
         var addressTxt:TextView?=null
-        var addressSubTxt:TextView?=null
-        var shareBtn:CardView?=null
-        var mapViewBtn:CardView?=null
         var parentView:ConstraintLayout?=null
         var progress:ProgressBar?=null
         init {
             img=itemView.findViewById(R.id.webCamImg)
-            navigateBtn=itemView.findViewById(R.id.webCamNavigationBtn)
             addressTxt=itemView.findViewById(R.id.webCamTxt)
-            addressSubTxt=itemView.findViewById(R.id.webCamSubTxt)
-            shareBtn=itemView.findViewById(R.id.webCamShareBtn)
             parentView=itemView.findViewById(R.id.parentLayout)
-            mapViewBtn=itemView.findViewById(R.id.webCamMapViewBtn)
             progress=itemView.findViewById(R.id.webCamProgress)
         }
     }
@@ -71,29 +63,21 @@ class WebCamAdapter(var mContext: Context, var list:ArrayList<WebCamsModel>, var
         }
         if (position % 6 == 0) return
         val newPosition = position - (position / 6 + 1)
-        val model=list[newPosition]
+        val model= list?.get(newPosition)
         val bounceAnim = AnimationUtils.loadAnimation(mContext, R.anim.bonce)
         holder.parentView!!.startAnimation(bounceAnim)
-        UtilsFunctionClass.setImageInGlideFromString(mContext,"http://img.youtube.com/vi/"+model.webCamUrl+"/0.jpg",holder.progress!!,holder.img!!)
-        holder.addressTxt!!.text=model.placeName
-        holder.addressSubTxt!!.text=model.cityName+","+model.countryName
-        holder.shareBtn!!.setOnClickListener {
-            callback.onShareWebCamClick(model)
-        }
-        holder.navigateBtn!!.setOnClickListener {
-            callback.onNavigateWebCamClick(model)
-        }
-        holder.mapViewBtn!!.setOnClickListener {
-            callback.onMapViewClick(model)
-        }
+        UtilsFunctionClass.setImageInGlideFromString(mContext,model!!.image.current.preview,holder.progress!!,holder.img!!)
+        holder.addressTxt!!.text= model.title
+
         holder.img!!.setOnClickListener {
             callback.onThumbnailClick(model)
         }
 
+
     }
 
     override fun getItemCount(): Int {
-        val itemCount = list.size
+        val itemCount = list!!.size
         return itemCount + (itemCount / 5 + 1)
     }
 

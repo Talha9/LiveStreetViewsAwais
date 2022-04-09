@@ -66,14 +66,14 @@ public class LiveStreetViewMyAppShowAds {
                     LiveStreetViewMyAppAds.admobInterstitialAd = null;
                     LiveStreetViewMyAppAds.preReLoadAds(context);
                     LiveStreetViewMyAppAds.setHandlerForAd();
-                    context.startActivity(intent);
+                    /*context.startActivity(intent);*/
                     context.finish();
 
                 }
             });
         } else {
             LiveStreetViewMyAppAds.preReLoadAds(context);
-            context.startActivity(intent);
+          /*  context.startActivity(intent);*/
             context.finish();
         }
 

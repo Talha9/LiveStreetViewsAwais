@@ -48,7 +48,7 @@ public class LiveStreetViewMyAppAds {
     public static InterstitialAd admobInterstitialAd;
     public static boolean shouldGoForAds = true;
 
-    public static long next_ads_time = 000;
+    public static long next_ads_time = 20000;
     public static double current_counter = 1;
 
     private static DatabaseReference adsDatabaseReferenceStreeView = FirebaseDatabase.getInstance().getReference("LiveStreetViewSpace");

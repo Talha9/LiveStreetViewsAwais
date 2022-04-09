@@ -54,7 +54,7 @@
                 android:layout_marginBottom="-8dp"
                 android:text="Aries"
                 android:textColor="@color/ThemeColor"
-                android:textSize="@dimen/_30ssp"
+                android:textSize="@dimen/_25ssp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/view5"
                 app:layout_constraintStart_toStartOf="@+id/guideline4" />
@@ -64,7 +64,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.55" />
+                app:layout_constraintGuide_percent="0.50" />
 
             <View
                 android:id="@+id/view5"

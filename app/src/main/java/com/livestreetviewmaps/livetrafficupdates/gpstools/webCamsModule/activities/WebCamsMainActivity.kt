@@ -5,97 +5,115 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.location.LocationManager
 import android.net.ConnectivityManager
-import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
 import android.view.KeyEvent
 import android.view.View
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.ads.AdSize
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.*
-import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.MapNavigation.MapNavigationActivity
-import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.MapNavigation.model.NavigationModel
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.callbacks.LocationDialogCallback
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.dialogs.InternetDialog
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.dialogs.LocationDialog
+import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.webCamApi.WebCamApiInstance
+import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.webCamApi.WebCamApiInterface
+import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.webCamApi.Webcam
+import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.webCamApi.mvvm.WindiCamModelFactory
+import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.webCamApi.mvvm.WindiCamRepository
+import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.webCamApi.mvvm.WindiCamViewModel
 import com.livestreetviewmaps.livetrafficupdates.gpstools.databinding.ActivityWebCamsMainBinding
 import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewBillingHelper
 import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewMyAppAds
 import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewMyAppShowAds
 import com.livestreetviewmaps.livetrafficupdates.gpstools.webCamsModule.adapter.WebCamAdapter
 import com.livestreetviewmaps.livetrafficupdates.gpstools.webCamsModule.callbacks.WebCamCallback
-import com.livestreetviewmaps.livetrafficupdates.gpstools.webCamsModule.helpers.WebCamHelper
-import com.livestreetviewmaps.livetrafficupdates.gpstools.webCamsModule.models.WebCamMapMarkerLocationModel
-import com.livestreetviewmaps.livetrafficupdates.gpstools.webCamsModule.models.WebCamVideoLinkModel
-import com.livestreetviewmaps.livetrafficupdates.gpstools.webCamsModule.models.WebCamsModel
+import com.livestreetviewmaps.livetrafficupdates.gpstools.webCamsModule.models.WebCamCountryModel
 
-class WebCamsMainActivity : AppCompatActivity(),NetworkStateReceiver.NetworkStateReceiverListener,
+class WebCamsMainActivity : AppCompatActivity(), NetworkStateReceiver.NetworkStateReceiverListener,
     LocationDialogCallback {
-    var binding:ActivityWebCamsMainBinding?=null
-    var manager:LinearLayoutManager?=null
-    var adapter:WebCamAdapter?=null
-    var list:ArrayList<WebCamsModel>?=null
+    var binding: ActivityWebCamsMainBinding? = null
+    var manager: LinearLayoutManager? = null
+    var adapter: WebCamAdapter? = null
+    var list: ArrayList<Webcam>? = null
     lateinit var mFetchLocation: LocationClass
     lateinit var mLocationService: LocationService
     var gpsEnableDialog: LocationDialog? = null
+    var dataModel: WebCamCountryModel? = null
     private var networkStateReceiver: NetworkStateReceiver? = null
-    var internetDialog: InternetDialog?=null
+    var internetDialog: InternetDialog? = null
+    lateinit var mWindiCamViewModel: WindiCamViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding= ActivityWebCamsMainBinding.inflate(layoutInflater)
+        binding = ActivityWebCamsMainBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
 
-        listFiller()
+        if (intent.getParcelableExtra<WebCamCountryModel>("country_model") != null) {
+            try {
+                val model = intent.getParcelableExtra<WebCamCountryModel>("country_model")
+                if (model != null) {
+                    dataModel = model
+                    binding!!.header.headerBarTitleTxt.text = model.country
+                    getWindiApiData(dataModel!!.code)
+                }
+            } catch (e: Exception) {
+            }
+        }
+
+
+
         initializers()
         setUpHeader()
-        setUpAdapter()
         mBannerAdsSmall()
     }
 
-    private fun listFiller() {
-        list=WebCamHelper.fillWebCamList()
+    private fun getWindiApiData(code: String) {
+        Log.d("mSpaceInfoViewModelTAG", "apiCalling: " +code)
+        val webCamRetrofit = WebCamApiInstance.getInstance().create(WebCamApiInterface::class.java)
+
+        val mWindiCamRepository = WindiCamRepository(webCamRetrofit)
+        mWindiCamViewModel =
+            ViewModelProvider(this, WindiCamModelFactory(mWindiCamRepository)).get(
+                WindiCamViewModel::class.java
+            )
+
+        mWindiCamViewModel.callForData(
+            code,
+            20,
+            "eNmZSWAlfyYauYpg6c8fphsqtQR2wVR0",
+            "webcams:player,image,live"
+        )
+        mWindiCamViewModel.mWindiCam.observe(this, {
+            if (it != null) {
+                list = it.result.webcams as ArrayList<Webcam>
+                Log.d("mWindiCamViewModelTAG", "getWindiApiData: "+ list!!.size)
+                setUpAdapter(list)
+            }
+        })
+
+
     }
 
-    private fun setUpAdapter() {
-       manager= LinearLayoutManager(this)
-        binding!!.recyclerView.layoutManager=manager
-        if (list!=null && list!!.size>0) {
-            adapter= WebCamAdapter(this,list!!,object :WebCamCallback{
-                override fun onShareWebCamClick(model: WebCamsModel) {
-                    val address =
-                        "${model.placeName}\nhttps://maps.google.com/maps?q=@${model.placeLatitude},${model.placeLongitude}"
-                    shareMyLocation(address)
-                }
-                override fun onNavigateWebCamClick(model: WebCamsModel) {
-                    val intent=Intent(this@WebCamsMainActivity,MapNavigationActivity::class.java)
-                    intent.putExtra("navigation_model",NavigationModel(constants.mLatitude,constants.mLongitude,model.placeLatitude,model.placeLongitude,0))
-                    Log.d(
-                        "ModelLogCheckTAG",
-                        "onItemClick: " + constants.mLatitude + "," + constants.mLongitude+ model.placeLatitude + "," + model.placeLongitude)
-                    if (Build.VERSION.SDK_INT<31) {
-                       startActivity(intent)
-                    }else{
-                        Toast.makeText(this@WebCamsMainActivity,"Feature Not Available!",Toast.LENGTH_SHORT).show()
-                    }
-                }
-                override fun onMapViewClick(model: WebCamsModel) {
-                    val intent=Intent(this@WebCamsMainActivity,WebCamMapActivity::class.java)
-                    intent.putExtra("map_loc",WebCamMapMarkerLocationModel(model.placeLatitude,model.placeLongitude,model.placeName))
-                    startActivity(intent)
-                }
 
-                override fun onThumbnailClick(model: WebCamsModel) {
-                    val intent=Intent(this@WebCamsMainActivity,WebCamVideoPlayerActivity::class.java)
-                    intent.putExtra("video_url",WebCamVideoLinkModel(model.placeName,model.webCamUrl))
+    private fun setUpAdapter(list: ArrayList<Webcam>?) {
+        Log.d("setUpAdapterTAG", "setUpAdapter: "+list!!.size)
+        manager = LinearLayoutManager(this)
+        binding!!.recyclerView.layoutManager = manager
+        if (this.list != null && this.list!!.size > 0) {
+            adapter = WebCamAdapter(this, list, object : WebCamCallback {
+
+                override fun onThumbnailClick(model: Webcam?) {
+                    val intent =
+                        Intent(this@WebCamsMainActivity, WebCamVideoPlayerActivity::class.java)
+                    intent.putExtra("video_url", model!!.player.lifetime.embed.toString())
                     startActivity(intent)
                 }
 
             })
-            binding!!.recyclerView.adapter=adapter
-            binding!!.progressMainBg.visibility= View.GONE
+            binding!!.recyclerView.adapter = adapter
+            binding!!.progressMainBg.visibility = View.GONE
         }
     }
 
@@ -106,12 +124,12 @@ class WebCamsMainActivity : AppCompatActivity(),NetworkStateReceiver.NetworkStat
             networkStateReceiver,
             IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
         )
-        internetDialog= InternetDialog(this)
+        internetDialog = InternetDialog(this)
 
         mFetchLocation = LocationClass(this)
         mFetchLocation.initLocationRequest()
-        gpsEnableDialog= LocationDialog(this,this)
-        mLocationService=LocationService(this, gpsEnableDialog!!)
+        gpsEnableDialog = LocationDialog(this, this)
+        mLocationService = LocationService(this, gpsEnableDialog!!)
         try {
             val filter = IntentFilter(LocationManager.PROVIDERS_CHANGED_ACTION)
             filter.addAction(Intent.ACTION_PROVIDER_CHANGED)
@@ -121,12 +139,14 @@ class WebCamsMainActivity : AppCompatActivity(),NetworkStateReceiver.NetworkStat
 
 
     }
+
     private fun setUpHeader() {
-        binding!!.header.headerBarTitleTxt.text="Web Cams"
+        binding!!.header.headerBarTitleTxt.text = "Web Cams"
         binding!!.header.headerBarBackBtn.setOnClickListener {
             onBackPressed()
         }
     }
+
     override fun onBackPressed() {
         LiveStreetViewMyAppShowAds.mediationBackPressedSimpleLiveStreetView(
             this,
@@ -153,12 +173,14 @@ class WebCamsMainActivity : AppCompatActivity(),NetworkStateReceiver.NetworkStat
         } catch (e: Exception) {
         }
     }
+
     override fun onDestroy() {
         networkStateReceiver!!.removeListener(this)
         unregisterReceiver(networkStateReceiver)
         unregisterReceiver(mLocationService)
         super.onDestroy()
     }
+
     override fun onResume() {
         super.onResume()
         val locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
@@ -205,10 +227,10 @@ class WebCamsMainActivity : AppCompatActivity(),NetworkStateReceiver.NetworkStat
 
         if (billingHelper.isNotAdPurchased()) {
             LiveStreetViewMyAppAds.loadEarthMapBannerForMainMediation(
-                binding!!.smallAd.adContainer,adView,this
+                binding!!.smallAd.adContainer, adView, this
             )
-        }else{
-            binding!!.smallAd.root.visibility= View.GONE
+        } else {
+            binding!!.smallAd.root.visibility = View.GONE
         }
     }
 }

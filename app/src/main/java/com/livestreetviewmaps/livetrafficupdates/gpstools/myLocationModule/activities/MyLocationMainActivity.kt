@@ -1,6 +1,7 @@
 package com.livestreetviewmaps.livetrafficupdates.gpstools.myLocationModule.activities
 
 import android.Manifest
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.IntentFilter
@@ -11,6 +12,7 @@ import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
+import android.text.ClipboardManager
 import android.util.Log
 import android.view.KeyEvent
 import android.view.View
@@ -65,6 +67,7 @@ class MyLocationMainActivity : AppCompatActivity(),LocationDialogCallback, Netwo
     private var locationEngine: LocationEngine? = null
     var onTimeLocationCheck = true
     private var is2D = 0
+    private var clipGlobeEarthMapManager: ClipboardManager? = null
     var mConvertLatLngToPlaceName: ConvertLatLngToPlace? = null
     private var callback: LocationChangeListeningActivityLocationCallback =
         LocationChangeListeningActivityLocationCallback(
@@ -177,6 +180,18 @@ class MyLocationMainActivity : AppCompatActivity(),LocationDialogCallback, Netwo
             } catch (e: Exception) {
             }
         }
+
+        binding!!.myLocationAddressTxt.setOnClickListener {
+            if (binding!!.myLocationAddressTxt.text.isNotEmpty() && constants.mLatitude!=0.0 && constants.mLongitude!=0.0) {
+                val address = "I am here now" + "\nLatitude: ${constants.mLatitude}\nLongitude: ${constants.mLongitude}\n" + "\"${binding!!.myLocationAddressTxt.text}\nhttps://maps.google.com/maps?q=@${constants.mLatitude},${constants.mLongitude}"
+                clipGlobeEarthMapManager!!.text = address
+                Toast.makeText(this, "Text Copy", Toast.LENGTH_SHORT)
+                    .show()
+            }else{
+                Toast.makeText(this, "Location Not Found", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
     }
 
     override fun onBackPressed() {
@@ -187,6 +202,7 @@ class MyLocationMainActivity : AppCompatActivity(),LocationDialogCallback, Netwo
     }
 
     private fun initializers() {
+        clipGlobeEarthMapManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         binding!!.header.headerBarTitleTxt.text="My Location"
         networkStateReceiver = NetworkStateReceiver()
         networkStateReceiver!!.addListener(this)

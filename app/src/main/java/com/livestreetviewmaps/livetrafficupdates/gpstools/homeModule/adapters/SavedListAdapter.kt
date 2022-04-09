@@ -22,11 +22,13 @@ class SavedListAdapter(
     inner class SavedListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         var img: ImageView? = null
+        var deleteBtn: ImageView? = null
         var txt: TextView? = null
 
         init {
 
             img = itemView.findViewById(R.id.favItemImg)
+            deleteBtn = itemView.findViewById(R.id.deleteStreetView)
             txt = itemView.findViewById(R.id.favItemTxt)
 
         }
@@ -49,9 +51,19 @@ class SavedListAdapter(
         holder.txt!!.setOnClickListener {
             callback.onSavedFavouriteClick(model)
         }
+        holder.deleteBtn!!.setOnClickListener {
+            callback.onSavedFavouriteDeleteClick(model)
+        }
     }
 
     override fun getItemCount(): Int {
         return list.size
     }
+
+    fun updateRecycleList(dataList: ArrayList<FavouritesTable>) {
+        list = dataList
+        notifyDataSetChanged()
+    }
+
+
 }

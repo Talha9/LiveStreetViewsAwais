@@ -14,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.room.Update
 import com.google.android.gms.ads.AdSize
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.livestreetviewmaps.livetrafficupdates.gpstools.R
@@ -26,7 +25,6 @@ import com.livestreetviewmaps.livetrafficupdates.gpstools.databinding.ActivitySt
 import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewBillingHelper
 import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewMyAppAds
 import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewMyAppShowAds
-import com.livestreetviewmaps.livetrafficupdates.gpstools.liveStreetViewAds.LiveStreetViewPurchaseHelper
 import com.livestreetviewmaps.livetrafficupdates.gpstools.streetViewModule.adapter.StreetViewAdapter
 import com.livestreetviewmaps.livetrafficupdates.gpstools.streetViewModule.callbacks.onStreetViewClickCallback
 import com.livestreetviewmaps.livetrafficupdates.gpstools.streetViewModule.database.MyStreetsModel
@@ -40,6 +38,7 @@ class StreetViewActivity : AppCompatActivity() {
     var binding: ActivityStreetViewBinding? = null
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<View>
     var isSearching = false
+    var isFavourite = false
     var currentImageModel: StreetViewModel? = null
     var currentImagePath: Uri? = null
     var currentImageFavCheck: Boolean? = false
@@ -211,15 +210,28 @@ class StreetViewActivity : AppCompatActivity() {
         }
         binding!!.favouriteBtn.setOnClickListener {
             if (constants.storageModule) {
-                constants.startDownloading = 3
-                binding!!.progressMainBg.visibility = View.VISIBLE
-                favouriteImage(currentImageModel!!.imageLink, currentImageModel!!.viewName, true)
-                UtilsFunctionClass.setImageInGlideFromDrawable(
-                    this,
-                    getDrawable(R.drawable.ic_heart_fill)!!,
-                    binding!!.favouriteProgress,
-                    binding!!.favouriteBtn
-                )
+                //constants.startDownloading = 3
+                if (!currentImageModel!!.viewFav) {
+                    binding!!.progressMainBg.visibility = View.VISIBLE
+                    favouriteImage(currentImageModel!!.imageLink, currentImageModel!!.viewName, true)
+                    UtilsFunctionClass.setImageInGlideFromDrawable(
+                        this,
+                        getDrawable(R.drawable.ic_heart_fill)!!,
+                        binding!!.favouriteProgress,
+                        binding!!.favouriteBtn
+                    )
+                }else{
+                    binding!!.progressMainBg.visibility = View.VISIBLE
+                    favouriteImage(currentImageModel!!.imageLink, currentImageModel!!.viewName, false)
+                    UtilsFunctionClass.setImageInGlideFromDrawable(
+                        this,
+                        getDrawable(R.drawable.ic_baseline_favorite_border_24)!!,
+                        binding!!.favouriteProgress,
+                        binding!!.favouriteBtn
+                    )
+                    deleteViewFun(currentImageModel)
+
+                }
 
 
             } else {
@@ -261,6 +273,13 @@ class StreetViewActivity : AppCompatActivity() {
         }
         binding!!.header.headerBarTitleTxt.text = "Street View"
     }
+
+    private fun deleteViewFun(model: StreetViewModel?) {
+        mLiveStreetViewModel = ViewModelProvider(this)[LiveStreetViewModel::class.java]
+        mLiveStreetViewModel!!.deleteFavourites(model!!.viewName)
+        getDbFavouriteData()
+    }
+
 
     override fun onBackPressed() {
         LiveStreetViewMyAppShowAds.mediationBackPressedSimpleLiveStreetView(

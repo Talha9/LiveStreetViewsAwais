@@ -16,7 +16,6 @@ class NavigationTransitAdapter(var mContext: Context,var list:ArrayList<TransitR
     RecyclerView.Adapter<NavigationTransitAdapter.NavigationTransitViewHolder>() {
 
 
-
     inner class NavigationTransitViewHolder(itemView: View):RecyclerView.ViewHolder(itemView) {
         var txt:TextView?=null
         var btn:ImageView?=null

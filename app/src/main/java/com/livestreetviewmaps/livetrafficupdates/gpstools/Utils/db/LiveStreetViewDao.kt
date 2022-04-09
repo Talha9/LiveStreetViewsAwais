@@ -31,7 +31,9 @@ interface LiveStreetViewDao {
    @Query("SELECT * FROM FavouritesTable")
    fun fetchAllMyFavourites():LiveData<List<FavouritesTable>>
 
-   @Query("DELETE FROM FavouritesTable Where id=:id")
-   fun DeleteSpecificFavouriteData(id:Int)
+   @Query("DELETE FROM FavouritesTable Where streetViewName=:name")
+   fun DeleteSpecificFavouriteData(name:String)
+
+
 
 }

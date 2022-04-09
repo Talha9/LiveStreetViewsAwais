@@ -28,7 +28,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        //isFromPlay = isFromPlayStore(this)
+        isFromPlay = isFromPlayStore(this)
          try {
              FirebaseApp.initializeApp(this)
          } catch (e: Exception) {

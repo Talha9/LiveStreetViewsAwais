@@ -9,7 +9,6 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/text_img"
         android:id="@+id/countryFlgImg"
         android:background="@drawable/rounded_shape_theme_color"
         android:scaleType="centerCrop"/>

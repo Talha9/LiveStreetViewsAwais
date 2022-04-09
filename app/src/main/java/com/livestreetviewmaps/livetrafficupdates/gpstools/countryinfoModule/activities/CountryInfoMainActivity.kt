@@ -240,12 +240,14 @@ class CountryInfoMainActivity : AppCompatActivity(),
                 list.add(it)
             }
         }
-        model.latlng[0]?.let {
-            list.add(it.toString())
-        }
+        if (model.latlng!=null && model.latlng.size>0) {
+            model.latlng[0]?.let {
+                list.add(it.toString())
+            }
 
-        model.latlng[1].let {
-            list.add(it.toString())
+            model.latlng[1].let {
+                list.add(it.toString())
+            }
         }
         val manager = LinearLayoutManager(this)
         binding.bSheet.countryInfoDetailsRecView.layoutManager = manager

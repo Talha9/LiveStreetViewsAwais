@@ -1,8 +1,9 @@
 package com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.MapNavigation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.MapNavigation.model.NavigationModel
 import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.constants
 import com.livestreetviewmaps.livetrafficupdates.gpstools.databinding.ActivityMapNavigationBinding
@@ -21,35 +22,41 @@ import com.mapbox.navigation.ui.OnNavigationReadyCallback
 import com.mapbox.navigation.ui.listeners.NavigationListener
 import com.mapbox.navigation.ui.map.NavigationMapboxMap
 
-class MapNavigationActivity : AppCompatActivity(),OnNavigationReadyCallback,NavigationListener {
-    var binding:ActivityMapNavigationBinding?=null
+class MapNavigationActivity : AppCompatActivity(), OnNavigationReadyCallback, NavigationListener {
+    var binding: ActivityMapNavigationBinding? = null
     private var origin: Point? = null
     private var destination: Point? = null
-    var dataModel:NavigationModel?=null
+    var dataModel: NavigationModel? = null
+    var navigateCheck = false
     private lateinit var navigationMapboxMap: NavigationMapboxMap
     private lateinit var mapboxNavigation: MapboxNavigation
-    private var routeType=0
+    private var routeType = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         try {
             Mapbox.getInstance(this, constants.mapboxApiKey)
         } catch (e: Exception) {
         }
-        binding= ActivityMapNavigationBinding.inflate(layoutInflater)
+        binding = ActivityMapNavigationBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
 
         if (intent.getParcelableExtra<NavigationModel>("navigation_model") != null) {
             try {
                 val model = intent.getParcelableExtra<NavigationModel>("navigation_model")
                 if (model != null) {
-                    dataModel=model
+                    dataModel = model
                     Log.d(
                         "ModelLogCheckTAG",
-                        "onItemClick: " + model.originLatitude + "," + model.originLongitude+ model.destinationLatitude + "," + model.destinationLongitude )
+                        "onItemClick: " + model.originLatitude + "," + model.originLongitude + model.destinationLatitude + "," + model.destinationLongitude
+                    )
 
-                    origin= Point.fromLngLat(dataModel!!.originLongitude,dataModel!!.originLatitude)
-                    destination= Point.fromLngLat(dataModel!!.destinationLongitude,dataModel!!.destinationLatitude)
-                    routeType=dataModel!!.routeIndex
+                    origin =
+                        Point.fromLngLat(dataModel!!.originLongitude, dataModel!!.originLatitude)
+                    destination = Point.fromLngLat(
+                        dataModel!!.destinationLongitude,
+                        dataModel!!.destinationLatitude
+                    )
+                    routeType = dataModel!!.routeIndex
                 }
             } catch (e: Exception) {
             }
@@ -61,18 +68,18 @@ class MapNavigationActivity : AppCompatActivity(),OnNavigationReadyCallback,Navi
     }
 
     private fun initialization(savedInstanceState: Bundle?) {
-            val initialPosition =
-                CameraPosition.Builder()
-                    .target(
-                        LatLng(
-                            origin!!.latitude(),
-                            origin!!.longitude()
-                        )
+        val initialPosition =
+            CameraPosition.Builder()
+                .target(
+                    LatLng(
+                        origin!!.latitude(),
+                        origin!!.longitude()
                     )
-                    .zoom(15.0)
-                    .build()
+                )
+                .zoom(15.0)
+                .build()
         binding!!.navigationView.onCreate(savedInstanceState)
-            binding!!.navigationView.initialize(this, initialPosition)
+        binding!!.navigationView.initialize(this, initialPosition)
     }
 
     override fun onNavigationReady(isRunning: Boolean) {
@@ -94,13 +101,14 @@ class MapNavigationActivity : AppCompatActivity(),OnNavigationReadyCallback,Navi
             }
         }
     }
+
     private fun fetchRoute() {
         Log.d("RouteFetchTag", "fetchRoute: ")
         if (origin != null && destination != null) {
             mapboxNavigation.requestRoutes(
                 RouteOptions.builder()
                     .accessToken(constants.mapboxApiKey)
-                    .coordinates(listOf(origin,destination))
+                    .coordinates(listOf(origin, destination))
                     .geometries(RouteUrl.GEOMETRY_POLYLINE6)
                     .alternatives(true)
                     .profile(RouteUrl.PROFILE_DRIVING_TRAFFIC)
@@ -113,17 +121,24 @@ class MapNavigationActivity : AppCompatActivity(),OnNavigationReadyCallback,Navi
                         if (routes.isNotEmpty()) {
                             val directionsRoute = routes[routeType]
                             startNavigation(directionsRoute)
+                            navigateCheck = true
                         }
                     }
 
                     override fun onRoutesRequestCanceled(routeOptions: RouteOptions) {
                         Log.d("RouteFetchTag", "onRoutesRequestCanceled: ")
+                        navigateCheck = true
                     }
+
                     override fun onRoutesRequestFailure(
                         throwable: Throwable,
                         routeOptions: RouteOptions
                     ) {
-                        Log.d("RouteFetchTag", "onRoutesRequestFailure: "+throwable.localizedMessage)
+                        navigateCheck = true
+                        Log.d(
+                            "RouteFetchTag",
+                            "onRoutesRequestFailure: " + throwable.localizedMessage
+                        )
                     }
 
                 }
@@ -131,6 +146,7 @@ class MapNavigationActivity : AppCompatActivity(),OnNavigationReadyCallback,Navi
 
         }
     }
+
     private fun startNavigation(directionsRoute: DirectionsRoute) {
         Log.d("startNavigationTag", "startNavigation: ")
         val optionsBuilder = NavigationViewOptions.builder(this)
@@ -142,16 +158,26 @@ class MapNavigationActivity : AppCompatActivity(),OnNavigationReadyCallback,Navi
     }
 
     override fun onNavigationRunning() {
-        Log.d("startNavigationTag" , "onNavigationRunning: ")
+        Log.d("startNavigationTag", "onNavigationRunning: ")
     }
 
     override fun onNavigationFinished() {
-        finish()
+        Log.d("startNavigationTag", "onNavigationFinished: ")
+        if (navigateCheck) {
+            finish()
+        } else {
+            Toast.makeText(this, "Please Wait Route is Being Ready!", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onCancelNavigation() {
-        binding!!.navigationView.stopNavigation()
-        finish()
+        if (navigateCheck) {
+            Log.d("startNavigationTag", "onCancelNavigation: ")
+            binding!!.navigationView.stopNavigation()
+            finish()
+        } else {
+            Toast.makeText(this, "Please Wait Route is Being Ready!", Toast.LENGTH_SHORT).show()
+        }
     }
 
 
@@ -185,6 +211,7 @@ class MapNavigationActivity : AppCompatActivity(),OnNavigationReadyCallback,Navi
         mapboxNavigation.onDestroy()
         super.onDestroy()
     }
+
     override fun onSaveInstanceState(outState: Bundle) {
         binding!!.navigationView.onSaveInstanceState(outState)
         super.onSaveInstanceState(outState)
@@ -193,6 +220,14 @@ class MapNavigationActivity : AppCompatActivity(),OnNavigationReadyCallback,Navi
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
         binding!!.navigationView.onRestoreInstanceState(savedInstanceState)
+    }
+
+    override fun onBackPressed() {
+        if (navigateCheck) {
+            super.onBackPressed()
+        }else {
+            Toast.makeText(this, "Please Wait Route is Being Ready!", Toast.LENGTH_SHORT).show()
+        }
     }
 
 

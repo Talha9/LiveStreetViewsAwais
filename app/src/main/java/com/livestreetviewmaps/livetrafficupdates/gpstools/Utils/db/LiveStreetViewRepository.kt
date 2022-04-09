@@ -51,8 +51,8 @@ class LiveStreetViewRepository(application: Application) {
         InsertFavourites(dao).execute(table)
     }
 
-    fun deleteFavourites(id:Int) {
-        DeleteFavourites(dao).execute(id)
+    fun deleteFavourites(name:String) {
+        DeleteFavourites(dao).execute(name)
     }
 
 
@@ -160,12 +160,12 @@ companion object{
         override val coroutineContext: CoroutineContext
             get() = Dispatchers.IO + job
 
-        fun execute(id: Int) = launch { /*launch is having main thread scope*/
+        fun execute(name: String) = launch { /*launch is having main thread scope*/
             Log.d("InsertActivityTAG", "execute:")
-            doInBackground(id) // runs in background thread without blocking the Main Thread
+            doInBackground(name) // runs in background thread without blocking the Main Thread
         }
-        private fun doInBackground(id: Int) {
-            dao.DeleteSpecificFavouriteData(id)
+        private fun doInBackground(name: String) {
+            dao.DeleteSpecificFavouriteData(name)
         }
 
     }

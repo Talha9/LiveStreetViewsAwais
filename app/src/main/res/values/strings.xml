@@ -33,17 +33,17 @@
     <string name="sotw_southwest">SW</string>
 
     <!--Test ad ids-->
-    <string name="admob_app_id">ca-app-pub-3940256099942544~3347511713</string>
+<!--    <string name="admob_app_id">ca-app-pub-3940256099942544~3347511713</string>
     <string name="admob_banner_ad_id">ca-app-pub-3940256099942544/6300978111</string>
     <string name="admob_interstitial_ad_id">ca-app-pub-3940256099942544/1033173712</string>
-    <string name="admob_native_ad_id">ca-app-pub-3940256099942544/2247696110</string>
+    <string name="admob_native_ad_id">ca-app-pub-3940256099942544/2247696110</string>-->
 
 
     <!--  Live ad ids-->
-         <!--      <string name="admob_app_id">ca-app-pub-7989194628001630~9998425397</string>
+          <string name="admob_app_id">ca-app-pub-7989194628001630~9998425397</string>
         <string name="admob_banner_ad_id">ca-app-pub-7989194628001630/9589883121</string>
         <string name="admob_interstitial_ad_id">ca-app-pub-7989194628001630/8157397860</string>
-        <string name="admob_native_ad_id">ca-app-pub-7989194628001630/6963719784</string>-->
+        <string name="admob_native_ad_id">ca-app-pub-7989194628001630/6963719784</string>
 
 
 </resources>

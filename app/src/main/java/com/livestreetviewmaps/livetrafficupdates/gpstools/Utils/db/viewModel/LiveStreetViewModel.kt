@@ -30,8 +30,8 @@ class LiveStreetViewModel(application: Application) : AndroidViewModel(applicati
         repository.deleteActivity(id)
     }
 
-    fun deleteFavourites(id:Int) {
-        repository.deleteFavourites(id)
+    fun deleteFavourites(name:String) {
+        repository.deleteFavourites(name)
     }
 
     fun deleteAllActivities() {

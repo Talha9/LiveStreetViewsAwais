@@ -4,4 +4,5 @@ import com.livestreetviewmaps.livetrafficupdates.gpstools.Utils.db.models.Favour
 
 interface FavouriteSavedCallback {
     fun onSavedFavouriteClick(model:FavouritesTable)
+    fun onSavedFavouriteDeleteClick(model:FavouritesTable)
 }

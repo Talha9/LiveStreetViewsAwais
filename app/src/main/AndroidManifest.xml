@@ -17,21 +17,21 @@
         </intent>
     </queries>
 
-
-
-
     <application
         android:name=".Utils.MyAppClass"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.LiveStreetViews"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".webCamsModule.activities.WebCamCountryListActivity"
+            android:exported="true" />
         <meta-data
-    android:name="com.google.android.gms.ads.APPLICATION_ID"
-    android:value="@string/admob_app_id" />
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="@string/admob_app_id" />
 
         <uses-library
             android:name="org.apache.http.legacy"
@@ -39,8 +39,8 @@
 
         <activity
             android:name=".splashModule.PrivicyActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".splashModule.SplashActivity"
             android:exported="true">
@@ -110,9 +110,7 @@
         <activity
             android:name=".webCamsModule.activities.WebCamVideoPlayerActivity"
             android:exported="true" />
-        <activity
-            android:name=".webCamsModule.activities.WebCamMapActivity"
-            android:exported="true" />
+
         <activity
             android:name=".webCamsModule.activities.WebCamsMainActivity"
             android:exported="true" />
@@ -161,8 +159,7 @@
         <activity
             android:name=".homeModule.activities.HomeActivity"
             android:exported="true"
-            android:theme="@style/Theme.LiveStreetViews.NoActionBar">
-        </activity>
+            android:theme="@style/Theme.LiveStreetViews.NoActionBar" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -173,6 +170,15 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
+
+        <service
+            android:name=".fcm.LiveStreetViewFcmMessaging"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
 
         <meta-data
             android:name="preloaded_fonts"

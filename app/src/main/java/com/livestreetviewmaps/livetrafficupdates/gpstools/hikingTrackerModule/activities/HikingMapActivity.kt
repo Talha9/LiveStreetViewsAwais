@@ -72,7 +72,7 @@ class HikingMapActivity : AppCompatActivity(), OnMapReadyCallback,
     private var maxSpeed: kotlin.Double = 0.0
     var currentLocation: Location? = null
     var timeWhenStopped: Long = 0
-    var isRunStopped = true
+    var isRunStopped = false
     var mMapLayersDialog: MapStylesDialog? = null
     var binding: ActivityHikingMapBinding? = null
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<View>
@@ -170,7 +170,7 @@ class HikingMapActivity : AppCompatActivity(), OnMapReadyCallback,
         }
         binding!!.bSheet.hikingStartBtn.setOnClickListener {
             isStart = true
-            isRunStopped=false
+            isRunStopped=true
             binding!!.bSheet.hikingPauseBtn.visibility = View.VISIBLE
             binding!!.bSheet.hikingStopBtn.visibility = View.VISIBLE
             binding!!.bSheet.hikingStartBtn.visibility = View.GONE
@@ -241,7 +241,7 @@ class HikingMapActivity : AppCompatActivity(), OnMapReadyCallback,
     }
 
     override fun onBackPressed() {
-        if (!isRunStopped) {
+        if (isRunStopped) {
             exitActivityDialog()
         } else {
             val intent = Intent(this@HikingMapActivity, HikingMainActivity::class.java)

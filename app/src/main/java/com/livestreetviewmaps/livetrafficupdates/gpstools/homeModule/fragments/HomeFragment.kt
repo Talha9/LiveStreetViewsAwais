@@ -54,6 +54,7 @@ import com.livestreetviewmaps.livetrafficupdates.gpstools.streetViewModule.activ
 import com.livestreetviewmaps.livetrafficupdates.gpstools.streetViewModule.helpers.StreetViewItemsHelper
 import com.livestreetviewmaps.livetrafficupdates.gpstools.streetViewModule.models.StreetViewModel
 import com.livestreetviewmaps.livetrafficupdates.gpstools.tallestPeaks.activities.TallestPeaksMainActivity
+import com.livestreetviewmaps.livetrafficupdates.gpstools.webCamsModule.activities.WebCamCountryListActivity
 import com.livestreetviewmaps.livetrafficupdates.gpstools.webCamsModule.activities.WebCamsMainActivity
 import com.livestreetviewmaps.livetrafficupdates.gpstools.wondersModule.activities.WondersMainActivity
 import com.livestreetviewmaps.livetrafficupdates.gpstools.worldClockModule.activities.WorldClockMainActivity
@@ -202,7 +203,7 @@ class HomeFragment : Fragment() {
 
                             }
                             7 -> {
-                                val intent = Intent(mContext, WebCamsMainActivity::class.java)
+                                val intent = Intent(mContext, WebCamCountryListActivity::class.java)
                                 constants.bottomIndex = 3
                                 LiveStreetViewMyAppShowAds.meidationForClickSimpleLiveStreetView(
                                     mContext,
@@ -362,7 +363,7 @@ class HomeFragment : Fragment() {
                         when (pos) {
                             0 -> {
                                 val uri =
-                                    Uri.parse("https://thrillingframestudio.blogspot.com/2021/10/policy-thrilling-flame-studio-built.html") // missing 'http://' will cause crashed
+                                    Uri.parse("https://thrillingframestudio.blogspot.com/2022/03/privacy-policy.html") // missing 'http://' will cause crashed
                                 val intent = Intent(Intent.ACTION_VIEW, uri)
                                 startActivity(intent)
                                 constants.bottomIndex = 5
@@ -646,8 +647,20 @@ class HomeFragment : Fragment() {
                 )
                 startActivity(intent)
             }
+
+            override fun onSavedFavouriteDeleteClick(model: FavouritesTable) {
+                deleteViewFun(model)
+            }
         })
         binding!!.wishListRecView.adapter = favSaveAdapter
+    }
+
+    private fun deleteViewFun(model: FavouritesTable) {
+        mLiveStreetViewModel = ViewModelProvider(this)[LiveStreetViewModel::class.java]
+        mLiveStreetViewModel!!.deleteFavourites(model.streetViewName)
+        dataList.remove(model)
+        favSaveAdapter!!.updateRecycleList(dataList)
+
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
